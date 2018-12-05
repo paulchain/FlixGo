@@ -1,0 +1,99 @@
+extends _layout/layout2
+//- Các giá trị mặc định cho trang web
+block variables
+	- var title = 'Home'
+	- var description = 'Description for home page'
+	- var bodyclass = 'home'
+//- Phần khai báo body
+block body
+
+	section.menu
+		.container-fluid
+			.row
+				nav.navbar.navbar-expand-lg
+					a.navbar-brand(href='index.html').ml-auto.order-2.order-md-1
+						img(src="./img/logo.png", alt="")
+					#navbarNavAltMarkup.collapse.navbar-collapse.order-3
+						.navbar-nav
+							a.nav-item.nav-link.active(href='#')
+								| Trang chủ
+								span.sr-only (current)
+							a.nav-item.nav-link(href='#') Danh mục
+							a.nav-item.nav-link(href='#') Phim lẻ
+							a.nav-item.nav-link(href='#') Phim bộ
+							a.nav-item.nav-link(href='#') Người
+							a.nav-item.nav-link(href='#') Quốc gia
+							a.nav-item.nav-link(href='#') Bình luận
+							a.nav-item.nav-link(href='#') Gói phim
+	section.main-movie
+		.container
+			.row
+				.col-sm-12.col-md-12.mt-5
+					.selec.d-flex.align-items-center
+						button.btn.blue-gradient.mr-auto(data-toggle="modal" data-target="#insertMovie")
+							i.fas.fa-plus
+
+						//- MODAL OF ADD MOVIE
+						#insertMovie.modal.fade(type='button' tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+							.modal-dialog.modal-lg(role='document')
+								.modal-content
+									.modal-header
+										h4#myModalLabel.modal-title.w-100 Modal title
+										button.close(type='button', data-dismiss='modal', aria-label='Close')
+											span(aria-hidden='true') ×
+									.modal-body
+										h2 Hello
+									.modal-footer
+										button.btn.btn-secondary.btn-sm(type='button', data-dismiss='modal') Close
+										button.btn.btn-primary.btn-sm(type='button') Save changes
+						//- END
+						.form-group.mb-0
+							select.form-control.h-100.text-dark
+								option(value="") Tên
+								option(value="") Thể loại
+								option(value="") Quốc gia
+						button.btn.text-white.font-weight-light.blue-gradient.ml-3 Sắp xếp theo thứ tự
+				.col-12
+					table.table.text-center.mt-2.table-striped.bg-white
+						thead
+							tr
+								th(scope='col')
+									input(type="checkbox")
+								th(scope='col') Mã
+								th(scope='col') Tên phim
+								th(scope='col') IBMS
+								th(scope='col') Thể loại
+								th(scope='col') Độ phân giải
+								th(scope='col') View
+								th(scope='col') Hình ảnh
+								th(scope='col') Thêm tập
+								th(scope='col') Xóa
+								th(scope='col') Sửa
+						tbody
+							tr
+								td(scope='row')
+									input(type="checkbox")
+								td 1
+								td Otto
+								td kinh dị
+								td 8.1
+								td FHD 
+								td
+									a(href="#")
+										i.far.fa-eye
+								td
+									a(href="#")
+										i.fas.fa-edit
+								td 
+									a(href="#")
+										i.fas.fa-plus-square
+								td 
+									a(href="#")
+										i.fas.fa-trash-alt 
+								td 
+									a(href="#")
+										i.fas.fa-pencil-alt
+
+
+
+

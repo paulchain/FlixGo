@@ -6,7 +6,7 @@ class catalog extends restful_api {
 	function __construct(){
 		parent::__construct();
 	}
-	function catalog(){
+	function GetCatalog(){
 		if ($this->method == 'GET'){
 			$data = catalog_select_all();
 			$this->response(200, $data);
