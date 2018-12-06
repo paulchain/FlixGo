@@ -1,0 +1,138 @@
+extends _layout/layout
+//- Các giá trị mặc định cho trang web
+block variables
+	- var title = 'Home'
+	- var description = 'Description for home page'
+	- var bodyclass = 'home'
+//- Phần khai báo body
+block body
+	.container
+		.row
+			.col-md-9.offset-3.mt-5
+				.selec.d-flex.align-items-center
+					button.btn.blue-gradient.mr-auto(data-toggle="modal" data-target="#Movie-series" title='Thêm phim mới')
+						i.fas.fa-plus 
+					//- MODAL OF ADD MOVIE
+					#Movie-series.modal.fade(tabindex='1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='false')
+						.modal-dialog.modal-lg(role='form')
+							.modal-content
+								.modal-header
+									h3 Thêm phim
+									button.close(type='button', data-dismiss='modal', aria-label='Close')
+										span(aria-hidden='true') ×
+								.modal-body#content-insert
+									.container
+										.row
+											.col-md-4
+												.form-group
+													label(for='formGroupExampleInput') Tiêu đề
+													input#formGroupExampleInput.form-control(type='text', placeholder='Tên Phim')
+												.form-group
+													label(for='formGroupExampleInput') Link SD
+													input#formGroupExampleInput.form-control(type='text', placeholder='')
+												.form-group
+													label(for='formGroupExampleInput') Link HD
+													input#formGroupExampleInput.form-control(type='text', placeholder='')
+												.form-group
+													label(for='formGroupExampleInput') Link FHD
+													input#formGroupExampleInput.form-control(type='text', placeholder='')
+												.form-group
+													label(for='formGroupExampleInput') IMAGE
+													input#form-file.p-0.form-control.fileCustom(type='file').d-flex.align-items-center
+													.boximg.mt-2
+														img.img-thumbnail(src="./img/imageFilm.png", alt="")
+											.col-md-8
+												.form-group
+													label(for='exampleFormControlTextarea2') Mô tả ngắn
+													textarea#exampleFormControlTextarea2.form-control.rounded-0(rows='5')
+												
+													//- EDIT CKEDITOR -------------
+													script(src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js")
+													label(for='exampleFormControlTextarea2') Mô tả đầy đủ
+													textarea#editor1.form-control.rounded-0(name='editor1')
+													script.
+														CKEDITOR.replace( 'editor1' )
+													//- ---------------------------------
+												//- RADIO BUTTON
+												.form-group.d-flex
+													.custom-control.custom-radio.mr-auto
+														input#reslutionSD.custom-control-input(type='radio', name='reslution', checked='')
+														label.custom-control-label(for='reslutionSD') SD
+													// Group of default radios - option 2
+													.custom-control.custom-radio.mr-auto
+														input#reslutionHD.custom-control-input(type='radio', name='reslution')
+														label.custom-control-label(for='reslutionHD') HD
+													// Group of default radios - option 3
+													.custom-control.custom-radio.mr-auto
+														input#reslutionFHD.custom-control-input(type='radio', name='reslution')
+														label.custom-control-label(for='reslutionFHD') FHD
+								.modal-footer
+									button.btn.btn-secondary.btn-sm(type='button', data-dismiss='modal') Close
+									button.btn.btn-warning.btn-sm(type='reset') Reset
+									button.btn.btn-primary.btn-sm(type='button') Insert
+					//- -------------------------------------------
+					.form-group.d-flex.mb-0
+						input.form-control(type='text', placeholder='Search', aria-label='Search')
+						.form-button.ml-3.mr-3
+							button.btn.btn-small.m-0.bg.blue-gradient Search
+					.form-group.mb-0
+						select.browser-default.custom-select
+							option(selected='') Thể loại
+							option(value='1') One
+							option(value='2') Two
+							option(value='3') Three
+					button.btn.text-white.font-weight-light.blue-gradient.ml-3 Sắp xếp theo thứ tự
+			.col-md-3
+				.card.mt-2
+					img.card-img-top(src='./img/home__bg.jpg', alt='Card image cap')
+					.card-body
+						h4.card-title
+							a Tên phim nè
+						p.card-text
+							| Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum fugit totam quisquam alias repellat dolores autem soluta quidem nesciunt beatae, provident ex et nostrum voluptatem earum ullam adipisci. Enim, nulla!
+			.col-md-9
+				table.table.mt-2.table-striped.bg-white.font-weight-bold.mb-0
+					thead
+						tr
+							th(scope='col')
+								input(type="checkbox")
+							th(scope='col') Mã
+							th(scope='col') Tập
+							th(scope='col') Tiêu đề
+							th(scope='col') Xóa
+							th(scope='col') Sửa
+					tbody
+						each val, index in ['Nhật nguyệt thần kiêm', 'Hoàng hậu cuối cùng','Ngoài vòng pháp luật', 'Bi thương ngược dòng thành công', 5, 6, 7, 8]
+							tr
+								td.font-weight-light.h6(scope='row')
+									input(type="checkbox")
+								td.font-weight-light.h6 1
+								td.font-weight-light.h6 9
+								td.font-weight-light.h6=val
+								td 
+									a(href="#")
+										i.fas.fa-trash-alt 
+								td 
+									a(href="#")
+										i.fas.fa-pencil-alt
+				nav.d-flex.bg.blue-gradient(aria-label='Page navigation example')
+					.mr-auto
+					ul.pagination.pagination-circle.mb-0.mt-2
+						li.page-item
+							a.page-link(aria-label='Previous')
+								span(aria-hidden='true') «
+								span.sr-only Previous
+						li.page-item.active
+							a.page-link 1
+						li.page-item
+							a.page-link 2
+						li.page-item
+							a.page-link 3
+						li.page-item
+							a.page-link 4
+						li.page-item
+							a.page-link 5
+						li.page-item
+							a.page-link(aria-label='Next')
+								span(aria-hidden='true') »
+								span.sr-only Next

@@ -8,7 +8,7 @@ module.exports = function (gulp, $, browserSync) {
 				'bower_components/owl.carousel/dist/owl.carousel.min.js',
 				'node_modules/mdbootstrap/js/mdb.min.js',
 				'bower_components/bootstrap-fileinput/js/fileinput.min.js',
-				'bower_components/rangeslider.js/dist/rangeslider.min.js'
+				'bower_components/rangeslider.js/dist/rangeslider.min.js',
 			])
 			.pipe($.concat('thuvien.js'))
 			.pipe(gulp.dest('./dist/js'));

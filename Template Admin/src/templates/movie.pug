@@ -6,7 +6,6 @@ block variables
 	- var bodyclass = 'home'
 //- Phần khai báo body
 block body
-
 	section.menu
 		.container-fluid
 			.row
@@ -30,39 +29,104 @@ block body
 			.row
 				.col-sm-12.col-md-12.mt-5
 					.selec.d-flex.align-items-center
-						button.btn.blue-gradient.mr-auto(data-toggle="modal" data-target="#insertMovie")
+						button.btn.blue-gradient.mr-auto(data-toggle="modal" data-target="#centralModal-lg" title='Thêm phim mới')
 							i.fas.fa-plus
-
 						//- MODAL OF ADD MOVIE
-						#insertMovie.modal.fade(type='button' tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-							.modal-dialog.modal-lg(role='document')
-								.modal-content
-									.modal-header
-										h4#myModalLabel.modal-title.w-100 Modal title
-										button.close(type='button', data-dismiss='modal', aria-label='Close')
-											span(aria-hidden='true') ×
-									.modal-body
-										h2 Hello
-									.modal-footer
-										button.btn.btn-secondary.btn-sm(type='button', data-dismiss='modal') Close
-										button.btn.btn-primary.btn-sm(type='button') Save changes
-						//- END
+						#centralModal-lg.modal.fade(tabindex='1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='false')
+							.modal-dialog.modal-lg(role='form')
+								form(action="")
+									.modal-content
+										.modal-header
+											h3 Thêm phim
+											button.close(type='button', data-dismiss='modal', aria-label='Close')
+												span(aria-hidden='true') ×
+										.modal-body#content-insert
+											.container
+												.row
+													.col-md-4
+														.form-group
+															label(for='formGroupExampleInput') Tên phim
+															input#formGroupExampleInput.form-control(type='text', placeholder='Tên Phim')
+														.form-group
+															label(for='formGroupExampleInput') Link SD
+															input#formGroupExampleInput.form-control(type='text', placeholder='')
+														.form-group
+															label(for='formGroupExampleInput') Link HD
+															input#formGroupExampleInput.form-control(type='text', placeholder='')
+														.form-group
+															label(for='formGroupExampleInput') Link FHD
+															input#formGroupExampleInput.form-control(type='text', placeholder='')
+														.form-group
+															label(for='formGroupExampleInput') IMAGE
+															input#form-file.p-0.form-control.fileCustom(type='file').d-flex.align-items-center
+															.boximg.mt-2
+																img.img-thumbnail(src="./img/imageFilm.png", alt="")
+													.col-md-8
+														.form-group
+															label(for='exampleFormControlTextarea2') Mô tả ngắn
+															textarea#exampleFormControlTextarea2.form-control.rounded-0(rows='5')
+														
+															//- EDIT CKEDITOR -------------
+															script(src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js")
+															label(for='exampleFormControlTextarea2') Mô tả đầy đủ
+															textarea#editor1.form-control.rounded-0(name='editor1')
+															script.
+																CKEDITOR.replace( 'editor1' )
+															//- ---------------------------------
+														.form-group
+															.row
+																.col-md-6
+																	select.browser-default.custom-select
+																		option(selected='') Thể loại
+																		option(value='1') One
+																		option(value='2') Two
+																		option(value='3') Three
+																.col-md-6
+																	select.browser-default.custom-select
+																		option(selected='') Quốc Gia
+																		option(value='1') One
+																		option(value='2') Two
+																		option(value='3') Three
+														//- RADIO BUTTON
+														.form-group.d-flex
+															.custom-control.custom-radio.mr-auto
+																input#reslutionSD.custom-control-input(type='radio', name='reslution', checked='')
+																label.custom-control-label(for='reslutionSD') SD
+															// Group of default radios - option 2
+															.custom-control.custom-radio.mr-auto
+																input#reslutionHD.custom-control-input(type='radio', name='reslution')
+																label.custom-control-label(for='reslutionHD') HD
+															// Group of default radios - option 3
+															.custom-control.custom-radio.mr-auto
+																input#reslutionFHD.custom-control-input(type='radio', name='reslution')
+																label.custom-control-label(for='reslutionFHD') FHD
+										.modal-footer
+											button.btn.btn-secondary.btn-sm(type='button', data-dismiss='modal') Close
+											button.btn.btn-warning.btn-sm(type='reset') Reset
+											button.btn.btn-primary.btn-sm(type='button') Insert
+							//- END
+						//- ----------------------------------------
+						.form-group.d-flex.mb-0
+							input.form-control(type='text', placeholder='Search', aria-label='Search')
+							.form-button.ml-3.mr-3
+								button.btn.btn-small.m-0.bg.blue-gradient Search
 						.form-group.mb-0
-							select.form-control.h-100.text-dark
-								option(value="") Tên
-								option(value="") Thể loại
-								option(value="") Quốc gia
+							select.browser-default.custom-select
+								option(selected='') Thể loại
+								option(value='1') One
+								option(value='2') Two
+								option(value='3') Three
 						button.btn.text-white.font-weight-light.blue-gradient.ml-3 Sắp xếp theo thứ tự
 				.col-12
-					table.table.text-center.mt-2.table-striped.bg-white
+					table.table.mt-2.table-striped.bg-white.font-weight-bold.mb-0
 						thead
 							tr
 								th(scope='col')
 									input(type="checkbox")
 								th(scope='col') Mã
 								th(scope='col') Tên phim
-								th(scope='col') IBMS
 								th(scope='col') Thể loại
+								th(scope='col') IBMS
 								th(scope='col') Độ phân giải
 								th(scope='col') View
 								th(scope='col') Hình ảnh
@@ -70,30 +134,94 @@ block body
 								th(scope='col') Xóa
 								th(scope='col') Sửa
 						tbody
-							tr
-								td(scope='row')
-									input(type="checkbox")
-								td 1
-								td Otto
-								td kinh dị
-								td 8.1
-								td FHD 
-								td
-									a(href="#")
-										i.far.fa-eye
-								td
-									a(href="#")
-										i.fas.fa-edit
-								td 
-									a(href="#")
-										i.fas.fa-plus-square
-								td 
-									a(href="#")
-										i.fas.fa-trash-alt 
-								td 
-									a(href="#")
-										i.fas.fa-pencil-alt
-
-
-
-
+							each val, index in ['Nhật nguyệt thần kiêm', 'Hoàng hậu cuối cùng','Ngoài vòng pháp luật', 'Bi thương ngược dòng thành công', 5, 6, 7, 8, 3, 4, 2, 0, 10]
+								tr
+									td.font-weight-light.h6(scope='row')
+										input(type="checkbox")
+									td.font-weight-light.h6 1
+									td.font-weight-light.h6=val
+									td.font-weight-light.h6 kinh dị
+									td.font-weight-light.h6 8.1
+									td.font-weight-light.h6 FHD 
+									td.font-weight-light.h6
+										a(data-toggle="modal" data-target="#detailMovie-lg" title='Thêm phim mới' href='javascript.void()')
+											i.far.fa-eye
+										#detailMovie-lg.modal.fade(tabindex='1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='false')
+											.modal-dialog.modal-md(role='form')
+												.modal-content
+													.modal-header
+														button.close(type='button', data-dismiss='modal', aria-label='Close')
+															span(aria-hidden='true') ×
+													.modal-body#content-insert
+														.card
+															.view.overlay
+																img.card-img-top(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+																a(href='#!')
+																.mask.rgba-white-slight
+															.card-body
+																h4.card-title Vòng eo 56
+																p.card-text
+																| Some quick example text to build on the card title and make up the bulk of the card's content.
+																ul.list-unstyled.d-flex.mt-5
+																	li.mr-auto
+																		.btn.bg.blue-gradient 18+
+																	li.mr-auto
+																		.btn.blue-gradient Kinh Dị
+																	li.mr-auto
+																		.btn.blue-gradient Việt Nam
+																	li.mr-auto
+																		.btn.blue-gradient HD
+									td
+										a(data-toggle="modal" data-target="#EditImage" title='Thêm phim mới' href='javascript.void()')
+											i.fas.fa-edit
+										#EditImage.modal.fade(tabindex='1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='false')
+											.modal-dialog.modal-md(role='form')
+												.modal-content
+													.modal-header
+														button.close(type='button', data-dismiss='modal', aria-label='Close')
+															span(aria-hidden='true') ×
+													.modal-body
+														.list-Image
+															img.image-thumbnail.m-2(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+															img.image-thumbnail.m-2(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+															img.image-thumbnail.m-2(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+															img.image-thumbnail.m-2(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+															img.image-thumbnail.m-2(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+															img.image-thumbnail.m-2(src='https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg', alt='Card image cap')
+														.form-group
+															label(for='formGroupExampleInput') IMAGE
+															input#form-file.p-0.form-control.fileCustom(type='file' multiple).d-flex.align-items-center
+															.boximg.mt-2.d-flex.f-wrap
+																img.image-thumbnail(src="./img/imageFilm.png", alt="")
+																.box-button
+																	button.btn.btn-sm.blue-gradient Insert Image
+									td 
+										a(href='movie-series.html')
+											i.fas.fa-plus-square
+									td 
+										a(href="#")
+											i.fas.fa-trash-alt 
+									td 
+										a(href="#")
+											i.fas.fa-pencil-alt
+					nav.d-flex.bg.blue-gradient(aria-label='Page navigation example')
+						.mr-auto
+						ul.pagination.pagination-circle.mb-0.mt-1
+							li.page-item
+								a.page-link(aria-label='Previous')
+									span(aria-hidden='true') «
+									span.sr-only Previous
+							li.page-item.active
+								a.page-link 1
+							li.page-item
+								a.page-link 2
+							li.page-item
+								a.page-link 3
+							li.page-item
+								a.page-link 4
+							li.page-item
+								a.page-link 5
+							li.page-item
+								a.page-link(aria-label='Next')
+									span(aria-hidden='true') »
+									span.sr-only Next
