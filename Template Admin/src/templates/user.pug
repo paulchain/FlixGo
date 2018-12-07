@@ -1,0 +1,24 @@
+extends _layout/layout
+//- Các giá trị mặc định cho trang web
+block variables
+    - var title = 'USER'
+    - var description = 'Manager User'
+    - var bodyclass = 'home'
+//- Phần khai báo body
+block body
+    section
+        .container
+            .row
+                .col-sm-4
+                    .card-custom.shadow.mt-3
+                        .bg.blue-gradient.box-top
+                        .box-bottom.bg-white
+                            figure
+                                .box-image
+                                    img.z-depth-1.rounded-circle(src="./img/home__bg.jpg", alt="")  
+                                figcaption.p-3
+                                    h4  Nguyễn Ngọc Nhất
+                                    p Email: nhatnnps07643@fpt.edu.vn
+                                    p Number: 096664251
+                                    p Address: 109/15 Đường Hiệp Bình, Hiệp Bình Phước, Quận Thủ Đức
+                                       

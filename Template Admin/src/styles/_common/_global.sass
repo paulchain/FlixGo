@@ -5,3 +5,29 @@ html, body
 	height: 100%
 	width: 100%
 	background: #2b2b31
+
+.card-custom
+	width: 100%
+	border-radius: 3px
+	.box-top
+		min-height: 100px
+	.box-bottom
+		min-height: 200px
+		position: relative
+		.box-image
+			display: flex
+			justify-content: center
+			img
+				height: 8rem
+				width: 8rem
+				transform: translateY(-50%)
+				border: 5px solid white
+		figcaption
+			position: relative
+			z-index: 10
+			h4
+				transform: translateY(-80%)
+				font-weight: light
+				border-bottom: 1px solid black
+				padding-bottom: 1.3rem
+				text-align: center

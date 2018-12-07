@@ -85,11 +85,18 @@ block body
 			.col-md-3
 				.card.mt-2
 					img.card-img-top(src='./img/home__bg.jpg', alt='Card image cap')
-					.card-body
-						h4.card-title
+					h4.card-title.shadow.p-3
 							a Tên phim nè
+					.card-body
 						p.card-text
-							| Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum fugit totam quisquam alias repellat dolores autem soluta quidem nesciunt beatae, provident ex et nostrum voluptatem earum ullam adipisci. Enim, nulla!
+							| Age :
+							span.btn.blue-gradient 18+
+						p.card-text
+							| Reslution :
+							span.btn.blue-gradient FHD
+						p.card-text
+							| Type :
+							span.btn.blue-gradient Kinh Dị
 			.col-md-9
 				table.table.mt-2.table-striped.bg-white.font-weight-bold.mb-0
 					thead
@@ -110,10 +117,10 @@ block body
 								td.font-weight-light.h6 9
 								td.font-weight-light.h6=val
 								td 
-									a(href="#")
+									a( href='javascript:void()' data-toggle="modal" data-target="#Movie-series" title='Thêm phim mới')
 										i.fas.fa-trash-alt 
 								td 
-									a(href="#")
+									a(href='javascript:void()')
 										i.fas.fa-pencil-alt
 				nav.d-flex.bg.blue-gradient(aria-label='Page navigation example')
 					.mr-auto
