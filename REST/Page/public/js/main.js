@@ -57,7 +57,7 @@ $(window).ready(function(){
 
 })
 
-$('.update-modal').on('click', function(){
+$('.update-cata-modal').on('click', function(){
     let id = $(this).attr('data-id');
     console.log(id);
     $.ajax({

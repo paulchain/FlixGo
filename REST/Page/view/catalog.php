@@ -11,7 +11,6 @@
       $stt=$_POST['stt'];
       $id_cata=$_POST['id_cata'];
       catalog_update($id_cata, $name_cata,$stt);
-      print_r($_POST);
     }
     if(isset($_GET['id_cata'])&&isset($_GET['delete'])){
         $id_cata=$_GET['id_cata'];
@@ -103,7 +102,7 @@
                                     <td class="font-weight-light h6">'.$stt.'</td>
                                     <td class="font-weight-light h6">'.$name_cata.'</td>
                                     <td>'.$delete.'</td>
-                                    <td class="update-modal" data-id='.$id_cata.' data-toggle="modal" data-target="#modal-lg" title="Sửa danh mục">
+                                    <td class="update-cata-modal" data-id='.$id_cata.' data-toggle="modal" data-target="#modal-lg" title="Sửa danh mục">
                                         <i class="fas fa-pencil-alt"></i>
                                     </td>
                                 </tr>';
