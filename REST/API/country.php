@@ -17,7 +17,7 @@ class country extends restful_api {
 	function insert(){
 		if ($this->method == 'GET'){
 			$name_country = $_GET['name_country'];
-			if (country_insert($name_country)) == 1){
+			if (country_insert($name_country) == 1){
 				$data = 'Thêm thành công';
 				$this->response(200, $data);
 			}else{

@@ -1,17 +1,18 @@
 <?php
 
 require 'restful_api.php';
-    require '../DAO/comment.php';
+require '../DAO/comment.php';
 class comment extends restful_api {
 	function __construct(){
 		parent::__construct();
 	}
-	function comment(){
+
+	//------------------------------------------
+	// Hàm lấy tất cả movie
+	function GetCommentByIdMovie(){
 		if ($this->method == 'GET'){
 			$data = comment_select_all();
 			$this->response(200, $data);
-			// Hãy viết code xử lý LẤY dữ liệu ở đây
-			// trả về dữ liệu bằng cách gọi: $this->response(200, $data)
 		}
 	}
 	function insert(){
@@ -63,6 +64,13 @@ class comment extends restful_api {
 				$data = 'Lỗi xóa';
 				$this->response(404, $data);
 			}
+		}
+	}
+	function GetCommentByIdMovie(){
+		if ($this->method == 'GET'){
+			$id = $_GET['id'];
+			$data = comment_select_by_id($id);
+			$this->response(200, $data);
 		}
 	}
 }

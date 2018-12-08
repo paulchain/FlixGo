@@ -28,7 +28,7 @@ function movie_delete($id_movie){
  * @throws PDOException lỗi truy vấn
  */
 function movie_select_all(){
-    $sql = "SELECT * FROM movie ORDER BY id_movie DESC";
+    $sql = "SELECT * FROM movie ORDER BY id DESC";
     return pdo_query($sql);
 }
 function movie_select_sethome(){ // copy xún đổi all thành tên sethome
@@ -42,10 +42,21 @@ function movie_select_sethome(){ // copy xún đổi all thành tên sethome
  * @return array mảng chứa thông tin của một loại
  * @throws PDOException lỗi truy vấn
  */
-function movie_select_by_id($ma_loai){
-    $sql = "SELECT * FROM loai WHERE ma_loai=?";
-    return pdo_query_one($sql, $ma_loai);
+function movie_select_all_by_id($id_cata){
+    $sql = "SELECT * FROM movie
+    WHERE id_cata=? 
+    ORDER BY id_movie DESC ";
+    return pdo_query_one($sql, $id_cata);
 }
+//chi tiết film
+function movie_select_by_id($id_movie){
+    $sql = "SELECT * FROM movie, country, catalog
+    WHERE movie.id_country = country.id_country 
+    and movie.id_cata = catalog.id_cata
+    and movie.id_movie=?";
+    return pdo_query_one($sql, $id_movie);
+}
+
 // MOVIE NHÌU LƯỢT XEM
 function movie_evaluate(){
     $sql = "SELECT * FROM loai WHERE ma_loai=?";

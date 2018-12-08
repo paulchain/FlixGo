@@ -6,15 +6,49 @@ class movie extends restful_api {
 	function __construct(){
 		parent::__construct();
 	}
-	function movie(){
+
+	function GetImage(){
+		if ($this->method == 'POST'){
+			if(true){
+				$this->response(200, $_FILES);
+			}else{
+				echo 'lỗ';
+			}
+			
+		}
+	}
+	//------------------------------------------
+	// Hàm lấy tất cả movie
+	function GetAllMovie(){
 		if ($this->method == 'GET'){
 			$data = movie_select_all();
 			$this->response(200, $data);
-			// Hãy viết code xử lý LẤY dữ liệu ở đây
-			// trả về dữ liệu bằng cách gọi: $this->response(200, $data)
 		}
 	}
-	function insert(){
+
+	//------------------------------------------
+	// Hàm lấy movie từ thể loại phim
+	function GetMovieByIdCatalog(){
+		if ($this->method == 'GET'){
+            $id_cata = $_GET['id_cata'];
+            $data = movie_select_all_by_id($id_cata);
+			$this->response(200, $data);
+		}
+	}
+	
+	//------------------------------------------
+	// API lấy nội dung của phim đó 
+	function GetMovieById(){
+		if ($this->method == 'GET'){
+            $id_movie = $_GET['id_movie'];
+			$data = movie_select_by_id($id_movie);
+			$this->response(200, $data);
+		}
+    }
+	
+	//------------------------------------------
+	// API lấy nội dung của phim đó 
+	function Insert(){
 		if ($this->method == 'GET'){
 			$name_movie = $_GET['name_movie'];
             $release_year = $_GET['release_year'];

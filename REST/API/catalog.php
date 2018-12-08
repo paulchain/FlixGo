@@ -6,14 +6,25 @@ class catalog extends restful_api {
 	function __construct(){
 		parent::__construct();
 	}
-	function GetCatalog(){
+
+	//------------------------------------------
+	// API lấy danh sách thể loại - danh mục
+	function GetAllCatalog(){
 		if ($this->method == 'GET'){
 			$data = catalog_select_all();
 			$this->response(200, $data);
-			// Hãy viết code xử lý LẤY dữ liệu ở đây
-			// trả về dữ liệu bằng cách gọi: $this->response(200, $data)
 		}
 	}
+	function GetCatalogById(){
+		if ($this->method == 'GET'){
+			$id = $_GET['id_cata'];
+			$data = catalog_select_by_id($id);
+			$this->response(200, $data);
+		}
+	}
+
+	//------------------------------------------
+	// Hàm lấy tất cả movie
 	function insert(){
 		if ($this->method == 'GET'){
 			$name_cata = $_GET['name_cata'];

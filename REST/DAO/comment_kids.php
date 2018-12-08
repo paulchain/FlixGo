@@ -60,6 +60,14 @@ function comment_kids_select_by_id($ma_loai){
     $sql = "SELECT * FROM loai WHERE ma_loai=?";
     return pdo_query_one($sql, $ma_loai);
 }
+// lấy COMMENT_KIDS TỪ ID_COMMENT_______________
+function comment_kids_select_by_id($id_comment){
+    $sql = "SELECT * FROM comment_kids 
+    INNER JOIN comment on comment_kids.id_comment = comment.id_comment
+    WHERE comment_kids.id_comment=?";
+    return pdo_query_one($sql, $id_comment);
+//_________________________________________________
+    
 function comment_kids_sethome_sort($sethome,$sort){
     $sql = "SELECT * FROM loai WHERE sethome=? and sort=?";
     return pdo_query_one($sql, $sethome,$sort);

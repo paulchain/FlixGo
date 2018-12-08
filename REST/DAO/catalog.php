@@ -57,7 +57,7 @@ function catalog_select_sethome(){ // copy xún đổi all thành tên sethome
  * @throws PDOException lỗi truy vấn
  */
 function catalog_select_by_id($ma_loai){
-    $sql = "SELECT * FROM loai WHERE ma_loai=?";
+    $sql = "SELECT * FROM catalog WHERE id_cata=?";
     return pdo_query_one($sql, $ma_loai);
 }
 function catalog_sethome_sort($sethome,$sort){

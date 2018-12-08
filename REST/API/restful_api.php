@@ -35,10 +35,12 @@ class restful_api {
      * Thực hiện lấy các thông tin của request: endpoint, params và method
      */
     private function _input(){
+
+        // Giới hạn  website truy cập và phương thức truy cập vào API
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: *');
         header("Access-Control-Allow-Headers: X-Requested-With");
-
+        //----------------------------------------------------------
         $this->params = explode('/', trim($_SERVER['PATH_INFO'],'/'));
         $this->endpoint = array_shift($this->params);
         
