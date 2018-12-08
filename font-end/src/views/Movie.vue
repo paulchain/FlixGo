@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import detailVideo from '@/components/about/detail.vue'
-import contentVideo from '@/components/about/content.vue'
-import sectionPSWP from '@/components/about/pswp.vue'
+import detailVideo from '@/components/Layout/movie/detail.vue'
+import contentVideo from '@/components/Layout/movie/content.vue'
+import sectionPSWP from '@/components/Layout/movie/pswp.vue'
 export default {
   name: 'Movie',
   components: {

@@ -91,13 +91,13 @@ $(document).ready(function () {
 				items: 4,
 			},
 			768 : {
-				items: 6,
+				items: 4,
 			},
 			992 : {
-				items: 6,
+				items: 5,
 			},
 			1200 : {
-				items: 6,
+				items: 5,
 			},
 		}
 	});

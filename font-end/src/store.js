@@ -9,19 +9,36 @@ Vue.use(VueAxios, axios)
 export default new Vuex.Store({
   state: {
     catalog: [],
-    movie: []
+    movies: [],
+    country: []
   },
   mutations: {
     createCatalog (state) {
       axios
-      .get('http://localhost/REST/API/catalog.php/catalog')
+      .get('http://localhost/REST/API/catalog.php/GetAllCatalog?id=3')
       .then(response => (state.catalog = response.data))
       },
     getMovie (state){
       axios
-      .get('http://localhost/REST/API/movie.php/movie')
-      .then(response => (state.movie = response.data))
-    }
+      .get('http://localhost/REST/API/movie.php/GetAllMovie')
+      .then(response => (state.movies = response.data))
+    },
+    getCountry (state){
+      axios
+      .get('http://localhost/REST/API/country.php/country')
+      .then(response => (state.country = response.data))
+    },
+  },
+  getters: {
+    GetMovieEvaluate(state) {
+      return state.movies.sort(function(a,b){
+        if(a.evaluate < b.evaluate)
+          return 1
+        else{
+          return -1
+        }
+      }).slice(0,8)
+    },
   },
   actions: {
     createCatalog (context) {
@@ -30,10 +47,9 @@ export default new Vuex.Store({
     getMovie (context) {
       context.commit('getMovie')
     },
-  },
-  getters: {
-    GetMovieEvaluate(state) {
-      return state.movie
+    getCountry (context) {
+      context.commit('getCountry')
     }
+    
   }
 })
