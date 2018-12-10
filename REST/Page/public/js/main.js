@@ -32,23 +32,24 @@ $(function () {
     }
 });
 $('.fileCustom').on('change', function (e) {
-
-    var fileReader = new FileReader();
-    fileReader.readAsDataURL(e.target.files[0]);
-    fileReader.onload = function (e) {
-        var src = event.target.result;
-        var image = $('.boximg').find('img');
-        image.attr('src', src);
-        image.show();
-    };
+    var listFile = Array.from(e.target.files);
+    [].forEach.call(listFile, function (element) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(element);
+        fileReader.onload = function (e) {
+            var src = e.target.result;
+            var imagenew = new Image();
+            imagenew.src = src;
+            $(imagenew).addClass('image-thumbnail m-1 shadow border');
+            $('.boxImageLoad').append(imagenew);
+        };
+    });
 });
+
+// have erro when turn on modal ---- fixed
 $('#centralModal-lg').on('shown.bs.modal', function () {
     $(document).off('focusin.modal');
 });
-// $('#centralModal-lg').on('hidden.bs.modal', function() {
-//     $(document).on('focusin.modal');
-// });
-//# sourceMappingURL=main.js.map
 
 
 
@@ -87,32 +88,7 @@ $('.show-movie-by-id').on('click', function(){
       });
 })
 
-// Handle click image
-$('.modal-edit-image').on('click', function(){
-    let id = $(this).attr('data-id');
-    $.ajax({
-        url: "http://localhost/reST/API/movie.php/GetImgByIdMovie?movie="+id,
-        context: document.body
-      }).done(function(data) {
-          
-        data.forEach(element => {
-            // create Image
-            let newImg = new Image(100, 120)
-            newImg.src= 'public/img/'+ element.link
-            $(newImg).addClass('mr-2 mt-2 shadow border')
 
-            // create div has image
-            let boxImage = document.createElement('div')
-            let inputImage = document.createElement('input')
-            inputImage.type = 'checkbox'
-            $(inputImage).attr({'data-id': element.id, 'class':'list-check-image' } )
-            boxImage.append(inputImage);
-
-            boxImage.append(newImg);
-            $('.list-Image').append(boxImage)
-        });
-      });
-})
 
 // handle select more image
 $('.button-delete-image' ).on('click', function(){
@@ -129,32 +105,67 @@ $('.button-delete-image' ).on('click', function(){
       });
 })
 
+// Load image When change Image
+function LoadImageByIdMovie(id){
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/GetImgByIdMovie?movie="+id,
+        context: document.body
+        }).done(function(data) {
+            data.forEach(element => {
+            // create Image
+            let newImg = new Image(140, 120)
+            newImg.src= 'public/img/'+ element.link
+            $(newImg).addClass(' image-thumbnail mr-2 mt-2 shadow border ')
 
-$('#form-file-image').on('change', function(event){
-    // console.log();
-    let file = event.target.files[0]
-    let formData = new FormData()
-    formData.append('fileImage',file)
-   
-    $.ajax({
-        url: "http://localhost/reST/API/movie.php/InsertPhoto",
-        processData: false,
-        contentType: 'multipart/form-data',
-        data: formData,
-      }).done(function(data) {
-        console.log(data);
+            // create div has image
+            let boxImage = document.createElement('div')
+            let inputImage = document.createElement('input')
+            inputImage.type = 'checkbox'
+            $(inputImage).attr({'data-id': element.id, 'class':'list-check-image' } )
+
+            // Add image into box
+            boxImage.append(inputImage);
+            boxImage.append(newImg);
+            $('.list-Image').append(boxImage)
+        });
+    });
+}
+// Handle click image
+$('.modal-edit-image').on('click', function(){
+
+    // get ID of movie
+    let id = $(this).attr('data-id');
+
+    // Load image
+    LoadImageByIdMovie(id)
+
+    // handle chaneg file
+    $('#form-file-image').on('change', function(event){
+         // create form data to post sever
+        let file = event.target.files
+        let formData = new FormData()
+        for (let index = 0; index < file.length; index++) {
+            const element = file[index];
+            formData.append('fileImage[]',element)
+        }
+        formData.append('id_movie',id)
         
-      });
+        // handle event submid image to serve
+        $('.btn-image-insert button' ).on('click', function(){
+            $.ajax({
+                url: "http://localhost/reST/API/movie.php/InsertPhoto",
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData,
+              }).done(function(data) {
+                LoadImageByIdMovie(id)
+                $('.boxImageLoad').html('');
+              });
+        })
+    })
+
     
-})
-$('.btn-image-insert button' ).on('click', function(){
-    $.ajax({
-        url: "http://localhost/reST/API/movie.php/InsertPhoto",
-        data: formData,
-      }).done(function(data) {
-        console.log(data);
-        
-      });
 })
 
 

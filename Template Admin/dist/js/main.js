@@ -33,14 +33,18 @@ $(function () {
 });
 $('.fileCustom').on('change', function (e) {
 
-    var fileReader = new FileReader();
-    fileReader.readAsDataURL(e.target.files[0]);
-    fileReader.onload = function (e) {
-        var src = event.target.result;
-        var image = $('.boximg').find('img');
-        image.attr('src', src);
-        image.show();
-    };
+    var listFile = Array.from(e.target.files);
+    [].forEach.call(listFile, function (element) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(element);
+        fileReader.onload = function (e) {
+            var src = e.target.result;
+            var imagenew = new Image();
+            imagenew.src = src;
+            $(imagenew).addClass('image-thumbnail m-1 shadow border');
+            $('.boxImageLoad').append(imagenew);
+        };
+    });
 });
 $('#centralModal-lg').on('shown.bs.modal', function () {
     $(document).off('focusin.modal');

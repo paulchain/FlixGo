@@ -53,11 +53,17 @@ class movie extends restful_api {
 	}
 
 	function InsertPhoto(){
-		// $id = $_GET['id'];
-		// $id = explode(',',$id);
-		// $data = photos_delete($id);
-		$this->response(200, $_FILES);
-}
+		$id = $_POST['id_movie'];
+		$listFile = $_FILES['fileImage'];
+		$data = array();
+		foreach ($listFile['tmp_name'] as $key => $value) {
+			$url = $listFile['tmp_name'][$key];
+			move_uploaded_file($url, '../Page/public/img/'. $listFile['name'][$key]);
+			$result = photos_insert($listFile['name'][$key],$id);
+			array_push($data, array($id=>$result));
+		}
+		$this->response(200, $data);
+	}
 	
 	//------------------------------------------
 	// API lấy nội dung của phim đó 

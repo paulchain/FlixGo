@@ -5,6 +5,9 @@
 .list-Image > div {
     position: relative;
 }
+.list-Image > image {
+    object-fit: cover
+}
 
 .list-Image  input {
     position: absolute;

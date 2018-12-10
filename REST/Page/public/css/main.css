@@ -6568,7 +6568,8 @@ select {
 .image-thumbnail {
   height: 100px;
   width: 100px;
-  object-fit: cover; }
+  object-fit: cover;
+}
 
 *:focus {
   outline: none; }
