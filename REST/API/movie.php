@@ -26,6 +26,13 @@ class movie extends restful_api {
 		}
 	}
 
+	function GetAllInfomation(){
+		if ($this->method == 'GET'){
+			$data = SelectAllInfo();
+			$this->response(200, $data);
+		}
+	}
+
 	//------------------------------------------
 	// Hàm lấy movie từ thể loại phim
 	function GetMovieByIdCatalog(){
@@ -54,7 +61,7 @@ class movie extends restful_api {
 
 	function InsertPhoto(){
 		$id = $_POST['id_movie'];
-		$listFile = $_FILES['fileImage'];
+		$listFile = $_FILES['fileImage'];;
 		$data = array();
 		foreach ($listFile['tmp_name'] as $key => $value) {
 			$url = $listFile['tmp_name'][$key];

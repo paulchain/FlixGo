@@ -12,5 +12,9 @@
 .list-Image  input {
     position: absolute;
     bottom: 0;
-    left: 0
+    left: 50%;
+    transform: translateX(-50%)
+}
+.box-image-movie{
+    width: 25%
 }

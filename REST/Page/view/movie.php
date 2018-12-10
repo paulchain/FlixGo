@@ -241,13 +241,15 @@
                           <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                         </div>
                         <div class="modal-body">
-                          <div class="list-Image"></div>
+                          <div class="list-Image "></div>
                           <div class="button-delete-image btn btn-warning">Delete Image Selects</div>
                           <div class="form-group ">
-                            <div class="box-button btn-image-insert"><button class="btn btn-sm blue-gradient">Insert Image</button></div>
+                            <div class="box-button btn-image-insert">
+                              <button class="btn btn-sm blue-gradient">Insert Image</button>
+                            </div>
                             <label for="formGroupExampleInput">IMAGE</label>
                             <input class="p-0 form-control fileCustom d-flex align-items-center" id="form-file-image" type="file" multiple>
-                            <div class="boxImageLoad mt-2 d-flex flex-wrap"></div>
+                            <div class="boxImageLoad row p-2"></div>
                           </div>
                         </div>
                       </div>

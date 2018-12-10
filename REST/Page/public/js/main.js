@@ -32,6 +32,7 @@ $(function () {
     }
 });
 $('.fileCustom').on('change', function (e) {
+    $('.boxImageLoad').html('');
     var listFile = Array.from(e.target.files);
     [].forEach.call(listFile, function (element) {
         var fileReader = new FileReader();
@@ -39,9 +40,15 @@ $('.fileCustom').on('change', function (e) {
         fileReader.onload = function (e) {
             var src = e.target.result;
             var imagenew = new Image();
+            $(imagenew).addClass('');
             imagenew.src = src;
-            $(imagenew).addClass('image-thumbnail m-1 shadow border');
-            $('.boxImageLoad').append(imagenew);
+            $(imagenew).addClass('image-thumbnail border shadow ');
+            let boxImage = document.createElement('div')
+            $(boxImage).addClass('col-md-3 mt-3 p-2 box-image-movie')
+            boxImage.append(imagenew)
+            $('.boxImageLoad').append(boxImage);
+
+            
         };
     });
 });
@@ -51,12 +58,6 @@ $('#centralModal-lg').on('shown.bs.modal', function () {
     $(document).off('focusin.modal');
 });
 
-
-
-
-$(window).ready(function(){
-
-})
 
 $('.update-cata-modal').on('click', function(){
     let id = $(this).attr('data-id');
@@ -89,6 +90,9 @@ $('.show-movie-by-id').on('click', function(){
 })
 
 
+$("body").on("click", ".box-image-movie", function(e) {
+    $(this).find('input').prop("checked", true);
+  });
 
 // handle select more image
 $('.button-delete-image' ).on('click', function(){
@@ -105,20 +109,23 @@ $('.button-delete-image' ).on('click', function(){
       });
 })
 
+
 // Load image When change Image
 function LoadImageByIdMovie(id){
+    $('.list-Image').html('')
     $.ajax({
         url: "http://localhost/reST/API/movie.php/GetImgByIdMovie?movie="+id,
         context: document.body
         }).done(function(data) {
             data.forEach(element => {
             // create Image
-            let newImg = new Image(140, 120)
+            let newImg = new Image
             newImg.src= 'public/img/'+ element.link
-            $(newImg).addClass(' image-thumbnail mr-2 mt-2 shadow border ')
+            $(newImg).addClass('image-thumbnail shadow border ')
 
             // create div has image
             let boxImage = document.createElement('div')
+            $(boxImage).addClass('box-image-movie p-2')
             let inputImage = document.createElement('input')
             inputImage.type = 'checkbox'
             $(inputImage).attr({'data-id': element.id, 'class':'list-check-image' } )
@@ -130,26 +137,31 @@ function LoadImageByIdMovie(id){
         });
     });
 }
+
+
 // Handle click image
 $('.modal-edit-image').on('click', function(){
-
+    // change null for form image
+    $('#form-file-image').val('')
     // get ID of movie
     let id = $(this).attr('data-id');
 
     // Load image
     LoadImageByIdMovie(id)
-
-    // handle chaneg file
+    // handle change file
     $('#form-file-image').on('change', function(event){
-         // create form data to post sever
+
+        // delete event post data tosever
+        $(".btn-image-insert button").prop("onclick", null).off("click");
+        // create form data to post sever
         let file = event.target.files
         let formData = new FormData()
         for (let index = 0; index < file.length; index++) {
-            const element = file[index];
+            let element = file[index];
             formData.append('fileImage[]',element)
         }
+
         formData.append('id_movie',id)
-        
         // handle event submid image to serve
         $('.btn-image-insert button' ).on('click', function(){
             $.ajax({
@@ -160,13 +172,10 @@ $('.modal-edit-image').on('click', function(){
                 data: formData,
               }).done(function(data) {
                 LoadImageByIdMovie(id)
-                $('.boxImageLoad').html('');
+                $('.boxImageLoad').html('')
+                $('#form-file-image').val('')
+                $('input[type="checkbox"]').prop('checked',false)
               });
         })
-    })
-
-    
+    })  
 })
-
-
-

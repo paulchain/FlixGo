@@ -6567,9 +6567,15 @@ select {
 
 .image-thumbnail {
   height: 100px;
-  width: 100px;
+  width: 100%;
   object-fit: cover;
 }
+/* .list-Image input {
+  -webkit-appearance: none
+} */
+
+
+
 
 *:focus {
   outline: none; }
