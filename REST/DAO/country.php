@@ -16,24 +16,24 @@ function country_insert($name_country){
  * @param String $ten_loai là tên loại mới
  * @throws PDOException lỗi cập nhật
  */
-function country_update($id_country, $name_country){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
-    $sql = "UPDATE country SET name_country=? WHERE id_country=?";
-    return pdo_execute($sql, $name_country,$id_country);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
+function country_update($id, $name_country){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
+    $sql = "UPDATE country SET name_country=? WHERE id=?";
+    return pdo_execute($sql, $name_country,$id);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
 }
 /**
  * Xóa một hoặc nhiều loại
  * @param mix $ma_loai là mã loại hoặc mảng mã loại
  * @throws PDOException lỗi xóa
  */
-function country_delete($id_country){
-    $sql = "DELETE FROM country WHERE id_country=?";
-    if(is_array($id_country)){
-        foreach ($id_country as $ma) {
+function country_delete($id){
+    $sql = "DELETE FROM country WHERE id=?";
+    if(is_array($id)){
+        foreach ($id as $ma) {
             return pdo_execute($sql, $ma);
         }
     }
     else{
-        return pdo_execute($sql, $id_country);
+        return pdo_execute($sql, $id);
     }
 }
 /**
@@ -56,9 +56,9 @@ function country_select_sethome(){ // copy xún đổi all thành tên sethome
  * @return array mảng chứa thông tin của một loại
  * @throws PDOException lỗi truy vấn
  */
-function country_select_by_id($ma_loai){
-    $sql = "SELECT * FROM loai WHERE ma_loai=?";
-    return pdo_query_one($sql, $ma_loai);
+function country_select_by_id($id_country){
+    $sql = "SELECT * FROM country WHERE id=?";
+    return pdo_query_one($sql, $id_country);
 }
 function country_sethome_sort($sethome,$sort){
     $sql = "SELECT * FROM loai WHERE sethome=? and sort=?";

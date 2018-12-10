@@ -6,9 +6,9 @@ require_once 'pdo.php';
  * @param String $ten_loai là tên loại
  * @throws PDOException lỗi thêm mới
  */
-function photos_insert($photos,$id_movie){
-    $sql = "INSERT INTO photos(photos,id_movie) VALUES(?,?)";
-    return pdo_execute($sql, $photos,$id_movie);
+function photos_insert($link,$id_movie){
+    $sql = "INSERT INTO photos(link,id_movie) VALUES(?,?)";
+    return pdo_execute($sql, $link,$id_movie);
 }
 /**
  * Cập nhật tên loại
@@ -16,25 +16,27 @@ function photos_insert($photos,$id_movie){
  * @param String $ten_loai là tên loại mới
  * @throws PDOException lỗi cập nhật
  */
-function photos_update($id_photos, $photos,$id_movie){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
-    $sql = "UPDATE photos SET photos=?,id_movie=? WHERE id_photos=?";
-    return pdo_execute($sql, $photos,$id_movie,$id_photos);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
+function photos_update($id, $link,$id_movie){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
+    $sql = "UPDATE photos SET link=?,id_movie=? WHERE id=?";
+    return pdo_execute($sql, $link,$id_movie,$id);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
 }
 /**
  * Xóa một hoặc nhiều loại
  * @param mix $ma_loai là mã loại hoặc mảng mã loại
  * @throws PDOException lỗi xóa
  */
-function photos_delete($id_photos){
-    $sql = "DELETE FROM photos WHERE id_photos=?";
-    if(is_array($id_photos)){
-        foreach ($id_photos as $ma) {
-            return pdo_execute($sql, $ma);
+function photos_delete($id){
+    $newArray = array();
+    $sql = "DELETE FROM photos WHERE id=?";
+    if(is_array($id)){
+        foreach ($id as $ma) {
+            array_push($newArray,pdo_execute($sql, $ma));
         }
     }
     else{
-        return pdo_execute($sql, $id_photos);
+        return pdo_execute($sql, $id);
     }
+    return  $newArray;
 }
 /**
  * Truy vấn tất cả các loại
@@ -42,7 +44,7 @@ function photos_delete($id_photos){
  * @throws PDOException lỗi truy vấn
  */
 function photos_select_all(){
-    $sql = "SELECT * FROM photos ORDER BY id_photos DESC";
+    $sql = "SELECT * FROM photos ORDER BY id DESC";
     return pdo_query($sql);
 }
 function photos_select_sethome(){ // copy xún đổi all thành tên sethome
@@ -56,9 +58,9 @@ function photos_select_sethome(){ // copy xún đổi all thành tên sethome
  * @return array mảng chứa thông tin của một loại
  * @throws PDOException lỗi truy vấn
  */
-function photos_select_by_id($ma_loai){
-    $sql = "SELECT * FROM loai WHERE ma_loai=?";
-    return pdo_query_one($sql, $ma_loai);
+function photos_select_by_id($movie){
+    $sql = "SELECT * FROM photos WHERE id_movie=?";
+    return pdo_query($sql, $movie);
 }
 function photos_sethome_sort($sethome,$sort){
     $sql = "SELECT * FROM loai WHERE sethome=? and sort=?";

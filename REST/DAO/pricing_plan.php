@@ -3,37 +3,37 @@ require_once 'pdo.php';
 
 /**
  * Thêm loại mới
- * @param String $ten_loai là tên loại
+ * @param String $ten_pricing_plan là tên loại
  * @throws PDOException lỗi thêm mới
  */
-function pricing_plan_insert($package,$price,$time,$resolution,$availability,$device,$support,$describe_1,$describe_2,$id_customer){
-    $sql = "INSERT INTO pricing_plan(package,price,time,resolution,availability,device,support,describe_1,describe_2,id_customer) VALUES(?,?,?,?,?,?,?,?,?,?)";
-    return pdo_execute($sql, $package,$price,$time,$resolution,$availability,$device,$support,$describe_1,$describe_2,$id_customer);
+function pricing_plan_insert($name,$price,$time_limit,$resolution,$availability,$device,$support,$description){
+    $sql = "INSERT INTO pricing_plan(name,price,time_limit,resolution,availability,device,support,description) VALUES(?,?,?,?,?,?,?,?)";
+    return pdo_execute($sql, $name,$price,$time_limit,$resolution,$availability,$device,$support,$description);
 }
 /**
  * Cập nhật tên loại
- * @param int $ma_loai là mã loại cần cập nhật
- * @param String $ten_loai là tên loại mới
+ * @param int $ma_pricing_plan là mã loại cần cập nhật
+ * @param String $ten_pricing_plan là tên loại mới
  * @throws PDOException lỗi cập nhật
  */
-function pricing_plan_update($id_pricing, $package,$price,$time,$resolution,$availability,$device,$support,$describe_1,$describe_2,$id_customer){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
-    $sql = "UPDATE pricing_plan SET package=?,price=?,time=?,resolution=?,availability=?,device=?,support=?,describe_1=?,describe_2=?,id_customer=? WHERE id_pricing=?";
-    return pdo_execute($sql, $package,$price,$time,$resolution,$availability,$device,$support,$describe_1,$describe_2,$id_customer,$id_pricing);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
+function pricing_plan_update($id, $name,$price,$time_limit,$resolution,$availability,$device,$support,$description){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_pricing_plan
+    $sql = "UPDATE pricing_plan SET name=?,price=?,time_limit=?,resolution=?,availability=?,device=?,support=?,description=? WHERE id=?";
+    return pdo_execute($sql, $name,$price,$time_limit,$resolution,$availability,$device,$support,$description,$id);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_pricing_plan
 }
 /**
  * Xóa một hoặc nhiều loại
- * @param mix $ma_loai là mã loại hoặc mảng mã loại
+ * @param mix $ma_pricing_plan là mã loại hoặc mảng mã loại
  * @throws PDOException lỗi xóa
  */
-function pricing_plan_delete($id_pricing){
-    $sql = "DELETE FROM pricing_plan WHERE id_pricing=?";
-    if(is_array($id_pricing)){
-        foreach ($id_pricing as $ma) {
+function pricing_plan_delete($id){
+    $sql = "DELETE FROM pricing_plan WHERE id=?";
+    if(is_array($id)){
+        foreach ($id as $ma) {
             return pdo_execute($sql, $ma);
         }
     }
     else{
-        return pdo_execute($sql, $id_pricing);
+        return pdo_execute($sql, $id);
     }
 }
 /**
@@ -42,45 +42,45 @@ function pricing_plan_delete($id_pricing){
  * @throws PDOException lỗi truy vấn
  */
 function pricing_plan_select_all(){
-    $sql = "SELECT * FROM pricing_plan ORDER BY id_pricing DESC";
+    $sql = "SELECT * FROM pricing_plan ORDER BY id DESC";
     return pdo_query($sql);
 }
 function pricing_plan_select_sethome(){ // copy xún đổi all thành tên sethome
-    $sql = "SELECT * FROM loai WHERE sethome=1 ORDER BY ma_loai DESC";
+    $sql = "SELECT * FROM pricing_plan WHERE sethome=1 ORDER BY ma_pricing_plan DESC";
     return pdo_query($sql);
 }
 
 /**
  * Truy vấn một loại theo mã
- * @param int $ma_loai là mã loại cần truy vấn
+ * @param int $ma_pricing_plan là mã loại cần truy vấn
  * @return array mảng chứa thông tin của một loại
  * @throws PDOException lỗi truy vấn
  */
-function pricing_plan_select_by_id($ma_loai){
-    $sql = "SELECT * FROM loai WHERE ma_loai=?";
-    return pdo_query_one($sql, $ma_loai);
+function pricing_plan_select_by_id($id_pricing){
+    $sql = "SELECT * FROM pricing_plan WHERE id=?";
+    return pdo_query_one($sql, $id_pricing);
 }
 function pricing_plan_sethome_sort($sethome,$sort){
-    $sql = "SELECT * FROM loai WHERE sethome=? and sort=?";
+    $sql = "SELECT * FROM pricing_plan WHERE sethome=? and sort=?";
     return pdo_query_one($sql, $sethome,$sort);
 }
 /**
  * Kiểm tra sự tồn tại của một loại
- * @param int $ma_loai là mã loại cần kiểm tra
+ * @param int $ma_pricing_plan là mã loại cần kiểm tra
  * @return boolean có tồn tại hay không
  * @throws PDOException lỗi truy vấn
  */
-function pricing_plan_exist($ma_loai){
-    $sql = "SELECT count(*) FROM loai WHERE ma_loai=?";
-    return pdo_query_value($sql, $ma_loai) > 0;
+function pricing_plan_exist($ma_pricing_plan){
+    $sql = "SELECT count(*) FROM pricing_plan WHERE ma_pricing_plan=?";
+    return pdo_query_value($sql, $ma_pricing_plan) > 0;
 }
 //menu đa cấp
 //function Menu($parent = 0,$space = '---', $trees = NULL){ 
 //        if(!$trees){ $trees = array(); }
-//	$sql = mysql_query("SELECT * FROM loai WHERE parent = ".intval($parent)." ORDER BY tenloai"); 
+//	$sql = mysql_query("SELECT * FROM pricing_plan WHERE parent = ".intval($parent)." ORDER BY tenpricing_plan"); 
 //	while($rs = mysql_fetch_assoc($sql)){ 
-//		$trees[] = array('ma_loai'=>$rs['ma_loai'],'tenloai'=>$space.$rs['tenloai']); 
-//		$trees = Menu($rs['ma_loai'],$space.'---',$trees); 
+//		$trees[] = array('ma_pricing_plan'=>$rs['ma_pricing_plan'],'tenpricing_plan'=>$space.$rs['tenpricing_plan']); 
+//		$trees = Menu($rs['ma_pricing_plan'],$space.'---',$trees); 
 //	} 
 //	return $trees; 
 //}

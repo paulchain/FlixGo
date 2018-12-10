@@ -4,7 +4,7 @@
             <div class="col">
               <figure>
                 <div class="box-img">
-                  <div class="img-box"><img class="img-fluid" src="./img/logo.png" alt=""></div>
+                  <div class="img-box"><img class="img-fluid" src="./public/img/logo.png" alt=""></div>
                   <div class="box-title">
                     <p>Hello Admin!</p>
                   </div>
@@ -27,23 +27,23 @@
             <div class="btn btn-home"><i class="fas fa-film"></i>
             <p>PHIM LẺ</p>
             </div></a></div>
-        <div class="col-6 col-md-3 items"><a href="#">
+        <div class="col-6 col-md-3 items"><a href="index.php?page=movie_series">
             <div class="btn btn-home"><i class="fas fa-tv"></i>
             <p>PHIM BỘ</p>
             </div></a></div>
-        <div class="col-6 col-md-3 items"><a href="#">
+        <div class="col-6 col-md-3 items"><a href="index.php?page=country">
             <div class="btn btn-home"><i class="fas fa-globe"></i>
             <p>QUỐC GIA</p>
             </div></a></div>
-        <div class="col-6 col-md-3 items"><a href="#">
+        <div class="col-6 col-md-3 items"><a href="index.php?page=customer">
             <div class="btn btn-home"><i class="fas fa-users-cog"></i>
             <p>NGƯỜI DÙNG</p>
             </div></a></div>
-        <div class="col-6 col-md-3 items"><a href="#">
+        <div class="col-6 col-md-3 items"><a href="index.php?page=comment">
             <div class="btn btn-home"><i class="fas fa-comment-dots"></i>
             <p>BÌNH LUẬN</p>
             </div></a></div>
-        <div class="col-6 col-md-3 items"><a href="#">
+        <div class="col-6 col-md-3 items"><a href="index.php?page=pricing_plan">
             <div class="btn btn-home"><i class="fas fa-archive"></i>
             <p>GÓI PHIM</p>
             </div></a></div>

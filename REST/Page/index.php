@@ -4,6 +4,9 @@
     
     // import function in catalog
     require_once '../DAO/catalog.php';
+    require_once '../DAO/movie.php';
+    require_once '../DAO/country.php';
+    require_once '../DAO/photos.php';
 
 
     require_once 'view/template/header.php';

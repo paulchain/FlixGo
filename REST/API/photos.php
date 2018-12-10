@@ -16,9 +16,9 @@ class photos extends restful_api {
 	}
 	function insert(){
 		if ($this->method == 'GET'){
-			$photos = $_GET['photos'];
+			$link = $_GET['link'];
 			$id_movie = $_GET['id_movie'];
-			if (photos_insert($photos,$id_movie) == 1) {
+			if (photos_insert($link,$id_movie) == 1) {
 				$data = 'Thêm thành công';
 				$this->response(200, $data);
 			}else{
@@ -29,10 +29,10 @@ class photos extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_photos = $_GET['id_photos'];
-			$photos = $_GET['photos'];
+			$id = $_GET['id'];
+			$link = $_GET['link'];
 			$id_movie = $_GET['id_movie'];
-			if (photos_update($id_photos, $photos,$id_movie) == 1) {
+			if (photos_update($id, $link,$id_movie) == 1) {
 				$data = 'Sửa thành công';
 				$this->response(200, $data);
 			}else{
@@ -43,8 +43,8 @@ class photos extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_photos = $_GET['id_photos'];
-			if (photos_delete($id_photos) == 1){
+			$id = $_GET['id'];
+			if (photos_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

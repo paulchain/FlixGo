@@ -2,6 +2,7 @@
 
 require 'restful_api.php';
     require '../DAO/movie.php';
+    require '../DAO/photos.php';
 class movie extends restful_api {
 	function __construct(){
 		parent::__construct();
@@ -14,7 +15,6 @@ class movie extends restful_api {
 			}else{
 				echo 'lỗ';
 			}
-			
 		}
 	}
 	//------------------------------------------
@@ -35,6 +35,29 @@ class movie extends restful_api {
 			$this->response(200, $data);
 		}
 	}
+	function GetImgByIdMovie(){
+		if ($this->method == 'GET'){
+            $movie = $_GET['movie'];
+            $data = photos_select_by_id($movie);
+			$this->response(200, $data);
+		}
+	}
+	// Delete image 
+	function DeleteImage(){
+		if ($this->method == 'GET'){
+			$id = $_GET['id'];
+			$id = explode(',',$id);
+			$data = photos_delete($id);
+			$this->response(200, $data);
+		}
+	}
+
+	function InsertPhoto(){
+		// $id = $_GET['id'];
+		// $id = explode(',',$id);
+		// $data = photos_delete($id);
+		$this->response(200, $_FILES);
+}
 	
 	//------------------------------------------
 	// API lấy nội dung của phim đó 
@@ -54,14 +77,17 @@ class movie extends restful_api {
             $release_year = $_GET['release_year'];
             $running_time = $_GET['running_time'];
             $id_country = $_GET['id_country'];
+            $short_description = $_GET['short_description'];
             $description = $_GET['description'];
-            $images = $_GET['images'];
-            $clips = $_GET['clips'];
+            $image = $_GET['image'];
+            $clip_SD = $_GET['clip_SD'];
+            $clip_HD = $_GET['clip_HD'];
+            $clip_FHD = $_GET['clip_FHD'];
             $age = $_GET['age'];
             $resolution = $_GET['resolution'];
             $id_cata = $_GET['id_cata'];
             if ( is_numeric($release_year) && is_numeric($running_time) && is_numeric($age)) {
-                movie_insert($name_movie,$release_year,$running_time,$id_country,$description,$images,$clips,$age,$resolution,$id_cata);
+                movie_insert($name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata);
                     $data = 'Thêm thành công';
                     $this->response(200, $data);
             }else{
@@ -72,20 +98,22 @@ class movie extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_movie = $_GET['id_movie'];
+			$id = $_GET['id'];
 			$name_movie = $_GET['name_movie'];
             $release_year = $_GET['release_year'];
             $running_time = $_GET['running_time'];
             $id_country = $_GET['id_country'];
+            $short_description = $_GET['short_description'];
             $description = $_GET['description'];
-            $images = $_GET['images'];
-            $clips = $_GET['clips'];
+            $image = $_GET['image'];
+            $clip_SD = $_GET['clip_SD'];
+            $clip_HD = $_GET['clip_HD'];
+            $clip_FHD = $_GET['clip_FHD'];
             $age = $_GET['age'];
             $resolution = $_GET['resolution'];
             $id_cata = $_GET['id_cata'];
             if ( is_numeric($release_year) && is_numeric($running_time) && is_numeric($age)) {
-                movie_update($id_movie, $name_movie,$release_year,$running_time,$id_country,$description,$images,$clips,
-                $age,$resolution,$id_cata);
+                movie_update($id, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata);
                     $data = 'Sửa thành công';
                     $this->response(200, $data);
             }else{
@@ -96,8 +124,8 @@ class movie extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_movie = $_GET['id_movie'];
-			if (movie_delete($id_movie) == 1){
+			$id = $_GET['id'];
+			if (movie_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

@@ -27,10 +27,10 @@ class catalog extends restful_api {
 	// Hàm lấy tất cả movie
 	function insert(){
 		if ($this->method == 'GET'){
+			$location = $_GET['location'];
 			$name_cata = $_GET['name_cata'];
-			$stt = $_GET['stt'];
-			if (is_numeric($stt)) {
-				catalog_insert($name_cata,$stt);
+			if (is_numeric($location)) {
+				catalog_insert($location,$name_cata);
 				$data = 'Thêm thành công';
 				$this->response(200, $data);
 			}else{
@@ -41,11 +41,11 @@ class catalog extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_cata = $_GET['id_cata'];
+			$id = $_GET['id'];
+			$location = $_GET['location'];
 			$name_cata = $_GET['name_cata'];
-			$stt = $_GET['stt'];
-			if (is_numeric($stt)) {
-				catalog_update($id_cata, $name_cata,$stt);
+			if (is_numeric($location)) {
+				catalog_update($id, $location,$name_cata);
 				$data = 'Sửa thành công';
 				$this->response(200, $data);
 			}else{
@@ -56,8 +56,8 @@ class catalog extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_cata = $_GET['id_cata'];
-			if (catalog_delete($id_cata) == 1){
+			$id = $_GET['id'];
+			if (catalog_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

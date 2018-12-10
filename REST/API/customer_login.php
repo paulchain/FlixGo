@@ -16,11 +16,12 @@ class login extends restful_api {
 	}
 	function insert(){
 		if ($this->method == 'GET'){
-			$name_customer = $_GET['name_customer'];
+			$name = $_GET['name_customer'];
 			$password = $_GET['password'];
 			$email = $_GET['email'];
 			$avatar = $_GET['avatar'];
-			if (login_insert($name_customer,$password,$email,$avatar) == 1){
+			$id_pricing = $_GET['id_pricing'];
+			if (login_insert($name,$password,$email,$avatar,$id_pricing) == 1){
 				$data = 'Đăng ký thành công';
 				$this->response(200, $data);
 			}else{
@@ -31,12 +32,13 @@ class login extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_customer = $_GET['id_customer'];
-			$name_customer = $_GET['name_customer'];
+			$id = $_GET['id'];
+			$name = $_GET['name_customer'];
 			$password = $_GET['password'];
 			$email = $_GET['email'];
 			$avatar = $_GET['avatar'];
-			if (login_update($id_customer, $name_customer,$password,$email,$avatar) == 1){
+			$id_pricing = $_GET['id_pricing'];
+			if (login_update($id, $name,$password,$email,$avatar,$id_pricing) == 1){
 				$data = 'Sửa thành công';
 				$this->response(200, $data);
 			}else{
@@ -47,8 +49,8 @@ class login extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_customer = $_GET['id_customer'];
-			if (login_delete($id_customer) == 1){
+			$id_customer = $_GET['id'];
+			if (login_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

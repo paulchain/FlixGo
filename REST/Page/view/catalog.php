@@ -1,20 +1,20 @@
 <?php
     if(isset($_POST['addnew'])){
         if($_POST['addnew']){
+            $location=$_POST['location'];
             $name_cata=$_POST['name_cata'];
-            $stt=$_POST['stt'];
-            catalog_insert($name_cata,$stt);
+            catalog_insert($location,$name_cata);
         }
     }
     if(isset($_POST['update'])){
+      $location=$_POST['location'];
       $name_cata=$_POST['name_cata'];
-      $stt=$_POST['stt'];
-      $id_cata=$_POST['id_cata'];
-      catalog_update($id_cata, $name_cata,$stt);
+      $id=$_POST['id'];
+      catalog_update($id, $location,$name_cata);
     }
-    if(isset($_GET['id_cata'])&&isset($_GET['delete'])){
-        $id_cata=$_GET['id_cata'];
-        catalog_delete($id_cata);
+    if(isset($_GET['id'])&&isset($_GET['delete'])){
+        $id=$_GET['id'];
+        catalog_delete($id);
     }
 ?>
 <section class="main-movie">
@@ -36,8 +36,8 @@
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  <label for="formGroupExampleInput">STT</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="stt" placeholder="">
+                                  <label for="formGroupExampleInput">Vị trí</label>
+                                  <input class="form-control" id="formGroupExampleInput" type="text" name="location" placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Tên danh mục</label>
@@ -92,17 +92,17 @@
                         $kq=catalog_select_all();
                         foreach($kq as $kq){
                             extract($kq);
-                            $delete="<a href='index.php?page=catalog&id_cata=$id_cata&delete=1'><i class='fas fa-trash-alt'></i></a>";
+                            $delete="<a href='index.php?page=catalog&id=$id&delete=1'><i class='fas fa-trash-alt'></i></a>";
                             echo
                                 '<tr>
                                     <td class="font-weight-light h6" scope="row">
                                     <input type="checkbox">
                                     </td>
-                                    <td class="font-weight-light h6">'.$id_cata.'</td>
-                                    <td class="font-weight-light h6">'.$stt.'</td>
+                                    <td class="font-weight-light h6">'.$id.'</td>
+                                    <td class="font-weight-light h6">'.$location.'</td>
                                     <td class="font-weight-light h6">'.$name_cata.'</td>
                                     <td>'.$delete.'</td>
-                                    <td class="update-cata-modal" data-id='.$id_cata.' data-toggle="modal" data-target="#modal-lg" title="Sửa danh mục">
+                                    <td class="update-cata-modal" data-id='.$id.' data-toggle="modal" data-target="#modal-lg" title="Sửa danh mục">
                                         <i class="fas fa-pencil-alt"></i>
                                     </td>
                                 </tr>';
@@ -110,7 +110,7 @@
                   ?>
                 </tbody>
               </table>
-              <form method="post" action="index.php?page=catalog&id_cata=$id_cata&update=1">
+              <form method="post" action="index.php?page=catalog&id=$id&update=1">
               <div class="modal fade" id="modal-lg" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
               <div class="modal-dialog modal-lg" role="form">
                   <div class="modal-content">
@@ -122,10 +122,10 @@
                       <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="hidden" name='id_cata' class='modal-id-hidden'>
+                                <input type="hidden" name='id' class='modal-id-hidden'>
                                 <div class="form-group">
                                 <label for="formGroupExampleInput">STT</label>
-                                <input class="form-control" id="modal-cata-rank" type="text" name="stt" value="" placeholder="">
+                                <input class="form-control" id="modal-cata-rank" type="text" name="location" value="" placeholder="">
                                 </div>
                                 <div class="form-group">
                                 <label for="formGroupExampleInput">Tên danh mục</label>

@@ -1,25 +1,25 @@
 <?php
 require_once 'pdo.php';
 
-function movie_insert($name_movie,$release_year,$running_time,$id_country,$description,$images,$clips,$age,$resolution,$id_cata){
-    $sql = "INSERT INTO movie(name_movie,release_year,running_time,id_country,description,images,clips,age,resolution,id_cata) VALUES(?,?,?,?,?,?,?,?,?,?)";
-    return pdo_execute($sql, $name_movie,$release_year,$running_time,$id_country,$description,$images,$clips,$age,$resolution,$id_cata);
+function movie_insert($name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata){
+    $sql = "INSERT INTO movie(name_movie,release_year,running_time,id_country,short_description,description,image,clip_SD,clip_HD,clip_FHD,age,resolution,id_cata) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    return pdo_execute($sql, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata);
 }
 
-function movie_update($id_movie, $name_movie,$release_year,$running_time,$id_country,$description,$images,$clips,$age,$resolution,$id_cata){ 
-    $sql = "UPDATE movie SET name_movie=?,release_year=?,running_time=?,id_country=?,description=?,images=?,clips=?,age=?,resolution=?,id_cata=? WHERE id_movie=?";
-    return pdo_execute($sql, $name_movie,$release_year,$running_time,$id_country,$description,$images,$clips,$age,$resolution,$id_cata,$id_movie); 
+function movie_update($id, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata){ 
+    $sql = "UPDATE movie SET name_movie=?,release_year=?,running_time=?,id_country=?,short_description=?,description=?,image=?,clip_SD=?,clip_HD=?,clip_FHD=?,age=?,resolution=?,id_cata=? WHERE id=?";
+    return pdo_execute($sql, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata,$id); 
 }
 
-function movie_delete($id_movie){
-    $sql = "DELETE FROM movie WHERE id_movie=?";
-    if(is_array($id_movie)){
-        foreach ($id_movie as $ma) {
+function movie_delete($id){
+    $sql = "DELETE FROM movie WHERE id=?";
+    if(is_array($id)){
+        foreach ($id as $ma) {
             return pdo_execute($sql, $ma);
         }
     }
     else{
-        return pdo_execute($sql, $id_movie);
+        return pdo_execute($sql, $id);
     }
 }
 /**
@@ -45,15 +45,18 @@ function movie_select_sethome(){ // copy xún đổi all thành tên sethome
 function movie_select_all_by_id($id_cata){
     $sql = "SELECT * FROM movie
     WHERE id_cata=? 
-    ORDER BY id_movie DESC ";
+    ORDER BY id DESC ";
     return pdo_query_one($sql, $id_cata);
 }
 //chi tiết film
 function movie_select_by_id($id_movie){
-    $sql = "SELECT * FROM movie, country, catalog
-    WHERE movie.id_country = country.id_country 
-    and movie.id_cata = catalog.id_cata
-    and movie.id_movie=?";
+    $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,
+    catalog.name_cata,age, clip_SD,clip_HD,clip_FHD,short_description
+
+    FROM movie, country, catalog
+    WHERE movie.id_country = country.id 
+    and movie.id_cata = catalog.id
+    and movie.id=?";
     return pdo_query_one($sql, $id_movie);
 }
 

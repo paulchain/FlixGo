@@ -16,18 +16,16 @@ class pricing_plan extends restful_api {
 	}
 	function insert(){
 		if ($this->method == 'GET'){
-			$package = $_GET['package'];
+			$name = $_GET['name'];
             $price = $_GET['price'];
-            $time = $_GET['time'];
+            $time_limit = $_GET['time_limit'];
             $resolution = $_GET['resolution'];
             $availability = $_GET['availability'];
             $device = $_GET['device'];
             $support = $_GET['support'];
-            $describe_1 = $_GET['describe_1'];
-            $describe_2 = $_GET['describe_2'];
-            $id_customer = $_GET['id_customer'];
+            $description = $_GET['description'];
             if (is_numeric($price)) {
-                pricing_plan_insert($package,$price,$time,$resolution,$availability,$device,$support,$describe_1,$describe_2,$id_customer);
+                pricing_plan_insert($name,$price,$time_limit,$resolution,$availability,$device,$support,$description);
                     $data = 'Thêm thành công';
                     $this->response(200, $data);
             }else{
@@ -38,19 +36,17 @@ class pricing_plan extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_pricing = $_GET['id_pricing'];
-			$package = $_GET['package'];
+			$id = $_GET['id'];
+			$name = $_GET['name'];
             $price = $_GET['price'];
-            $time = $_GET['time'];
+            $time_limit = $_GET['time_limit'];
             $resolution = $_GET['resolution'];
             $availability = $_GET['availability'];
             $device = $_GET['device'];
             $support = $_GET['support'];
-            $describe_1 = $_GET['describe_1'];
-            $describe_2 = $_GET['describe_2'];
-            $id_customer = $_GET['id_customer'];
+            $description = $_GET['description'];
             if (is_numeric($price)) {
-                pricing_plan_update($id_pricing, $package,$price,$time,$resolution,$availability,$device,$support,$describe_1,$describe_2,$id_customer);
+                pricing_plan_update($id, $name,$price,$time_limit,$resolution,$availability,$device,$support,$description);
                     $data = 'Sửa thành công';
                     $this->response(200, $data);
             }else{
@@ -61,8 +57,8 @@ class pricing_plan extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_pricing = $_GET['id_pricing'];
-			if (pricing_plan_delete($id_pricing) == 1){
+			$id = $_GET['id'];
+			if (pricing_plan_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

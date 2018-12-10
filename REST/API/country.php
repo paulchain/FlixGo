@@ -28,9 +28,9 @@ class country extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_country = $_GET['id_country'];
+			$id = $_GET['id'];
 			$name_country = $_GET['name_country'];
-			if (country_update($id_country, $name_country) == 1){
+			if (country_update($id, $name_country) == 1){
 				$data = 'Sửa thành công';
 				$this->response(200, $data);
 			}else{
@@ -41,8 +41,8 @@ class country extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_country = $_GET['id_country'];
-			if (country_delete($id_country) == 1){
+			$id = $_GET['id'];
+			if (country_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

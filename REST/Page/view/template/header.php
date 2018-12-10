@@ -72,6 +72,7 @@
     <!-- endinject -->
     <link rel="stylesheet" href="public/css/thuvien.css">
     <link rel="stylesheet" href="public/css/main.css"><!-- ////////////// FAVICON ////////////// -->
+    <link rel="stylesheet" href="public/css/style.css"><!-- ////////////// FAVICON ////////////// -->
     <link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="./public/favicon/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="./public/favicon/favicon-16x16.png" sizes="16x16">
@@ -90,7 +91,7 @@
           <div class="row">
             <nav class="navbar navbar-expand-lg"><a class="navbar-brand ml-auto order-2 order-md-1" href="index.html"><img src="./public/img/logo.png" alt=""></a>
               <div class="collapse navbar-collapse order-3" id="navbarNavAltMarkup">
-                <div class="navbar-nav"><a class="nav-item nav-link active" href="#">Trang chủ<span class="sr-only">(current)</span></a><a class="nav-item nav-link" href="#">Danh mục</a><a class="nav-item nav-link" href="#">Phim lẻ</a><a class="nav-item nav-link" href="#">Phim bộ</a><a class="nav-item nav-link" href="#">Người</a><a class="nav-item nav-link" href="#">Quốc gia</a><a class="nav-item nav-link" href="#">Bình luận</a><a class="nav-item nav-link" href="#">Gói phim</a></div>
+                <div class="navbar-nav"><a class="nav-item nav-link active" href="index.php">Trang chủ<span class="sr-only">(current)</span></a><a class="nav-item nav-link" href="index.php?page=catalog">Danh mục</a><a class="nav-item nav-link" href="index.php?page=movie">Phim lẻ</a><a class="nav-item nav-link" href="index.php?page=movie-series">Phim bộ</a><a class="nav-item nav-link" href="index.php?page=customer">Người dùng</a><a class="nav-item nav-link" href="index.php?page=country">Quốc gia</a><a class="nav-item nav-link" href="index.php?page=comment">Bình luận</a><a class="nav-item nav-link" href="index.php?page=package">Gói phim</a></div>
               </div>
             </nav>
           </div>

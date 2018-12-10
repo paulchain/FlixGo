@@ -59,14 +59,103 @@ $(window).ready(function(){
 
 $('.update-cata-modal').on('click', function(){
     let id = $(this).attr('data-id');
-    console.log(id);
     $.ajax({
         url: "http://localhost/reST/API/catalog.php/GetCatalogById?id_cata="+id,
         context: document.body
       }).done(function(data) {
         $('.modal-id-hidden').val(id);
-        $('#modal-cata-rank').val(data.stt);
+        $('#modal-cata-rank').val(data.location);
         $('#modal-cata-name').val(data.name_cata);
       });
     
 })
+
+$('.show-movie-by-id').on('click', function(){
+    let id = $(this).attr('data-id');
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/GetMovieById?id_movie="+id,
+        context: document.body
+      }).done(function(data) {
+        $('#modal-movie-img').attr('src', 'public/img/'+ data.image);
+        $('#modal-movie-name').text(data.movie);
+        $('#modal-movie-short_description').text(data.short_description);
+        $('#modal-movie-age').text(data.age+ '+');
+        $('#modal-movie-name-cata').text(data.name_cata);
+        $('#modal-movie-release_year').text(data.release_year);
+        $('#modal-movie-country').text(data.country);
+        $('#modal-movie-resolution').text(data.resolution);
+      });
+})
+
+// Handle click image
+$('.modal-edit-image').on('click', function(){
+    let id = $(this).attr('data-id');
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/GetImgByIdMovie?movie="+id,
+        context: document.body
+      }).done(function(data) {
+          
+        data.forEach(element => {
+            // create Image
+            let newImg = new Image(100, 120)
+            newImg.src= 'public/img/'+ element.link
+            $(newImg).addClass('mr-2 mt-2 shadow border')
+
+            // create div has image
+            let boxImage = document.createElement('div')
+            let inputImage = document.createElement('input')
+            inputImage.type = 'checkbox'
+            $(inputImage).attr({'data-id': element.id, 'class':'list-check-image' } )
+            boxImage.append(inputImage);
+
+            boxImage.append(newImg);
+            $('.list-Image').append(boxImage)
+        });
+      });
+})
+
+// handle select more image
+$('.button-delete-image' ).on('click', function(){
+    let ListID = []
+    let listImage = $(".list-check-image[type='checkbox']:checked")
+    for (let index = 0; index < listImage.length; index++) {
+        const element = listImage[index];
+        ListID.push($(element).attr('data-id'))
+    }
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/DeleteImage?id=" +ListID,
+      }).done(function(data) {
+        $(".list-check-image[type='checkbox']:checked").parent().remove()
+      });
+})
+
+
+$('#form-file-image').on('change', function(event){
+    // console.log();
+    let file = event.target.files[0]
+    let formData = new FormData()
+    formData.append('fileImage',file)
+   
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/InsertPhoto",
+        processData: false,
+        contentType: 'multipart/form-data',
+        data: formData,
+      }).done(function(data) {
+        console.log(data);
+        
+      });
+    
+})
+$('.btn-image-insert button' ).on('click', function(){
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/InsertPhoto",
+        data: formData,
+      }).done(function(data) {
+        console.log(data);
+        
+      });
+})
+
+
+

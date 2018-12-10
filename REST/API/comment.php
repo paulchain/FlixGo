@@ -20,12 +20,7 @@ class comment extends restful_api {
 			$content = $_GET['content'];
             $id_customer = $_GET['id_customer'];
             $id_movie = $_GET['id_movie'];
-            $full_name = $_GET['full_name'];
-            $likes = $_GET['likes'];
-            $unlikes = $_GET['unlikes'];
-            $types = $_GET['types'];
-			if (is_numeric($likes) && is_numeric($unlikes) && is_numeric($types)) {
-				comment_insert($content,$id_customer,$id_movie,$full_name,$likes,$unlikes,$types);
+			if (comment_insert($content,$id_customer,$id_movie) == 1) {
 				$data = 'Thêm thành công';
 				$this->response(200, $data);
 			}else{
@@ -36,16 +31,11 @@ class comment extends restful_api {
 	}
 	function update(){
 		if ($this->method == 'GET'){
-			$id_comment = $_GET['id_comment'];
+			$id = $_GET['id'];
 			$content = $_GET['content'];
             $id_customer = $_GET['id_customer'];
             $id_movie = $_GET['id_movie'];
-            $full_name = $_GET['full_name'];
-            $likes = $_GET['likes'];
-            $unlikes = $_GET['unlikes'];
-            $types = $_GET['types'];
-			if (is_numeric($likes) && is_numeric($unlikes) && is_numeric($types)) {
-				comment_update($id_comment, $content,$id_customer,$id_movie,$full_name,$likes,$unlikes,$types);
+			if (comment_update($id, $content,$id_customer,$id_movie) == 1) {
 				$data = 'Sửa thành công';
 				$this->response(200, $data);
 			}else{
@@ -56,8 +46,8 @@ class comment extends restful_api {
 	}
 	function delete(){
 		if ($this->method == 'GET'){
-			$id_comment = $_GET['id_comment'];
-			if (comment_delete($id_comment) == 1){
+			$id_comment = $_GET['id'];
+			if (comment_delete($id) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{

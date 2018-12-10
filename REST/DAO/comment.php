@@ -2,38 +2,37 @@
 require_once 'pdo.php';
 
 // INSERT COMMENT_______________
-function comment_insert($content,$id_customer,$id_movie,$full_name,$likes,$unlikes,$types){
-    $sql = "INSERT INTO comment(content,id_customer,id_movie,full_name,likes,unlikes,types) VALUES(?,?,?,?,?,?,?)";
-    return pdo_execute($sql, $content,$id_customer,$id_movie,$full_name,$likes,$unlikes,$types);
+function comment_insert($content,$id_customer,$id_movie){
+    $sql = "INSERT INTO comment(content,id_customer,id_movie) VALUES(?,?,?)";
+    return pdo_execute($sql, $content,$id_customer,$id_movie);
 }
 //_________________________________________________
 
 // UPDATE COMMENT_______________
-function comment_update($id_comment, $content,$id_customer,$id_movie,$full_name,$likes,$unlikes,$types){
-    $sql = "UPDATE comment SET content=?,id_customer=?,id_movie=?,full_name=?,likes=?,unlikes=?,types=? WHERE id_comment=?";
-    return pdo_execute($sql, $content,$id_customer,$id_movie,$full_name,$likes,$unlikes,$types, $id_comment);
+function comment_update($id, $content,$id_customer,$id_movie){
+    $sql = "UPDATE comment SET content=?,id_customer=?,id_movie=? WHERE id=?";
+    return pdo_execute($sql, $content,$id_customer,$id_movie, $id);
 }
 
 // DELETE COMMENT - MULTIPLE_______________
-function comment_delete($id_comment){
-    $sql = "DELETE FROM comment WHERE id_comment=?";
-    if(is_array($id_comment)){
-        foreach ($id_comment as $ma) {
+function comment_delete($id){
+    $sql = "DELETE FROM comment WHERE id=?";
+    if(is_array($id)){
+        foreach ($id as $ma) {
             return pdo_execute($sql, $ma);
         }
     }
     else{
-        return pdo_execute($sql, $id_comment);
+        return pdo_execute($sql, $id);
     }
 }
-
-
-function comment_exist($ma_loai){
-    $sql = "SELECT count(*) FROM loai WHERE ma_loai=?";
-    return pdo_query_value($sql, $ma_loai) > 0;
-}
-
 // XUẤT COMMENT TỪ ID_CUSTOMER_______________
+function comment_select_by_id($id_customer){
+    $sql = "SELECT * FROM comment 
+    WHERE id_customer = ? ORDER BY " ;
+    return pdo_query_one($sql, $id_customer);
+}
+// XUẤT COMMENT TỪ ID_MOVIE__
 function comment_select_by_id($id_movie){
     $sql = "SELECT * FROM comment 
     WHERE id_movie = ? ORDER BY " ;

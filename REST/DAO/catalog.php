@@ -6,9 +6,9 @@ require_once 'pdo.php';
  * @param String $ten_loai là tên loại
  * @throws PDOException lỗi thêm mới
  */
-function catalog_insert($name_cata,$stt){
-    $sql = "INSERT INTO catalog(name_cata,stt) VALUES(?,?)";
-    return pdo_execute($sql, $name_cata,$stt);
+function catalog_insert($location,$name_cata){
+    $sql = "INSERT INTO catalog(location,name_cata) VALUES(?,?)";
+    return pdo_execute($sql, $location,$name_cata);
 }
 /**
  * Cập nhật tên loại
@@ -16,24 +16,24 @@ function catalog_insert($name_cata,$stt){
  * @param String $ten_loai là tên loại mới
  * @throws PDOException lỗi cập nhật
  */
-function catalog_update($id_cata, $name_cata,$stt){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
-    $sql = "UPDATE catalog SET name_cata=?,stt=? WHERE id_cata=?";
-    return pdo_execute($sql, $name_cata,$stt,$id_cata);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
+function catalog_update($id, $location,$name_cata){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
+    $sql = "UPDATE catalog SET location=?,name_cata=? WHERE id=?";
+    return pdo_execute($sql, $location,$name_cata,$id);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
 }
 /**
  * Xóa một hoặc nhiều loại
  * @param mix $ma_loai là mã loại hoặc mảng mã loại
  * @throws PDOException lỗi xóa
  */
-function catalog_delete($id_cata){
-    $sql = "DELETE FROM catalog WHERE id_cata=?";
-    if(is_array($id_cata)){
-        foreach ($id_cata as $ma) {
+function catalog_delete($id){
+    $sql = "DELETE FROM catalog WHERE id=?";
+    if(is_array($id)){
+        foreach ($id as $ma) {
             return pdo_execute($sql, $ma);
         }
     }
     else{
-        return pdo_execute($sql, $id_cata);
+        return pdo_execute($sql, $id);
     }
 }
 /**
@@ -42,11 +42,11 @@ function catalog_delete($id_cata){
  * @throws PDOException lỗi truy vấn
  */
 function catalog_select_all(){
-    $sql = "SELECT * FROM catalog ORDER BY id_cata DESC";
+    $sql = "SELECT * FROM catalog ORDER BY id DESC";
     return pdo_query($sql);
 }
 function catalog_select_sethome(){ // copy xún đổi all thành tên sethome
-    $sql = "SELECT * FROM loai WHERE sethome=1 ORDER BY ma_loai DESC";
+    $sql = "SELECT * FROM catalog WHERE sethome=1 ORDER BY id DESC";
     return pdo_query($sql);
 }
 
@@ -56,9 +56,9 @@ function catalog_select_sethome(){ // copy xún đổi all thành tên sethome
  * @return array mảng chứa thông tin của một loại
  * @throws PDOException lỗi truy vấn
  */
-function catalog_select_by_id($ma_loai){
-    $sql = "SELECT * FROM catalog WHERE id_cata=?";
-    return pdo_query_one($sql, $ma_loai);
+function catalog_select_by_id($id){
+    $sql = "SELECT * FROM catalog WHERE id=?";
+    return pdo_query_one($sql, $id);
 }
 function catalog_sethome_sort($sethome,$sort){
     $sql = "SELECT * FROM loai WHERE sethome=? and sort=?";
