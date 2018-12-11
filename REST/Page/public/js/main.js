@@ -72,7 +72,31 @@ $('.update-cata-modal').on('click', function(){
     
 })
 
-$('.show-movie-by-id').on('click', function(){
+
+// UPDATE 
+$('.modal-update-movie').on('click', function(){
+    let id = $(this).attr('data-id');
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/GetMovieById?id_movie="+id,
+        context: document.body
+      }).done(function(data) {
+        $('#nameUpdateMovie').val(data.movie);
+        $('#linkSDUpdateMovie').val(data.clip_SD);
+        $('#linkHDUpdateMovie').val(data.clip_HD);
+        $('#linkFHDUpdateMovie').val(data.clip_FHD);
+        $('#yearUpdateMovie').val(data.release_year);
+        $('#timeUpdateMovie').val(data.running_time);
+        $('#ageUpdateMovie').val(data.age);
+        $('#ageUpdateMovie').val(data.age);
+        $('#imageUpdateMovie').attr({src : './public/img/' + data.image});     
+        $('#s_descriptionUpdateMovie').text(data.short_description);     
+        // $('.descriptionUpdateMovie').append(data.description)
+      });
+})
+
+// --------------------------------------------------
+
+$('tr').on('click', function(){
     let id = $(this).attr('data-id');
     $.ajax({
         url: "http://localhost/reST/API/movie.php/GetMovieById?id_movie="+id,
@@ -88,6 +112,8 @@ $('.show-movie-by-id').on('click', function(){
         $('#modal-movie-resolution').text(data.resolution);
       });
 })
+
+
 
 
 $("body").on("click", ".box-image-movie", function(e) {
@@ -179,3 +205,19 @@ $('.modal-edit-image').on('click', function(){
         })
     })  
 })
+$('.fileCustom').on('change', function (e) {
+
+    var listFile = Array.from(e.target.files);
+    [].forEach.call(listFile, function (element) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(element);
+        fileReader.onload = function (e) {
+            var src = e.target.result;
+            var imagenew = new Image();
+            imagenew.src = src;
+            $(imagenew).addClass('w-100 m-1 shadow border');
+            $('.boximg ').html('')
+            $('.boximg ').append(imagenew);
+        };
+    });
+});

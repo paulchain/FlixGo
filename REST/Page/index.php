@@ -16,6 +16,8 @@
             require 'view/catalog.php';
         }elseif($_GET['page'] == "movie"){
             require 'view/movie.php';
+        }elseif($_GET['page'] == "user"){
+            require 'view/user.php';
         }else{
             require 'view/home.php';
         }

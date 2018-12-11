@@ -50,8 +50,8 @@ function movie_select_all_by_id($id_cata){
 }
 //chi tiết film
 function movie_select_by_id($id_movie){
-    $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,
-    catalog.name_cata,age, clip_SD,clip_HD,clip_FHD,short_description
+    $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,running_time,
+    catalog.name_cata,age, clip_SD,clip_HD,clip_FHD,short_description,description
 
     FROM movie, country, catalog
     WHERE movie.id_country = country.id 
@@ -61,7 +61,7 @@ function movie_select_by_id($id_movie){
 }
 function SelectAllInfo(){
     $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,
-    catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description, is_film, evaluate
+    catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description, is_film, evaluate,description
 
     FROM movie, country, catalog
     WHERE movie.id_country = country.id 

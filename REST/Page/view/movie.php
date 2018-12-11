@@ -50,7 +50,7 @@
     }
 ?>
 <section class="main-movie">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-sm-12 col-md-12 mt-5">
               <div class="selec d-flex align-items-center">
@@ -69,51 +69,51 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Tên phim</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="name_movie" placeholder="Tên Phim">
+                                  <input class="form-control" id="nameUpdateMovie" type="text" name="name_movie" placeholder="Tên Phim">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Link SD</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="clip_SD" placeholder="">
+                                  <input class="form-control" id="linkSDUpdateMovie" type="text" name="clip_SD" placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Link HD</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="clip_HD"  placeholder="">
+                                  <input class="form-control" id="linkHDUpdateMovie" type="text" name="clip_HD"  placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Link FHD</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="clip_FHD"  placeholder="">
+                                  <input class="form-control" id="linkFHDUpdateMovie" type="text" name="clip_FHD"  placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Năm</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="release_year"  placeholder="">
+                                  <input class="form-control" id="yearUpdateMovie" type="text" name="release_year"  placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Thời gian</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="running_time"  placeholder="">
+                                  <input class="form-control" id="timeUpdateMovie" type="text" name="running_time"  placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">Tuổi</label>
-                                  <input class="form-control" id="formGroupExampleInput" type="text" name="age"  placeholder="">
+                                  <input class="form-control" id="ageUpdateMovie" type="text" name="age"  placeholder="">
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput">IMAGE</label>
                                   <input class="p-0 form-control fileCustom d-flex align-items-center" id="form-file" name="image" type="file">
-                                  <div class="boximg mt-2"><img class="img-thumbnail" src="./img/imageFilm.png" alt=""></div>
+                                  <div class="boximg mt-2"><img class="img-thumbnail" id='imageUpdateMovie' src="" alt=""></div>
                                 </div>
                               </div>
                               <div class="col-md-8">
                                 <div class="form-group">
                                   <label for="exampleFormControlTextarea2">Mô tả ngắn</label>
-                                  <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" name="short_description" rows="5"></textarea>
+                                  <textarea class="form-control rounded-0" id="s_descriptionUpdateMovie" name="short_description" rows="5"></textarea>
                                   <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
                                   <label for="exampleFormControlTextarea2">Mô tả đầy đủ</label>
-                                  <textarea class="form-control rounded-0" id="editor1" name="description"></textarea>
+                                  <textarea class="form-control rounded-0 descriptionUpdateMovie" id="editor1"  name="description"></textarea>
                                   <script>CKEDITOR.replace( 'editor1' )</script>
                                 </div>
                                 <div class="form-group">
                                   <div class="row">
                                     <div class="col-md-6">
-                                      <select class="browser-default custom-select" name="id_cata">
+                                      <select class="browser-default custom-select" name="id_cata" id='catalogUpdateMovie'>
                                         <option selected="">Thể loại</option>     
                                         <?php 
                                           foreach ($dsloai as $dsloai) {
@@ -124,7 +124,7 @@
                                       </select>
                                     </div>
                                     <div class="col-md-6">
-                                      <select class="browser-default custom-select" name="id_country">
+                                      <select class="browser-default custom-select" name="id_country" id='countryUpdateMovie'>
                                         <option selected="">Quốc gia</option>
                                         <?php 
                                           foreach ($dsqg as $dsqg) {
@@ -136,8 +136,8 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="form-group d-flex">
-                                  <div class="custom-control custom-radio mr-auto">
+                                <div class="form-group d-flex"  id='reslutionUpdateMovie'>
+                                  <div class="custom-control custom-radio mr-auto" >
                                     <input class="custom-control-input" id="reslutionSD" type="radio" name="resolution" checked="">
                                     <label class="custom-control-label" for="reslutionSD">SD</label>
                                   </div>
@@ -159,7 +159,8 @@
                         <div class="modal-footer">
                           <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
                           <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-                          <input class="btn btn-primary btn-sm" type="submit" value="Insert" name="addnew">
+                          <input class="btn btn-primary btn-sm" type="submit" value="Insert" name="addnew" id=''>
+                          <input class="btn btn-primary btn-sm" type="button" value="Update" name="update" id='buttonHandle'>
                         </div>
                       </div>
                     </form>
@@ -182,19 +183,48 @@
                 <button class="btn text-white font-weight-light blue-gradient ml-3">Sắp xếp theo thứ tự</button>
               </div>
             </div>
-            <div class="col-12">
-              <table class="table mt-2 table-striped bg-white font-weight-bold mb-0">
+            <div class="col-3">
+              <div class="mt-2" role="">
+                <div class="modal-content">
+                  <div class="modal-body p-0" id="content-insert">
+                    <div class="card">
+                      <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/imageFilm.png" alt="Card image cap"><a href="#!"></a>
+                        <div class="mask rgba-white-slight"></div>
+                      </div>
+                      <div class="card-body p-0">
+                        <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
+                        <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
+                        <ul class="list-unstyled d-flex mt-3 flex-wrap">
+                          <li class="mr-auto">
+                            <div class="btn bg blue-gradient" id="modal-movie-age">18+</div>
+                          </li>
+                          <li class="mr-auto">
+                            <div class="btn bg blue-gradient" id="modal-movie-release_year">2018</div>
+                          </li>
+                          <li class="mr-auto">
+                            <div class="btn blue-gradient" id="modal-movie-country">Mỹ</div>
+                          </li>
+                          <li class="mr-auto">
+                            <div class="btn blue-gradient" id="modal-movie-resolution">FHD</div>
+                          </li> 
+                          <li class="mr-auto">
+                            <div class="btn blue-gradient" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-9">
+              <table class="table mt-2 table-striped bg-white font-weight-bold mb-0 p-4">
                 <thead>
-                  <tr>
-                    <th scope="col">
-                      <input type="checkbox">
-                    </th>
+                  <tr p-4>
                     <th scope="col">Mã</th>
                     <th scope="col">Tên phim</th>
                     <th scope="col">Thể loại</th>
                     <th scope="col">IBMS</th>
-                    <th scope="col">Độ phân giải</th>
-                    <th scope="col">View</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Thêm tập</th>
                     <th scope="col">Xóa</th>
@@ -206,20 +236,13 @@
                     $kq=movie_select_all();
                     foreach($kq as $kq){
                       extract($kq);
-                      echo"<tr>
-                        <td class='font-weight-light h6' scope='row'>
-                          <input type='checkbox'>
-                        </td>
+                      echo"<tr data-id='$id'>
                         <td class='font-weight-light h6'>$id</td>
                         <td class='font-weight-light h6'>$name_movie</td>
                         <td class='font-weight-light h6'>$id_cata</td>
                         <td class='font-weight-light h6'>8.1</td>
-                        <td class='font-weight-light h6'>$resolution</td>
                         <td class='font-weight-light h6'>
                           <a class='show-movie-by-id' data-id='$id' data-toggle='modal' data-target='#detailMovie-lg' title='Chi tiết phim' href='javascript.void()'><i class='far fa-eye'></i></a> 
-                        </td>
-                        <td>
-                          <a data-toggle='modal' class='modal-edit-image' data-id='$id' data-target='#EditImage' title='Hình ảnh' href='javascript.void()'><i class='fas fa-edit'></i></a>
                         </td>
                         <td> 
                           <a href='movie-series.html'><i class='fas fa-plus-square'></i></a>
@@ -228,7 +251,7 @@
                           <a href='index.php?page=movie&id=$id&delete=1'><i class='fas fa-trash-alt'></i></a>
                         </td>
                         <td> 
-                          <a href='#'><i class='fas fa-pencil-alt'></i></a>
+                          <a data-toggle='modal' class='modal-update-movie' data-id='$id' data-target='#centralModal-lg' title='Update movie' href='javascript.void()'><i class='fas fa-pencil-alt'></i></a>
                         </td>
                       </tr>";
                       }
@@ -255,46 +278,6 @@
                       </div>
                     </div>
                   </div>
-                <!-- modal image -->
-                <!-- modal detail-movie -->
-                  <div class="modal fade" id="detailMovie-lg" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-                    <div class="modal-dialog modal-md" role="form">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        </div>
-                        <div class="modal-body" id="content-insert">
-                          <div class="card">
-                            <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/'.$image.'" alt="Card image cap"><a href="#!"></a>
-                              <div class="mask rgba-white-slight"></div>
-                            </div>
-                            <div class="card-body">
-                              <h4 class="card-title" id="modal-movie-name"></h4>
-                              <p class="card-text" id="modal-movie-short_description"></p>
-                              <ul class="list-unstyled d-flex mt-5">
-                                <li class="mr-auto">
-                                  <div class="btn bg blue-gradient" id="modal-movie-age"></div>
-                                </li>
-                                <li class="mr-auto">
-                                  <div class="btn bg blue-gradient" id="modal-movie-release_year"></div>
-                                </li>
-                                <li class="mr-auto">
-                                  <div class="btn blue-gradient" id="modal-movie-name-cata"></div>
-                                </li>
-                                <li class="mr-auto">
-                                  <div class="btn blue-gradient" id="modal-movie-country"></div>
-                                </li>
-                                <li class="mr-auto">
-                                  <div class="btn blue-gradient" id="modal-movie-resolution"></div>
-                                </li> 
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- modal detail-movie -->
                 </tbody>
               </table>
               <nav class="d-flex bg blue-gradient" aria-label="Page navigation example">
