@@ -47,13 +47,30 @@ $('.fileCustom').on('change', function (e) {
             $(boxImage).addClass('col-md-3 mt-3 p-2 box-image-movie')
             boxImage.append(imagenew)
             $('.boxImageLoad').append(boxImage);
-
-            
         };
     });
 });
 
+
 // have erro when turn on modal ---- fixed
+
+// Handle alert
+$('.alertCustom').on('click', function () {
+    // $(this).hide('fast');
+    $(this).removeClass('showAlert');
+});
+$('body').on('click', function () {
+    $('.alertCustom').hide('fast');
+});
+
+$(window).ready(function(){
+    var text = $('.alertCustom').text();
+    if(text !== '' ){
+      $('.alertCustom').addClass('showAlert')
+    }
+})
+// ----------------------------------------
+
 $('#centralModal-lg').on('shown.bs.modal', function () {
     $(document).off('focusin.modal');
 });
@@ -80,6 +97,8 @@ $('.modal-update-movie').on('click', function(){
         url: "http://localhost/reST/API/movie.php/GetMovieById?id_movie="+id,
         context: document.body
       }).done(function(data) {
+        $('#idUpdate').val(data.id);
+        $('#imageOld').val(data.image);
         $('#nameUpdateMovie').val(data.movie);
         $('#linkSDUpdateMovie').val(data.clip_SD);
         $('#linkHDUpdateMovie').val(data.clip_HD);
@@ -88,6 +107,7 @@ $('.modal-update-movie').on('click', function(){
         $('#timeUpdateMovie').val(data.running_time);
         $('#ageUpdateMovie').val(data.age);
         $('#ageUpdateMovie').val(data.age);
+        $('#evaluate').val(data.evaluate);
         $('#imageUpdateMovie').attr({src : './public/img/' + data.image});     
         $('#s_descriptionUpdateMovie').text(data.short_description);     
         // $('.descriptionUpdateMovie').append(data.description)
@@ -95,6 +115,32 @@ $('.modal-update-movie').on('click', function(){
 })
 
 // --------------------------------------------------
+
+//UPDATE
+$('tr').on('click', function(){
+    let id = $(this).attr('data-id');
+    $.ajax({
+        url: "http://localhost/reST/API/movie.php/GetMovieById?id_movie="+id,
+        context: document.body
+      }).done(function(data) {
+        $('#modal-movie-img').attr('src', 'public/img/'+ data.image);
+        $('#modal-movie-name').text(data.movie);
+        $('#modal-movie-short_description').text(data.short_description);
+        $('#modal-movie-age').text(data.age+ '+');
+        $('#modal-movie-name-cata').text(data.name_cata);
+        $('#modal-movie-release_year').text(data.release_year);
+        $('#modal-movie-country').text(data.country);
+        $('#modal-movie-resolution').text(data.resolution);
+        CKEDITOR.instances['editor1'].setData(data.description)
+        $('#catalogUpdateMovie').val(data.id_cata);
+        $('#countryUpdateMovie').val(data.id_country);
+        $('.resolution[value="'+data.resolution+'"]').prop('checked',true)
+        // rename button insert or update
+        
+        $('#buttonIU').val('UPDATE').attr('name','update')
+      });
+})
+// ---------------------------------------------------------------------------
 
 $('tr').on('click', function(){
     let id = $(this).attr('data-id');
@@ -110,10 +156,9 @@ $('tr').on('click', function(){
         $('#modal-movie-release_year').text(data.release_year);
         $('#modal-movie-country').text(data.country);
         $('#modal-movie-resolution').text(data.resolution);
+        CKEDITOR.instances['editor1'].setData(data.description)
       });
 })
-
-
 
 
 $("body").on("click", ".box-image-movie", function(e) {
@@ -190,6 +235,8 @@ $('.modal-edit-image').on('click', function(){
         formData.append('id_movie',id)
         // handle event submid image to serve
         $('.btn-image-insert button' ).on('click', function(){
+            console.log('asjdaskjld');
+            
             $.ajax({
                 url: "http://localhost/reST/API/movie.php/InsertPhoto",
                 type: 'POST',

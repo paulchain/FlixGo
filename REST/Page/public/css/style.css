@@ -31,4 +31,31 @@ table{
     overflow: hidden;
     padding: 0rem .3rem;
 }
-#modal-movie-name{}
+
+.alertCustom{
+    position: absolute;
+    left: 50%;
+    top: 50vh;
+    transform: translateY(-50%) translateX(-50%);
+    padding: .5rem 2rem;
+    font-size: 1.5rem;
+    box-shadow: 0 0 80px rgba(138, 203, 255, 0.62);
+    cursor: pointer;
+    border-radius: 3px;
+    color: white;
+    /* display: none; */
+    opacity: 0;
+    z-index: -10;
+}
+body{
+    position: relative;
+    /* z-index: 2; */
+}
+.showAlert{
+    opacity: 1;
+    /* display: block */
+    z-index: 100;
+}
+tr{
+    cursor: pointer;
+}
