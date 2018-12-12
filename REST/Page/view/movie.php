@@ -5,6 +5,7 @@
     $message = '';
     if(isset($_POST['addnew'])){
         if($_POST['addnew']){
+            
             $name_movie=$_POST['name_movie'];
             $release_year=$_POST['release_year'];
             $view = 0;
@@ -67,175 +68,17 @@
     }
     $_REQUEST = Array();
 ?>
-<section class="main-movie ">
+<section class="main-movie col-md-10">
+    <!-- modal custom -->
+    <img src="" alt="" class='backgroundTotal'>
     <div class="alert-success alertCustom bg blue-gradient"><?=$message?></div>
-    <div class="container-fluid mainLoad">
+    <!-- --------------- -->
+    <div class="container-fluid mainLoad mt-5">
       <div class="row">
-        <div class="col-sm-12 col-md-12 mt-5">
-          
-          <div class="selec d-flex align-items-center">
-            <button class="btn blue-gradient mr-auto" data-toggle="modal" data-target="#centralModal-lg" title="Thêm phim mới"><i class="fas fa-plus"></i></button>
-            <div class="modal fade" id="centralModal-lg" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-              <div class="modal-dialog modal-lg" role="form">
-              <form method="post" action="index.php?page=movie" id='formIU' enctype="multipart/form-data">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h3>Thêm phim</h3>
-                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body" id="content-insert">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-4">
-                            <input type="hidden" name='id' id='idUpdate' required>
-                            <input type="hidden" name='imageOld' id='imageOld'>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Tên phim</label>
-                              <input class="form-control" id="nameUpdateMovie" 
-                                      type="text" 
-                                      name="name_movie" 
-                                      placeholder="Tên Phim"
-                                      required>
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Link SD</label>
-                              <input class="form-control"
-                                     id="linkSDUpdateMovie" 
-                                     type="text" name="clip_SD"
-                                     required>
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Link HD</label>
-                              <input class="form-control" 
-                                     id="linkHDUpdateMovie" 
-                                     type="text" 
-                                     name="clip_HD"  
-                                     required>
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Link FHD</label>
-                              <input class="form-control" 
-                                     id="linkFHDUpdateMovie" 
-                                     type="text" 
-                                     name="clip_FHD"  
-                                     required>
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Năm</label>
-                              <input class="form-control" 
-                                     id="yearUpdateMovie" 
-                                     type="text" 
-                                     name="release_year"  
-                                     required>
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Thời gian</label>
-                              <input class="form-control" 
-                                     id="timeUpdateMovie" 
-                                     type="text" 
-                                     name="running_time"  
-                                     required>
 
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">Tuổi</label>
-                              <input class="form-control" 
-                                     id="ageUpdateMovie" 
-                                     type="text" 
-                                     name="age"  
-                                     required>
-                            </div>
-                            <div class="form-group">
-                              <label for="formGroupExampleInput">IMAGE</label>
-                              <input class="p-0 form-control fileCustom d-flex align-items-center" 
-                                     id="form-file" 
-                                     name="image" 
-                                     type="file">
-                              <div class="boximg mt-2"><img class="img-thumbnail" id='imageUpdateMovie' src="" alt=""></div>
-                            </div>
-                          </div>
-                          <div class="col-md-8">
-                            <div class="form-group">
-                              <label for="exampleFormControlTextarea2">Mô tả ngắn</label>
-                              <textarea class="form-control rounded-0" id="s_descriptionUpdateMovie" name="short_description" rows="5"></textarea>
-                              <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
-                              <label for="exampleFormControlTextarea2">Mô tả đầy đủ</label>
-                              <textarea class="form-control rounded-0 descriptionUpdateMovie" 
-                                        id="editor1"  
-                                        name="description" 
-                                        required>
-                              </textarea>
-
-                              <script>CKEDITOR.replace( 'editor1' )</script>
-                            </div>
-                            <div class="form-group">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <select class="browser-default custom-select" 
-                                          name="id_cata" 
-                                          id='catalogUpdateMovie'>
-                                    <option selected="" value=''>Thể loại</option>     
-                                    <?php 
-                                      foreach ($dsloai as $dsloai) {
-                                          extract($dsloai);
-                                          echo '<option value='.$id.'>'.$name_cata.'</option>';
-                                      }
-                                    ?>
-                                  </select>
-                                </div>
-                                <div class="col-md-6">
-                                  <select class="browser-default custom-select" name="id_country" id='countryUpdateMovie'>
-                                    <option selected="">Quốc gia</option>
-                                    <?php 
-                                      foreach ($dsqg as $dsqg) {
-                                          extract($dsqg);
-                                          echo ' <option value='.$id.'>'.$name_country.'</option>';
-                                      }
-                                    ?>
-                                  </select>
-                                </div>
-                                <div class="form-group mt-2 col-md-6">
-                                  <label for="formGroupExampleInput">IMBS</label>
-                                  <input class="form-control" 
-                                        id="evaluate" 
-                                        name="evaluate" 
-                                        type="number"
-                                        step='0.1'
-                                        max='10'
-                                        min='1'
-                                        required>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-group d-flex"  id='reslutionUpdateMovie'>
-                              <div class="custom-control custom-radio mr-auto" >
-                                <input class="custom-control-input resolution" value='SD' id="reslutionSD" type="radio" name="resolution" checked="">
-                                <label class="custom-control-label " for="reslutionSD">SD</label>
-                              </div>
-                              <!-- Group of default radios - option 2-->
-                              <div class="custom-control custom-radio mr-auto">
-                                <input class="custom-control-input resolution" value='HD' id="reslutionHD" type="radio" name="resolution">
-                                <label class="custom-control-label" for="reslutionHD">HD</label>
-                              </div>
-                              <!-- Group of default radios - option 3-->
-                              <div class="custom-control custom-radio mr-auto">
-                                <input class="custom-control-input resolution" value='FHD' id="reslutionFHD" type="radio" name="resolution">
-                                <label class="custom-control-label" for="reslutionFHD">FHD</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
-                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-                      <input class="btn btn-primary btn-sm" type="submit" value="Insert" name="addnew" id='buttonIU'>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+        <!-- TABLE -->
+        <div class="col-8 flex-wrap d-flex align-items-center">
+            <button class="btn blue-gradient m-0 mr-auto" data-toggle="modal" data-target="#centralModal-lg" title="Thêm phim mới"><i class="fas fa-plus"></i></button>
             <div class="form-group d-flex mb-0">
               <input class="form-control" type="text" placeholder="Search" aria-label="Search">
               <div class="form-button ml-3 mr-3">
@@ -251,43 +94,6 @@
               </select>
             </div>
             <button class="btn text-white font-weight-light blue-gradient ml-3">Sắp xếp theo thứ tự</button>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="mt-2" role="">
-            <div class="modal-content">
-              <div class="modal-body p-0" id="content-insert">
-                <div class="card">
-                  <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/imageFilm.png" alt="Card image cap"><a href="#!"></a>
-                    <div class="mask rgba-white-slight"></div>
-                  </div>
-                  <div class="card-body p-0">
-                    <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
-                    <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
-                    <ul class="list-unstyled d-flex mt-3 flex-wrap">
-                      <li class="mr-auto">
-                        <div class="btn bg blue-gradient" id="modal-movie-age">18+</div>
-                      </li>
-                      <li class="mr-auto">
-                        <div class="btn bg blue-gradient" id="modal-movie-release_year">2018</div>
-                      </li>
-                      <li class="mr-auto">
-                        <div class="btn blue-gradient" id="modal-movie-country">Mỹ</div>
-                      </li>
-                      <li class="mr-auto">
-                        <div class="btn blue-gradient" id="modal-movie-resolution">FHD</div>
-                      </li> 
-                      <li class="mr-auto">
-                        <div class="btn blue-gradient" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-9">
           <table class="table mt-2 table-striped bg-white font-weight-bold mb-0 p-4">
             <thead>
               <tr p-4>
@@ -348,7 +154,7 @@
               </div>
             </tbody>
           </table>
-          <nav class="d-flex bg blue-gradient" aria-label="Page navigation example">
+          <nav class="d-flex bg blue-gradient w-100" aria-label="Page navigation example">
             <div class="mr-auto"></div>
             <ul class="pagination pagination-circle mb-0 mt-1">
               <li class="page-item"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
@@ -361,6 +167,209 @@
             </ul>
           </nav>
         </div>
+
+        <!-- COL-MD-4 CARD IMAGE  -->
+        <div class="col-4 ">
+          <div class="mt-2" role="">
+            <div class="modal-content">
+              <div class="modal-body p-0" id="content-insert">
+                <div class="card">
+                  <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/imageFilm.png" alt="Card image cap"><a href="#!"></a>
+                    <div class="mask rgba-white-slight"></div>
+                  </div>
+                  <div class="card-body p-0">
+                    <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
+                    <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
+                    <ul class="list-unstyled d-flex mt-3 flex-wrap">
+                      <li class="">
+                        <div class="btn bg blue-gradient" id="modal-movie-age">18+</div>
+                      </li>
+                      <li class="ml-2">
+                        <div class="btn bg blue-gradient" id="modal-movie-release_year">2018</div>
+                      </li>
+                      <li class="ml-2">
+                        <div class="btn blue-gradient" id="modal-movie-country">Mỹ</div>
+                      </li>
+                      <li class="ml-2">
+                        <div class="btn blue-gradient" id="modal-movie-resolution">FHD</div>
+                      </li> 
+                      <li class="ml-2">
+                        <div class="btn blue-gradient" id="modal-movie-time">120'</div>
+                      </li> 
+                      <li class="">
+                        <div class="btn blue-gradient" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+<!-- MODAL -->
+<div class="modal fade" id="centralModal-lg" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-lg" role="form">
+    <form method="post" action="index.php?page=movie" id='formIU' enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Thêm phim</h3>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body" id="content-insert">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <input type="hidden" name='id' id='idUpdate' required>
+                  <input type="hidden" name='imageOld' id='imageOld'>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Tên phim</label>
+                    <input class="form-control" id="nameUpdateMovie" 
+                            type="text" 
+                            name="name_movie" 
+                            placeholder="Tên Phim"
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Link SD</label>
+                    <input class="form-control"
+                            id="linkSDUpdateMovie" 
+                            type="text" name="clip_SD"
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Link HD</label>
+                    <input class="form-control" 
+                            id="linkHDUpdateMovie" 
+                            type="text" 
+                            name="clip_HD"  
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Link FHD</label>
+                    <input class="form-control" 
+                            id="linkFHDUpdateMovie" 
+                            type="text" 
+                            name="clip_FHD"  
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Năm</label>
+                    <input class="form-control" 
+                            id="yearUpdateMovie" 
+                            type="text" 
+                            name="release_year"  
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Thời gian</label>
+                    <input class="form-control" 
+                            id="timeUpdateMovie" 
+                            type="text" 
+                            name="running_time"  
+                            required>
+
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Tuổi</label>
+                    <input class="form-control" 
+                            id="ageUpdateMovie" 
+                            type="text" 
+                            name="age"  
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">IMAGE</label>
+                    <input class="p-0 form-control fileCustom d-flex align-items-center" 
+                            id="form-file" 
+                            name="image" 
+                            type="file">
+                    <div class="boximg mt-2"><img class="img-thumbnail" id='imageUpdateMovie' src="" alt=""></div>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea2">Mô tả ngắn</label>
+                    <textarea class="form-control rounded-0" id="s_descriptionUpdateMovie" name="short_description" rows="5"></textarea>
+                    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+                    <label for="exampleFormControlTextarea2">Mô tả đầy đủ</label>
+                    <textarea class="form-control rounded-0 descriptionUpdateMovie" 
+                              id="editor1"  
+                              name="description" 
+                              required>
+                    </textarea>
+
+                    <script>CKEDITOR.replace( 'editor1' )</script>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <select class="browser-default custom-select" 
+                                name="id_cata" 
+                                id='catalogUpdateMovie'>
+                          <option selected="" value=''>Thể loại</option>     
+                          <?php 
+                            foreach ($dsloai as $dsloai) {
+                                extract($dsloai);
+                                echo '<option value='.$id.'>'.$name_cata.'</option>';
+                            }
+                          ?>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <select class="browser-default custom-select" name="id_country" id='countryUpdateMovie'>
+                          <option selected="">Quốc gia</option>
+                          <?php 
+                            foreach ($dsqg as $dsqg) {
+                                extract($dsqg);
+                                echo ' <option value='.$id.'>'.$name_country.'</option>';
+                            }
+                          ?>
+                        </select>
+                      </div>
+                      <div class="form-group mt-2 col-md-6">
+                        <label for="formGroupExampleInput">IMBS</label>
+                        <input class="form-control" 
+                              id="evaluate" 
+                              name="evaluate" 
+                              type="number"
+                              step='0.1'
+                              max='10'
+                              min='1'
+                              required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group d-flex"  id='reslutionUpdateMovie'>
+                    <div class="custom-control custom-radio mr-auto" >
+                      <input class="custom-control-input resolution" value='SD' id="reslutionSD" type="radio" name="resolution" checked="">
+                      <label class="custom-control-label " for="reslutionSD">SD</label>
+                    </div>
+                    <!-- Group of default radios - option 2-->
+                    <div class="custom-control custom-radio mr-auto">
+                      <input class="custom-control-input resolution" value='HD' id="reslutionHD" type="radio" name="resolution">
+                      <label class="custom-control-label" for="reslutionHD">HD</label>
+                    </div>
+                    <!-- Group of default radios - option 3-->
+                    <div class="custom-control custom-radio mr-auto">
+                      <input class="custom-control-input resolution" value='FHD' id="reslutionFHD" type="radio" name="resolution">
+                      <label class="custom-control-label" for="reslutionFHD">FHD</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
+            <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+            <input class="btn btn-primary btn-sm" type="submit" value="Insert" name="addnew" id='buttonIU'>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

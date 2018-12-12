@@ -8,7 +8,7 @@ function movie_insert($name_movie,$evaluate,$view,$release_year,$running_time,$i
 
 function movie_update($id, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata){ 
     
-    $sql = "UPDATE movie SET name_movie=?,release_year=? , evaluate = ?, running_time=?,id_country=?,short_description=?,description=?,
+    $sql = "UPDATE movie SET name_movie=?,evaluate = ?,release_year=?  , running_time=?,id_country=?,short_description=?,description=?,
     image=?,clip_SD=?,clip_HD=?,clip_FHD=?,age=?,resolution=?,id_cata=? WHERE id=?";
 
     return pdo_execute($sql, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata, $id); 
