@@ -19,10 +19,11 @@ class movie_series extends restful_api {
 			$episodes = $_GET['episodes'];
             $title = $_GET['title'];
             $id_movie = $_GET['id_movie'];
-            $clips = $_GET['clips'];
-            $description = $_GET['description'];
+            $clip_SD = $_GET['clip_SD'];
+            $clip_HD = $_GET['clip_HD'];
+            $clip_FHD = $_GET['clip_FHD'];
 			if (is_numeric($episodes)) {
-				movie_series_insert($episodes,$title,$id_movie,$clips,$description);
+				movie_series_insert($episodes,$title,$id_movie,$clip_SD,$clip_HD,$clip_FHD);
 				$data = 'Thêm thành công';
 				$this->response(200, $data);
 			}else{
@@ -37,10 +38,11 @@ class movie_series extends restful_api {
 			$episodes = $_GET['episodes'];
             $title = $_GET['title'];
             $id_movie = $_GET['id_movie'];
-            $clips = $_GET['clips'];
-            $description = $_GET['description'];
+            $clip_SD = $_GET['clip_SD'];
+            $clip_HD = $_GET['clip_HD'];
+            $clip_FHD = $_GET['clip_FHD'];
 			if (is_numeric($episodes)) {
-				movie_series_update($id_series, $episodes,$title,$id_movie,$clips,$description);
+				movie_series_update($id_series, $episodes,$title,$id_movie,$clip_SD,$clip_HD,$clip_FHD);
 				$data = 'Sửa thành công';
 				$this->response(200, $data);
 			}else{

@@ -1,17 +1,17 @@
 <?php
 require_once 'pdo.php';
 
-function movie_insert($name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata){
-    $sql = "INSERT INTO movie VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    return pdo_execute($sql, $name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata);
+function movie_insert($name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata){
+    $sql = "INSERT INTO movie VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    return pdo_execute($sql, $name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
 }
 
-function movie_update($id, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata){ 
+function movie_update($id, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata){ 
     
     $sql = "UPDATE movie SET name_movie=?,evaluate = ?,release_year=?  , running_time=?,id_country=?,short_description=?,description=?,
-    image=?,clip_SD=?,clip_HD=?,clip_FHD=?,age=?,resolution=?,id_cata=? WHERE id=?";
+    image=?,clip_SD=?,clip_HD=?,clip_FHD=?,age=?,resolution=?,type=?,id_cata=? WHERE id=?";
 
-    return pdo_execute($sql, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata, $id); 
+    return pdo_execute($sql, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata, $id); 
 }
 
 function movie_delete($id){
@@ -30,12 +30,26 @@ function movie_delete($id){
  * @return array mảng loại truy vấn được
  * @throws PDOException lỗi truy vấn
  */
+function movie_page_and_type($type,$page,$numberGet){
+    $from = ($page-1)*$numberGet;
+    $sql = "SELECT * FROM movie WHERE type = $type limit $numberGet offset $from ";
+    return pdo_query($sql);
+}
 function movie_select_all(){
     $sql = "SELECT * FROM movie ORDER BY id DESC";
     return pdo_query($sql);
 }
 function movie_select_sethome(){ // copy xún đổi all thành tên sethome
     $sql = "SELECT * FROM loai WHERE sethome=1 ORDER BY ma_loai DESC";
+    return pdo_query($sql);
+}
+
+function countMovie(){ // copy xún đổi all thành tên sethome
+    $sql = "SELECT count(id) FROM movie  where type = 1";
+    return pdo_query($sql);
+}
+function countMovies(){ // copy xún đổi all thành tên sethome
+    $sql = "SELECT count(id) FROM movie where type = 0";
     return pdo_query($sql);
 }
 

@@ -79,6 +79,7 @@
     <link rel="manifest" href="./public/favicon/manifest.json">
     <link rel="mask-icon" href="./public/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="shortcut icon" href="./public/favicon/favicon.ico">
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="./public/favicon/mstile-144x144.png">
     <meta name="msapplication-config" content="./public/favicon/browserconfig.xml">

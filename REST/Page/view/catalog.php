@@ -17,8 +17,7 @@
         catalog_delete($id);
     }
 ?>
-<section class="main-movie">
-        <div class="container">
+<section class="main-movie .col-10">
           <div class="row">
             <div class="col-sm-12 col-md-12 mt-5">
               <div class="selec d-flex align-items-center">

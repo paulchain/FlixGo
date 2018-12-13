@@ -18,6 +18,9 @@
         }elseif($_GET['page'] == "movie"){
             require 'view/template/menu.php';
             require 'view/movie.php';
+        }elseif($_GET['page'] == "movie-series"){
+            require 'view/template/menu.php';
+            require 'view/movie-series.php';
         }elseif($_GET['page'] == "user"){
             require 'view/template/menu.php';
             require 'view/user.php';

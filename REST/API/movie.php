@@ -17,6 +17,15 @@ class movie extends restful_api {
 			}
 		}
 	}
+
+	function showMovieTemplate(){
+		$type = $_GET['type'];
+		$page = $_GET['page'];
+		$data = movie_page_and_type($type,$page,12);
+		$this->response(200, $data);
+	}
+
+
 	//------------------------------------------
 	// Hàm lấy tất cả movie
 	function GetAllMovie(){
@@ -98,9 +107,10 @@ class movie extends restful_api {
             $clip_FHD = $_GET['clip_FHD'];
             $age = $_GET['age'];
             $resolution = $_GET['resolution'];
+            $type = $_GET['type'];
             $id_cata = $_GET['id_cata'];
             if ( is_numeric($release_year) && is_numeric($running_time) && is_numeric($age)) {
-                movie_insert($name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata);
+                movie_insert($name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
                     $data = 'Thêm thành công';
                     $this->response(200, $data);
             }else{
@@ -124,9 +134,10 @@ class movie extends restful_api {
             $clip_FHD = $_GET['clip_FHD'];
             $age = $_GET['age'];
             $resolution = $_GET['resolution'];
+            $type = $_GET['type'];
             $id_cata = $_GET['id_cata'];
             if ( is_numeric($release_year) && is_numeric($running_time) && is_numeric($age)) {
-                movie_update($id, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$id_cata);
+                movie_update($id, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
                     $data = 'Sửa thành công';
                     $this->response(200, $data);
             }else{
@@ -139,10 +150,10 @@ class movie extends restful_api {
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
 			if (movie_delete($id) == 1){
-				$data = 'Xóa thành công';
+				$data = '1';
 				$this->response(200, $data);
 			}else{
-				$data = 'Lỗi xóa';
+				$data = '0';
 				$this->response(404, $data);
 			}
 		}
