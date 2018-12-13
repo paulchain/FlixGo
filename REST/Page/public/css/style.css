@@ -82,9 +82,6 @@ tr{
 table.table td,table.table th{
     padding-left: 2.5rem
 }
-.mainLoad{
-    /* padding: 2rem 0rem */
-}
 .main-movie{
     position: relative;
     height: 100vh;
@@ -133,4 +130,40 @@ ul{
     padding: 2rem;
     position: relative;
     z-index: 2;
+    color: #fff
+}
+.navAdmin .nav p{
+    font-size: 16px;
+    font-weight: 300
+}
+.navAdmin .nav a img{
+    width: 50%;
+}
+.navAdmin .nav .notification{
+    position: relative;
+}
+.navAdmin .nav .notification p{
+    position: absolute;
+    top: 0;
+    left: 30%;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .9rem
+}
+.card-body h1{
+    font-size: 4rem
+}
+.update-allMovie{
+    border-top: 1px solid #000;
+    padding-top: 1rem;
+    cursor: pointer;
+}
+.pagination.pagination-circle .page-item .page-link{
+    color: #fff
 }
