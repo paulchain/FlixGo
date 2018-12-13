@@ -180,36 +180,63 @@
         </div>
         <!-- COL-MD-4 CARD IMAGE  -->
         <div class="col-4 ">
-          <div class="mt-2" role="">
-            <div class="modal-content">
-              <div class="modal-body p-0" id="content-insert">
-                <div class="card">
-                  <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/imageFilm.png" alt="Card image cap"><a href="#!"></a>
-                    <div class="mask rgba-white-slight"></div>
+          <div class="row">
+            <div class="col-12">
+              <div class="mt-2" role="">
+                <div class="modal-content">
+                  <div class="modal-body p-0" id="content-insert">
+                    <div class="card">
+                      <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/imageFilm.png" alt="Card image cap"><a href="#!"></a>
+                        <div class="mask rgba-white-slight"></div>
+                      </div>
+                      <div class="card-body p-0">
+                        <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
+                        <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
+                        <ul class="list-unstyled d-flex mt-3 flex-wrap">
+                          <li class="">
+                            <div class="btn bg blue-gradient" id="modal-movie-age">18+</div>
+                          </li>
+                          <li class="ml-2">
+                            <div class="btn bg blue-gradient" id="modal-movie-release_year">2018</div>
+                          </li>
+                          <li class="ml-2">
+                            <div class="btn blue-gradient" id="modal-movie-country">Mỹ</div>
+                          </li>
+                          <li class="ml-2">
+                            <div class="btn blue-gradient" id="modal-movie-resolution">FHD</div>
+                          </li> 
+                          <li class="ml-2">
+                            <div class="btn blue-gradient" id="modal-movie-time">120'</div>
+                          </li> 
+                          <li class="">
+                            <div class="btn blue-gradient" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div class="card-body p-0">
-                    <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
-                    <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
-                    <ul class="list-unstyled d-flex mt-3 flex-wrap">
-                      <li class="">
-                        <div class="btn bg blue-gradient" id="modal-movie-age">18+</div>
-                      </li>
-                      <li class="ml-2">
-                        <div class="btn bg blue-gradient" id="modal-movie-release_year">2018</div>
-                      </li>
-                      <li class="ml-2">
-                        <div class="btn blue-gradient" id="modal-movie-country">Mỹ</div>
-                      </li>
-                      <li class="ml-2">
-                        <div class="btn blue-gradient" id="modal-movie-resolution">FHD</div>
-                      </li> 
-                      <li class="ml-2">
-                        <div class="btn blue-gradient" id="modal-movie-time">120'</div>
-                      </li> 
-                      <li class="">
-                        <div class="btn blue-gradient" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
-                      </li>
-                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                      <img class="w-100" src="./public/img/allmovie.png" alt="">
+                    </div>
+                    <div class="col-md-5">
+                      <div class="card-body p-0 text-right">
+                        <h4 class="card-title mt-4 " id="">Tổng số phim</h4>
+                        <h1 class="card-text " id="">100</h1>
+                      </div>
+                    </div>
+                    <div class="col-10 offset-md-1 mt-2">
+                      <div class="update-allMovie d-flex justify-content-end mr-5">
+                        <img style="width:20px; max-height:20px;" src="./public/img/update.png" alt="">
+                        <h5 class="pl-2">Update now!</h5>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
