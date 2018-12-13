@@ -1,3 +1,16 @@
+/* .boxImageLoad {
+    display: flex;
+    flex-wrap: wrap;
+} */
+.box-image-movie img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+.boxImageLoad img {
+    width: 100%;
+    height: 100px;
+}
 .homie{
     height: 100vh;
     flex-direction: column;
@@ -66,17 +79,25 @@ body{
 tr{
     cursor: pointer;
 }
+table.table td,table.table th{
+    padding-left: 2.5rem
+}
+.mainLoad{
+    /* padding: 2rem 0rem */
+}
 .main-movie{
     position: relative;
+    height: 100vh;
 }
 .backgroundTotal{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     object-fit: cover;
     top: 0;
     left: 0;
-    filter: blur(30px)
+    filter: blur(30px);
+    z-index: 0;
 }
 
 #logo{
@@ -86,9 +107,17 @@ tr{
 }
 
 .navMenu ul li{
-    text-decoration: none;
-    color: white;
+    text-decoration: none;  
     list-style-type: none;
+    padding: .5rem 1rem;
+}
+.navMenu ul li a{
+    color: white;
+    font-size: 1.2rem;
+    line-height: 32px;
+}
+.navMenu ul li a img{
+    padding-right: 1.5rem;
 }
 .menu{
     padding-left: 0 !important;
@@ -96,4 +125,12 @@ tr{
 }
 ul{
     padding: 0
+}
+
+.navAdmin{
+    min-height: 100px;
+    background: rgba(0, 0, 0, .6);
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
 }

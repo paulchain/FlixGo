@@ -6,9 +6,9 @@ require_once 'pdo.php';
  * @param String $ten_loai là tên loại
  * @throws PDOException lỗi thêm mới
  */
-function movie_series_insert($episodes,$title,$id_movie,$clips,$description){
-    $sql = "INSERT INTO movie_series(episodes,title,id_movie,clips,description) VALUES(?,?,?,?,?)";
-    return pdo_execute($sql, $episodes,$title,$id_movie,$clips,$description);
+function movie_series_insert($episodes,$title,$id_movie,$clip_SD,$clip_HD,$clip_FHD){
+    $sql = "INSERT INTO movie_series VALUES(?,?,?,?,?,?)";
+    return pdo_execute($sql, $episodes,$title,$id_movie,$clip_SD,$clip_HD,$clip_FHD);
 }
 /**
  * Cập nhật tên loại
@@ -16,9 +16,9 @@ function movie_series_insert($episodes,$title,$id_movie,$clips,$description){
  * @param String $ten_loai là tên loại mới
  * @throws PDOException lỗi cập nhật
  */
-function movie_series_update($id_series, $episodes,$title,$id_movie,$clips,$description){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
-    $sql = "UPDATE movie_series SET episodes=?,title=?,id_movie=?,clips=?,description=? WHERE id_series=?";
-    return pdo_execute($sql, $episodes,$title,$id_movie,$clips,$description,$id_series);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
+function movie_series_update($id_series, $episodes,$title,$id_movie,$clip_SD,$clip_HD,$clip_FHD){ // lưu ý phần này khóa chính luôn nằm đầu vidu ma_loai
+    $sql = "UPDATE movie_series SET episodes=?,title=?,id_movie=?,clip_SD=?,clip_HD=?,clip_FHD=? WHERE id_series=?";
+    return pdo_execute($sql, $episodes,$title,$id_movie,$clip_SD,$clip_HD,$clip_FHD,$id_series);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
 }
 /**
  * Xóa một hoặc nhiều loại

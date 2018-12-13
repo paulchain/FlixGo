@@ -6545,11 +6545,11 @@ header figure {
       .main-cata .container-fluid .show .table td a {
         color: #fff; }
 
-.main-movie .fileCustom {
+ .fileCustom {
   position: relative; }
-  .main-movie .fileCustom::-webkit-file-upload-button {
+   .fileCustom::-webkit-file-upload-button {
     visibility: hidden; }
-  .main-movie .fileCustom::before {
+   .fileCustom::after {
     content: 'Choose';
     display: block;
     padding: .5rem 1rem;
@@ -6564,7 +6564,7 @@ header figure {
 select {
   -webkit-appearance: none; }
 
-.image-thumbnail {
+.form-file-thumbnail {
   height: 100px;
   width: 100%;
   object-fit: cover;
