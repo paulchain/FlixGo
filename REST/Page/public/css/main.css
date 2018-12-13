@@ -6457,8 +6457,7 @@ header figure {
   display: flex; }
   .menu nav {
     width: 80%;
-    margin: 0 auto;
-    box-shadow: none; }
+    margin: 0 auto;}
     .menu nav .navbar-brand {
       width: 60%; }
       .menu nav .navbar-brand img {

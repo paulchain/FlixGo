@@ -1,3 +1,10 @@
+.homie{
+    height: 100vh;
+    flex-direction: column;
+}
+.layoutMain{
+    padding: 0
+}
 .list-Image{
     display: flex;
     flex-wrap: wrap
@@ -58,4 +65,35 @@ body{
 }
 tr{
     cursor: pointer;
+}
+.main-movie{
+    position: relative;
+}
+.backgroundTotal{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    filter: blur(30px)
+}
+
+#logo{
+    width: 100%;
+    object-fit: contain;
+    margin: 3rem 0rem
+}
+
+.navMenu ul li{
+    text-decoration: none;
+    color: white;
+    list-style-type: none;
+}
+.menu{
+    padding-left: 0 !important;
+    height: 100vh;
+}
+ul{
+    padding: 0
 }

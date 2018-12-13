@@ -99,6 +99,9 @@ $('.modal-update-movie').on('click', function(){
       }).done(function(data) {
         $('#idUpdate').val(data.id);
         $('#imageOld').val(data.image);
+        $('#evaluate').val(data.evaluate);
+        console.log(data.evaluate);
+        
         $('#nameUpdateMovie').val(data.movie);
         $('#linkSDUpdateMovie').val(data.clip_SD);
         $('#linkHDUpdateMovie').val(data.clip_HD);
@@ -106,17 +109,18 @@ $('.modal-update-movie').on('click', function(){
         $('#yearUpdateMovie').val(data.release_year);
         $('#timeUpdateMovie').val(data.running_time);
         $('#ageUpdateMovie').val(data.age);
-        $('#ageUpdateMovie').val(data.age);
-        $('#evaluate').val(data.evaluate);
         $('#imageUpdateMovie').attr({src : './public/img/' + data.image});     
-        $('#s_descriptionUpdateMovie').text(data.short_description);     
+        $('#s_descriptionUpdateMovie').text(data.short_description); 
+        CKEDITOR.instances['editor1'].setData(data.description)  
         // $('.descriptionUpdateMovie').append(data.description)
       });
+
 })
 
 // --------------------------------------------------
 
-//UPDATE
+//GET MOVIE
+
 $('tr').on('click', function(){
     let id = $(this).attr('data-id');
     $.ajax({
@@ -131,13 +135,13 @@ $('tr').on('click', function(){
         $('#modal-movie-release_year').text(data.release_year);
         $('#modal-movie-country').text(data.country);
         $('#modal-movie-resolution').text(data.resolution);
-        CKEDITOR.instances['editor1'].setData(data.description)
+        $('#modal-movie-time').text(data.running_time + "'");
         $('#catalogUpdateMovie').val(data.id_cata);
         $('#countryUpdateMovie').val(data.id_country);
         $('.resolution[value="'+data.resolution+'"]').prop('checked',true)
         // rename button insert or update
-        
         $('#buttonIU').val('UPDATE').attr('name','update')
+        $('.backgroundTotal').attr('src','./public/img/' + data.image)
       });
 })
 // ---------------------------------------------------------------------------

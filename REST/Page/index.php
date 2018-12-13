@@ -13,10 +13,13 @@
         //main
     if(isset($_GET['page'])){
         if($_GET['page'] == "catalog"){
+            require 'view/template/menu.php';
             require 'view/catalog.php';
         }elseif($_GET['page'] == "movie"){
+            require 'view/template/menu.php';
             require 'view/movie.php';
         }elseif($_GET['page'] == "user"){
+            require 'view/template/menu.php';
             require 'view/user.php';
         }else{
             require 'view/home.php';

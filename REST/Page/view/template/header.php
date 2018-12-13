@@ -86,14 +86,5 @@
   </head>
   <body class="home-page" id="top-page"><!-- ////////////// Begin Main ////////////// -->
     <main>
-      <section class="menu">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="navbar navbar-expand-lg"><a class="navbar-brand ml-auto order-2 order-md-1" href="index.html"><img src="./public/img/logo.png" alt=""></a>
-              <div class="collapse navbar-collapse order-3" id="navbarNavAltMarkup">
-                <div class="navbar-nav"><a class="nav-item nav-link active" href="index.php">Trang chủ<span class="sr-only">(current)</span></a><a class="nav-item nav-link" href="index.php?page=catalog">Danh mục</a><a class="nav-item nav-link" href="index.php?page=movie">Phim lẻ</a><a class="nav-item nav-link" href="index.php?page=movie-series">Phim bộ</a><a class="nav-item nav-link" href="index.php?page=customer">Người dùng</a><a class="nav-item nav-link" href="index.php?page=country">Quốc gia</a><a class="nav-item nav-link" href="index.php?page=comment">Bình luận</a><a class="nav-item nav-link" href="index.php?page=package">Gói phim</a></div>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </section>
+      <div class="container-fluid layoutMain">
+        <div class="row no-gutters">
