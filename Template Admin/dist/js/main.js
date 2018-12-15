@@ -41,8 +41,9 @@ $('.fileCustom').on('change', function (e) {
             var src = e.target.result;
             var imagenew = new Image();
             imagenew.src = src;
-            $(imagenew).addClass('image-thumbnail m-1 shadow border');
-            $('.boxImageLoad').append(imagenew);
+            $(imagenew).addClass('w-100 m-1 shadow border');
+            $('.boximg ').html('')
+            $('.boximg ').append(imagenew);
         };
     });
 });

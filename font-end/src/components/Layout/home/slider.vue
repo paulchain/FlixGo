@@ -69,8 +69,6 @@ export default {
             for(var pair of formData.entries()) {
                 console.log(pair[0]+ ', '+ pair[1]); 
             }
-            
-            // axios.post('http://localhost/REST/API/movie.php/GetImage',
             axios.post( 'http://localhost/REST/API/movie.php/GetImage',
                 formData,
                 {
@@ -78,12 +76,10 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     }
                 }
-                ).then(function(respone){
-                console.log(respone);
-                })
-                .catch(function(){
-                console.log('FAILURE!!');
-            });
+                // ).then(function(respone){
+                // })
+                // .catch(function(){
+            );
             
         }
     }
