@@ -7,7 +7,8 @@
     require_once '../DAO/movie.php';
     require_once '../DAO/country.php';
     require_once '../DAO/photos.php';
-
+    require_once '../DAO/customer.php';
+    require_once '../DAO/comment.php';
 
     require_once 'view/template/header.php';
         //main
@@ -21,9 +22,15 @@
         }elseif($_GET['page'] == "movie-series"){
             require 'view/template/menu.php';
             require 'view/movie-series.php';
-        }elseif($_GET['page'] == "user"){
+        }elseif($_GET['page'] == "customer"){
             require 'view/template/menu.php';
-            require 'view/user.php';
+            require 'view/customer.php';
+        }elseif($_GET['page'] == "country"){
+            require 'view/template/menu.php';
+            require 'view/country.php';
+        }elseif($_GET['page'] == "comment"){
+            require 'view/template/menu.php';
+            require 'view/comment.php';
         }else{
             require 'view/home.php';
         }

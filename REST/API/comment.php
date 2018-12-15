@@ -47,7 +47,7 @@ class comment extends restful_api {
 	function delete(){
 		if ($this->method == 'GET'){
 			$id_comment = $_GET['id'];
-			if (comment_delete($id) == 1){
+			if (comment_delete($id_comment) == 1){
 				$data = 'Xóa thành công';
 				$this->response(200, $data);
 			}else{
@@ -56,10 +56,11 @@ class comment extends restful_api {
 			}
 		}
 	}
-	function GetCommentByIdMovie(){
+
+	function commentinfo(){
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
-			$data = comment_select_by_id($id);
+			$data  = comment_select_info($id);
 			$this->response(200, $data);
 		}
 	}

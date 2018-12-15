@@ -17,7 +17,7 @@ class catalog extends restful_api {
 	}
 	function GetCatalogById(){
 		if ($this->method == 'GET'){
-			$id = $_GET['id_cata'];
+			$id = $_GET['id'];
 			$data = catalog_select_by_id($id);
 			$this->response(200, $data);
 		}
@@ -26,44 +26,34 @@ class catalog extends restful_api {
 	//------------------------------------------
 	// Hàm lấy tất cả movie
 	function insert(){
-		if ($this->method == 'GET'){
-			$location = $_GET['location'];
-			$name_cata = $_GET['name_cata'];
+		if ($this->method == 'POST'){
+			$location = $_POST['location'];
+			$name_cata = $_POST['namecata'];
+			$data = 0;
 			if (is_numeric($location)) {
-				catalog_insert($location,$name_cata);
-				$data = 'Thêm thành công';
-				$this->response(200, $data);
-			}else{
-				$data = 'Lỗi thêm';
-				$this->response(404, $data);
+				$data = catalog_insert($location,$name_cata);
 			}
+			$this->response(200, $data);
 		}
 	}
 	function update(){
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
 			$location = $_GET['location'];
-			$name_cata = $_GET['name_cata'];
+			$name_cata = $_GET['namecata'];
 			if (is_numeric($location)) {
-				catalog_update($id, $location,$name_cata);
-				$data = 'Sửa thành công';
-				$this->response(200, $data);
+				$data = catalog_update($id, $location,$name_cata);
 			}else{
-				$data = 'Lỗi sửa';
-				$this->response(404, $data);
+				$data = false;
 			}
+			$this->response(200, $data);
 		}
 	}
 	function delete(){
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
-			if (catalog_delete($id) == 1){
-				$data = 'Xóa thành công';
-				$this->response(200, $data);
-			}else{
-				$data = 'Lỗi xóa';
-				$this->response(404, $data);
-			}
+			$data =  catalog_delete($id);
+			$this->response(200, $data);
 		}
 	}
 }

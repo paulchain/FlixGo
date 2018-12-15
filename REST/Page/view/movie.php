@@ -82,7 +82,7 @@
         <!-- TABLE -->
         <div class="col-8  ">
           <div class="d-flex align-items-center flex-wrap">
-            <button class="btn blue-gradient m-0 mr-auto" data-toggle="modal" data-target="#centralModal-lg" title="Thêm phim mới"><i class="fas fa-plus"></i></button>
+            <button class="btn blue-gradient m-0 mr-auto btn-insert" data-toggle="modal" data-target="#centralModal-lg" title="Thêm phim mới"><i class="fas fa-plus"></i></button>
             <div class="form-group  mb-0 mr-3">
               <select name="" id="typeMovieSelect" class="browser-default custom-select">
                 <option selected value="1">Phim lẻ</option>
@@ -447,3 +447,5 @@
     </div>
   </div>
 </div>
+<script src="public/js/thuvien.js"></script>
+<script src="./public/js/main.js"></script>

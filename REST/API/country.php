@@ -15,21 +15,28 @@ class country extends restful_api {
 		}
 	}
 	function insert(){
-		if ($this->method == 'GET'){
-			$name_country = $_GET['name_country'];
+		if ($this->method == 'POST'){
+			$name_country = $_POST['name_country'];
 			if (country_insert($name_country) == 1){
 				$data = 'Thêm thành công';
-				$this->response(200, $data);
+				// $this->response(200, $data);
 			}else{
 				$data = 'Lỗi thêm';
-				$this->response(404, $data);
+				// $this->response(404, $data);
 			}
+		}
+	}
+	function getOne(){
+		if ($this->method == 'GET'){
+			$id = $_GET['id'];
+			$data = country_select_by_id($id);
+			$this->response(200,$data);
 		}
 	}
 	function update(){
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
-			$name_country = $_GET['name_country'];
+			$name_country = $_GET['name'];
 			if (country_update($id, $name_country) == 1){
 				$data = 'Sửa thành công';
 				$this->response(200, $data);

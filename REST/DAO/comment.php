@@ -26,29 +26,25 @@ function comment_delete($id){
         return pdo_execute($sql, $id);
     }
 }
+
+function comment_select_all(){
+    $sql = "SELECT * FROM comment ORDER BY id DESC";
+    return pdo_query($sql);
+}
+
 // XUẤT COMMENT TỪ ID_CUSTOMER_______________
 function comment_select_by_id($id_customer){
     $sql = "SELECT * FROM comment 
     WHERE id_customer = ? ORDER BY " ;
     return pdo_query_one($sql, $id_customer);
 }
-// XUẤT COMMENT TỪ ID_MOVIE__
-function comment_select_by_id($id_movie){
-    $sql = "SELECT * FROM comment 
-    WHERE id_movie = ? ORDER BY " ;
-    return pdo_query_one($sql, $id_movie);
+
+function comment_select_info($id){
+    $sql = "SELECT customer.name as namecustomer ,movie.name_movie as namemovie, comment.content as content, customer.avatar 
+    FROM comment, customer, movie
+    WHERE comment.id_movie = movie.id AND comment.id_customer = customer.id
+    AND comment.id = ?" ;
+    return pdo_query_one($sql, $id);
 }
-//_________________________________________________
 
-
-//menu đa cấp
-//function Menu($parent = 0,$space = '---', $trees = NULL){ 
-//        if(!$trees){ $trees = array(); }
-//	$sql = mysql_query("SELECT * FROM loai WHERE parent = ".intval($parent)." ORDER BY tenloai"); 
-//	while($rs = mysql_fetch_assoc($sql)){ 
-//		$trees[] = array('ma_loai'=>$rs['ma_loai'],'tenloai'=>$space.$rs['tenloai']); 
-//		$trees = Menu($rs['ma_loai'],$space.'---',$trees); 
-//	} 
-//	return $trees; 
-//}
 ?>

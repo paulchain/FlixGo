@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
-    <title>Home - by FullStack Vietnam</title>
+    <title>ADMIN FPOLYGO</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;amp;subset=vietnamese" rel="stylesheet">
     <meta name="description" content="Description for home page">
     <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -62,28 +62,18 @@
     <!-- Meta Tag Search-->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Home- DEMO SITE">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
-    <!--if lt IE 9
-    script(src='//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
-    script(src='//oss.maxcdn.com/respond/1.4.2/respond.min.js')
-    --><!-- ////////////// CSS Include ////////////// -->
-    <!-- inject:css -->
-    <!-- endinject -->
     <link rel="stylesheet" href="public/css/thuvien.css">
     <link rel="stylesheet" href="public/css/main.css"><!-- ////////////// FAVICON ////////////// -->
     <link rel="stylesheet" href="public/css/style.css"><!-- ////////////// FAVICON ////////////// -->
     <link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="./public/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="./public/favicon/favicon-16x16.png" sizes="16x16">
+    <!-- <link rel="icon" type="image/png" href="./public/img/logo.png" sizes="32x100">
+    <link rel="icon" type="image/png" href="/public/img/logo.png" sizes="16x16"> -->
     <link rel="manifest" href="./public/favicon/manifest.json">
     <link rel="mask-icon" href="./public/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="shortcut icon" href="./public/favicon/favicon.ico">
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="./public/favicon/mstile-144x144.png">
-    <meta name="msapplication-config" content="./public/favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    
+    
   </head>
   <body class="home-page" id="top-page"><!-- ////////////// Begin Main ////////////// -->
     <main>

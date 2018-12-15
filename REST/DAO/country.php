@@ -42,7 +42,7 @@ function country_delete($id){
  * @throws PDOException lỗi truy vấn
  */
 function country_select_all(){
-    $sql = "SELECT * FROM country";
+    $sql = "SELECT * FROM country ORDER BY id DESC";
     return pdo_query($sql);
 }
 function country_select_sethome(){ // copy xún đổi all thành tên sethome

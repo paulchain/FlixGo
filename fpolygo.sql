@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 13, 2018 lúc 04:45 PM
+-- Thời gian đã tạo: Th12 15, 2018 lúc 03:58 AM
 -- Phiên bản máy phục vụ: 10.1.34-MariaDB
 -- Phiên bản PHP: 7.2.8
 
@@ -50,19 +50,9 @@ INSERT INTO `catalog` (`id`, `location`, `name_cata`) VALUES
 (45, 0, 'Phim Chiến Tranh'),
 (46, 0, 'Phim Kinh Dị'),
 (47, 0, 'Phim Hình Sự'),
-(48, 0, 'Phim Hồi Hộp - Gây Cấn'),
-(49, 0, 'Phim Tài Liệu'),
-(50, 0, 'Phim Hoạt Hình'),
-(52, 1, 'Phim Phiêu Lưu'),
-(53, 1, 'Phim Phiêu Lưu'),
-(54, 0, ''),
-(55, 0, ''),
-(56, 0, ''),
-(57, 0, ''),
-(58, 0, ''),
-(59, 0, ''),
-(60, 0, ''),
-(61, 0, '');
+(48, 0, 'Phim Hồi Hộp - Gây Cấn qwe qư'),
+(49, 0, '1312312qwe qư '),
+(50, 0, 'HAHAHHA CON CHÓ 2 2 21 312 123 123wqe qư');
 
 -- --------------------------------------------------------
 
@@ -79,6 +69,14 @@ CREATE TABLE `comment` (
   `likes` int(10) DEFAULT '0',
   `unlikes` int(10) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `comment`
+--
+
+INSERT INTO `comment` (`id`, `content`, `id_customer`, `date`, `id_movie`, `likes`, `unlikes`) VALUES
+(1, 'Phim hay quá đi', 1, '2018-12-05 00:00:00', 55, 10, 50),
+(3, 'Phim hay quá đi', 1, '2018-12-05 00:00:00', 55, 10, 50);
 
 -- --------------------------------------------------------
 
@@ -112,19 +110,25 @@ CREATE TABLE `country` (
 --
 
 INSERT INTO `country` (`id`, `name_country`) VALUES
-(1, 'Việt Nam'),
-(2, 'Nhật Bản'),
-(3, 'Pháp '),
-(4, 'Canada'),
-(5, 'Trung Quốc'),
-(6, 'Hồng Kông'),
 (7, 'Đài Loan'),
 (8, 'Mỹ'),
 (9, 'Ấn Độ'),
 (10, 'Úc'),
 (11, 'Hàn Quốc'),
 (12, 'Thái Lan'),
-(13, 'Anh');
+(13, 'Anh'),
+(14, 'Trung Quốc'),
+(15, 'Hồng Kông'),
+(16, 'Đài Loan'),
+(17, 'Mỹ'),
+(18, 'Ấn Độ'),
+(19, 'Úc'),
+(20, 'Hàn Quốc'),
+(21, 'Thái Lan asd á'),
+(22, 'Anh'),
+(23, 'PHIÊU LƯU NGOẠI TÌNH NGÔN LÙ SIÊU NHÂN'),
+(24, 'Con gì nè '),
+(25, 'Vật vờ Studio');
 
 -- --------------------------------------------------------
 
@@ -140,8 +144,25 @@ CREATE TABLE `customer` (
   `role` tinyint(4) DEFAULT NULL,
   `activated` tinyint(4) DEFAULT NULL,
   `avatar` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `id_pricing` int(11) NOT NULL
+  `date` date NOT NULL,
+  `number` varchar(12) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `password`, `email`, `role`, `activated`, `avatar`, `date`, `number`) VALUES
+(1, 'Ngọc Nhất', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-05', '096643251'),
+(2, 'Ngọc Nhất', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-19', '096643251'),
+(3, 'Ngọc Thọ', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-24', '096643251'),
+(4, 'Thúy Vân', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-18', '096643251'),
+(5, 'Đăng Khoa', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-29', '096643251'),
+(6, 'Ngọc Nhất 1 ', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-30', '096643251'),
+(7, 'Ngọc Nhất 1', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-24', '096643251'),
+(8, 'Ngọc Thọ 1', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-31', '096643251'),
+(9, 'Thúy Vân 1', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-03', '096643251'),
+(10, 'Đăng Khoa 1', '0966643251', 'nhatnnps07643@fpt.edu.vn', 1, 1, 'trash.png', '2018-12-05', '096643251');
 
 -- --------------------------------------------------------
 
@@ -174,7 +195,6 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`id`, `name_movie`, `evaluate`, `view`, `release_year`, `running_time`, `id_country`, `short_description`, `description`, `image`, `clip_SD`, `clip_HD`, `clip_FHD`, `age`, `resolution`, `type`, `id_cata`) VALUES
-(42, 'ĐỘI TRƯỞNG MARVEL 2', 5, 0, 6, 120, 8, 'Bộ phim được xây dựng dựa trên câu chuyện có thật về một người phụ nữ (Han Ji Min) có tiền án tiền sự đang cố để hoà nhập với xã hội. Vì có quá khứ không trong sạch nên cô luôn ăn năn, day dứt, cố gắng sống khép kín hết mức có thể. Một ngày, người ph', '<p>Bộ phim được x&acirc;y dựng dựa tr&ecirc;n c&acirc;u chuyện c&oacute; thật về một người phụ nữ (Han Ji Min) c&oacute; tiền &aacute;n tiền sự đang cố để ho&agrave; nhập với x&atilde; hội. V&igrave; c&oacute; qu&aacute; khứ kh&ocirc;ng trong sạch n&ecirc;n c&ocirc; lu&ocirc;n ăn năn, day dứt, cố gắng sống kh&eacute;p k&iacute;n hết mức c&oacute; thể. Một ng&agrave;y, người phụ nữ bắt gặp một b&eacute; g&aacute;i c&oacute; ho&agrave;n cảnh bất hạnh v&agrave; quyết định ra tay gi&uacute;p đỡ c&am', 'wallpaper2you_94700.jpg', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSy', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 18, 'FHD', 1, 41),
 (43, 'Naruto  2', 5.6, 0, 7, 120, 11, 'Bộ phim được xây dựng dựa trên câu chuyện có thật về một người phụ nữ (Han Ji Min) có tiền án tiền sự đang cố để hoà nhập với xã hội. Vì có quá khứ không trong sạch nên cô luôn ăn năn, day dứt, cố gắng sống khép kín hết mức có thể. Một ngày, người ph', '<p>Bộ phim được x&acirc;y dựng dựa tr&ecirc;n c&acirc;u chuyện c&oacute; thật về một người phụ nữ (Han Ji Min) c&oacute; tiền &aacute;n tiền sự đang cố để ho&agrave; nhập với x&atilde; hội. V&igrave; c&oacute; qu&aacute; khứ kh&ocirc;ng trong sạch n&ecirc;n c&ocirc; lu&ocirc;n ăn năn, day dứt, cố gắng sống kh&eacute;p k&iacute;n hết mức c&oacute; thể. Một ng&agrave;y, người phụ nữ bắt gặp một b&eacute; g&aacute;i c&oacute; ho&agrave;n cảnh bất hạnh v&agrave; quyết định ra tay gi&uacute;p đỡ c&am', 'naruto.jpg', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSy', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 18, 'FHD', 1, 38),
 (48, 'Naruto  2', 5.6, 0, 7, 120, 11, 'Bộ phim được xây dựng dựa trên câu chuyện có thật về một người phụ nữ (Han Ji Min) có tiền án tiền sự đang cố để hoà nhập với xã hội. Vì có quá khứ không trong sạch nên cô luôn ăn năn, day dứt, cố gắng sống khép kín hết mức có thể. Một ngày, người ph', '<p>Bộ phim được x&acirc;y dựng dựa tr&ecirc;n c&acirc;u chuyện c&oacute; thật về một người phụ nữ (Han Ji Min) c&oacute; tiền &aacute;n tiền sự đang cố để ho&agrave; nhập với x&atilde; hội. V&igrave; c&oacute; qu&aacute; khứ kh&ocirc;ng trong sạch n&ecirc;n c&ocirc; lu&ocirc;n ăn năn, day dứt, cố gắng sống kh&eacute;p k&iacute;n hết mức c&oacute; thể. Một ng&agrave;y, người phụ nữ bắt gặp một b&eacute; g&aacute;i c&oacute; ho&agrave;n cảnh bất hạnh v&agrave; quyết định ra tay gi&uacute;p đỡ c&am', 'naruto.jpg', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSy', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 18, 'FHD', 1, 38),
 (52, 'ĐỘI TRƯỞNG MARVEL 2', 5, 0, 6, 120, 8, 'Bộ phim được xây dựng dựa trên câu chuyện có thật về một người phụ nữ (Han Ji Min) có tiền án tiền sự đang cố để hoà nhập với xã hội. Vì có quá khứ không trong sạch nên cô luôn ăn năn, day dứt, cố gắng sống khép kín hết mức có thể. Một ngày, người ph', '<p>Bộ phim được x&acirc;y dựng dựa tr&ecirc;n c&acirc;u chuyện c&oacute; thật về một người phụ nữ (Han Ji Min) c&oacute; tiền &aacute;n tiền sự đang cố để ho&agrave; nhập với x&atilde; hội. V&igrave; c&oacute; qu&aacute; khứ kh&ocirc;ng trong sạch n&ecirc;n c&ocirc; lu&ocirc;n ăn năn, day dứt, cố gắng sống kh&eacute;p k&iacute;n hết mức c&oacute; thể. Một ng&agrave;y, người phụ nữ bắt gặp một b&eacute; g&aacute;i c&oacute; ho&agrave;n cảnh bất hạnh v&agrave; quyết định ra tay gi&uacute;p đỡ c&am', 'wallpaper2you_94700.jpg', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSy', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1163364727161500_6069916484451172352_n.mp4?_nc_cat=102&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGC8zTnFKwiMkV02j5C2IVmkvdMH2TR-xverbLPuO8MPCRVX0CE2Lf8YmUmggSyqkrD7', 18, 'FHD', 1, 41),
@@ -229,6 +249,15 @@ CREATE TABLE `photos` (
   `link` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `id_movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `photos`
+--
+
+INSERT INTO `photos` (`id`, `link`, `id_movie`) VALUES
+(1, '_img - Copy.jpg', 75),
+(2, '50-Beautiful-and-Minimalist-Presentation-Backgrounds-04.jpg', 75),
+(3, '306574_titanic-movie-beautiful-hd-wallpapers-high-quality-all-hd_1280x800_h - Copy (2) - Copy.jpg', 75);
 
 -- --------------------------------------------------------
 
@@ -291,8 +320,7 @@ ALTER TABLE `country`
 -- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_customer_pricing` (`id_pricing`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `movie`
@@ -330,13 +358,13 @@ ALTER TABLE `pricing_plan`
 -- AUTO_INCREMENT cho bảng `catalog`
 --
 ALTER TABLE `catalog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `comment_kids`
@@ -348,13 +376,13 @@ ALTER TABLE `comment_kids`
 -- AUTO_INCREMENT cho bảng `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `movie`
@@ -372,7 +400,7 @@ ALTER TABLE `movie_series`
 -- AUTO_INCREMENT cho bảng `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `pricing_plan`
@@ -397,12 +425,6 @@ ALTER TABLE `comment`
 ALTER TABLE `comment_kids`
   ADD CONSTRAINT `FK_kids_comment` FOREIGN KEY (`id_comment`) REFERENCES `comment` (`id`),
   ADD CONSTRAINT `FK_kids_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id`);
-
---
--- Các ràng buộc cho bảng `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `FK_customer_pricing` FOREIGN KEY (`id_pricing`) REFERENCES `pricing_plan` (`id`);
 
 --
 -- Các ràng buộc cho bảng `movie`

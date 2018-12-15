@@ -1,4 +1,5 @@
-<div class="col-md-2 menu">
+
+<div class="menu col-md-2">
     <nav class="navMenu">
         <ul>
             <li><a class="" href="index.php"><img src="./public/img/logo.png" id=logo alt=""></a></li>
@@ -11,4 +12,7 @@
             <li><a class="nav-item nav-link" href="index.php?page=package"><img src="./public/img/package.png" alt="">Gói phim</a></li>
         </ul>
     </nav>
+</div>
+<div class="col-md-2 ">
+    
 </div>

@@ -167,3 +167,59 @@ ul{
 .pagination.pagination-circle .page-item .page-link{
     color: #fff
 }
+.modal-showCata .modal-body{
+    color: #fff
+}
+.update-Cata{
+    border-top: 1px solid #fff;
+    padding-top: 1rem;
+    cursor: pointer;
+}
+.modal-showCata{
+    position: relative;
+    border-radius: 3px;
+    background: linear-gradient(40deg,#252923,#434c8a);
+}
+.modal-showCata h5{
+    font-weight: 300;
+    /* border: 1px solid red; */
+    
+}
+.delete-cata{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    transform: translateX(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 10;
+}
+
+.imageCatalog{
+    width: 80%;
+}
+.modalCustom{
+    transform: translateY(20%)
+}
+.itemdelete{
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: black;
+}
+.menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.content-comment{
+    white-space: nowrap;
+    max-width: 14rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

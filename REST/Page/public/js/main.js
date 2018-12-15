@@ -141,6 +141,7 @@ function ChangeCard(){
             // rename button insert or update
             $('#buttonIU').val('UPDATE').attr('name','update')
             $('.backgroundTotal').attr('src','./public/img/' + data.image)
+            
           });
     })
 }
@@ -166,7 +167,12 @@ function DeleteImage(){
           });
     })
 }
-
+function clearFormMovie(){
+    $('#centralModal-lg').find('input').val('');
+    $('#centralModal-lg').find('#s_descriptionUpdateMovie').val('')
+    $('#centralModal-lg').find('#s_descriptionUpdateMovie').val('')
+    CKEDITOR.instances['editor1'].setData('')
+}
 
 // Load image When change Image
 function LoadImageByIdMovie(id){
@@ -203,6 +209,7 @@ function insertImage(){
     $('.modal-edit-image').on('click', function(){
         // change null for form image
         $('#form-file-image').val('')
+        $('#buttonIU').val('INSERT').attr('name','insert')
         // get ID of movie
         let id = $(this).attr('data-id');
         // Load image
@@ -314,6 +321,10 @@ function GetMoviePage(page,type){
       });
 }
 
+
+$('.btn-insert').on('click',function(){
+    clearFormMovie();
+})
 // HÀM XỬ LÍ XÓA PHIM
 function DeleteMovie() { 
     let elementDelete  = $('.deleteMovie')
