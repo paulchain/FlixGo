@@ -20,7 +20,7 @@ export default new Vuex.Store({
       },
     getMovie (state){
       axios
-      .get('http://localhost/REST/API/movie.php/GetAllMovie')
+      .get('http://localhost/REST/API/movie.php/GetAllInfomation')
       .then(response => (state.movies = response.data))
     },
     getCountry (state){
@@ -28,6 +28,8 @@ export default new Vuex.Store({
       .get('http://localhost/REST/API/country.php/country')
       .then(response => (state.country = response.data))
     },
+  },
+  computed: {
   },
   getters: {
     GetMovieEvaluate(state) {
@@ -38,6 +40,25 @@ export default new Vuex.Store({
           return -1
         }
       }).slice(0,8)
+    },
+    GetMovieNew(state) {
+      return state.movies.sort(function(a,b){
+        if(a.id < b.id)
+          return 1
+        else{
+          return -1
+        }
+      }).slice(0,8)
+    },
+    GetMovieFilm(state) {
+      return state.movies.filter(function(movie){
+        return movie.is_film == 0
+      })
+    },
+    GetMovieFilms(state) {
+      return state.movies.filter(function(movie){
+        return movie.is_film != 0
+      })
     },
   },
   actions: {
@@ -50,6 +71,5 @@ export default new Vuex.Store({
     getCountry (context) {
       context.commit('getCountry')
     }
-    
-  }
+  },
 })

@@ -28,7 +28,7 @@
                   <li class="header__nav-item">
                     <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">THỂ LOẠI</a>
                     <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-                      <li v-for='(item,index) in GetCategory' v-bind:key='index'><a href="catalog1.html">{{item.name}}</a></li>
+                      <li v-for='(item,index) in GetCategory' v-bind:key='index'><a href="catalog1.html">{{item.name_cata}}</a></li>
                     </ul>
                   </li>
                   
@@ -37,7 +37,7 @@
                   <li class="header__nav-item">
                     <a href="#" class="header__nav-link dropdown-toggle" ole="button" id="menuCountry" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quốc gia</a>
                     <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="menuCountry">
-                      <li v-for='(item,index) in GetCountry' v-bind:key='index'><a href="catalog1.html">{{item.name}}</a></li>
+                      <li v-for='(item,index) in GetCountry' v-bind:key='index'><a href="catalog1.html">{{item.name_country}}</a></li>
                     </ul>
                   </li>
 

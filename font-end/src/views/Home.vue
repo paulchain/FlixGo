@@ -17,6 +17,9 @@ import premiere from '@/components/Layout/home/premiere.vue'
 import partners from '@/components/Layout/home/partners.vue'
 export default {
   name: 'Home',
+  created() {
+    this.$store.dispatch('getMovie')
+  },
   components: {
     season, items, premiere,partners,slider
   }
