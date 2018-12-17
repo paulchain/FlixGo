@@ -7,7 +7,7 @@ class movie extends restful_api {
 	function __construct(){
 		parent::__construct();
 	}
-
+	// 
 	function GetImage(){
 		if ($this->method == 'POST'){
 			if(true){
@@ -18,6 +18,11 @@ class movie extends restful_api {
 		}
 	}
 
+	//Demo 
+
+
+
+	//Lấy phim lẽ hoặc phim bộ và trang
 	function showMovieTemplate(){
 		$type = $_GET['type'];
 		$page = $_GET['page'];
@@ -94,29 +99,31 @@ class movie extends restful_api {
 	//------------------------------------------
 	// API lấy nội dung của phim đó 
 	function Insert(){
-		if ($this->method == 'GET'){
-			$name_movie = $_GET['name_movie'];
-            $release_year = $_GET['release_year'];
-            $running_time = $_GET['running_time'];
-            $id_country = $_GET['id_country'];
-            $short_description = $_GET['short_description'];
-            $description = $_GET['description'];
-            $image = $_GET['image'];
-            $clip_SD = $_GET['clip_SD'];
-            $clip_HD = $_GET['clip_HD'];
-            $clip_FHD = $_GET['clip_FHD'];
-            $age = $_GET['age'];
-            $resolution = $_GET['resolution'];
-            $type = $_GET['type'];
-            $id_cata = $_GET['id_cata'];
-            if ( is_numeric($release_year) && is_numeric($running_time) && is_numeric($age)) {
-                movie_insert($name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
-                    $data = 'Thêm thành công';
-                    $this->response(200, $data);
-            }else{
-                $data = 'Lỗi thêm';
-                $this->response(404, $data);
-            }
+		if ($this->method == 'POST'){
+			$name = $_POST['name'];
+			$linksd = $_POST['linksd'];
+            $linkhd = $_POST['linkhd'];
+            $linkfhd = $_POST['linkfhd'];
+            $year = $_POST['year'];
+			$time = $_POST['time'];
+			$age = $_POST['age'];
+			$image = $_FILES['file'];
+			$shortDes = $_POST['short_des'];
+            $description = $_POST['des'];
+			$id_cata = $_POST['id_cata'];
+			$id_country = $_POST['id_country'];
+            $resolution = $_POST['resolution'];
+			$evaluate = $_POST['evaluate'];
+            $type = $_POST['type'];
+			$view = 0;
+			$urlImage = $image['name'];
+
+			move_uploaded_file($image['tmp_name'], "../page/public/img/".$image['name'] );
+
+			$data = movie_insert(
+				$name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
+				$urlImage, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata);  
+			$this->response(200, $data);
 		}
 	}
 	function update(){

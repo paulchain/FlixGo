@@ -1,16 +1,17 @@
 <?php
 require_once 'pdo.php';
 
-function movie_insert($name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata){
+function movie_insert($name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
+$urlImage, $linksd, $linkdh, $linkfhd, $age, $resolution, $type, $id_cata){
     $sql = "INSERT INTO movie VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    return pdo_execute($sql, $name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
+    return pdo_execute($sql, $name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
+    $urlImage, $linksd, $linkdh, $linkfhd, $age, $resolution, $type, $id_cata);
 }
 
 function movie_update($id, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata){ 
-    
+    echo 'Movie Updata';
     $sql = "UPDATE movie SET name_movie=?,evaluate = ?,release_year=?  , running_time=?,id_country=?,short_description=?,description=?,
     image=?,clip_SD=?,clip_HD=?,clip_FHD=?,age=?,resolution=?,type=?,id_cata=? WHERE id=?";
-
     return pdo_execute($sql, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata, $id); 
 }
 
@@ -32,7 +33,7 @@ function movie_delete($id){
  */
 function movie_page_and_type($type,$page,$numberGet){
     $from = ($page-1)*$numberGet;
-    $sql = "SELECT * FROM movie WHERE type = $type limit $numberGet offset $from ";
+    $sql = "SELECT * FROM movie WHERE type = $type ORDER BY id DESC limit $numberGet offset $from ";
     return pdo_query($sql);
 }
 function movie_select_all(){
@@ -79,7 +80,7 @@ function movie_select_by_id($id_movie){
 }
 function SelectAllInfo(){
     $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,
-    catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description, is_film, evaluate,description
+    catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description,type, evaluate,description
 
     FROM movie, country, catalog
     WHERE movie.id_country = country.id 

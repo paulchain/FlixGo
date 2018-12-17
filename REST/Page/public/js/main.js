@@ -31,6 +31,8 @@ $(function () {
         $('select.form-control').removeClass('form-control').css('width', '100%');
     }
 });
+
+
 $('.fileCustom').on('change', function (e) {
     $('.boxImageLoad').html('');
     var listFile = Array.from(e.target.files);
@@ -113,6 +115,8 @@ function updateMovie(){
             CKEDITOR.instances['editor1'].setData(data.description)  
             // $('.descriptionUpdateMovie').append(data.description)
           });
+        //   Thay đổi nút bấm
+          $('#buttonIU').val('UPDATE').attr('name','update')
     })
 }
 
@@ -139,7 +143,6 @@ function ChangeCard(){
             $('#countryUpdateMovie').val(data.id_country);
             $('.resolution[value="'+data.resolution+'"]').prop('checked',true)
             // rename button insert or update
-            $('#buttonIU').val('UPDATE').attr('name','update')
             $('.backgroundTotal').attr('src','./public/img/' + data.image)
             
           });
@@ -168,7 +171,7 @@ function DeleteImage(){
     })
 }
 function clearFormMovie(){
-    $('#centralModal-lg').find('input').val('');
+    $('#centralModal-lg').find('input').not("input[type='radio']").val('');
     $('#centralModal-lg').find('#s_descriptionUpdateMovie').val('')
     $('#centralModal-lg').find('#s_descriptionUpdateMovie').val('')
     CKEDITOR.instances['editor1'].setData('')
@@ -299,7 +302,7 @@ function GetMoviePage(page,type){
         data.forEach(element => {
             htmlTbody += "<tr data-id='"+ element.id +"'>"
             htmlTbody += " <td class='font-weight-light h6'>"+ element.id +"</td>"
-            htmlTbody += " <td class='font-weight-light h6'>"+ element.name_movie +"</td>"
+            htmlTbody += " <td class='font-weight-light h6 tableNameMovie'>"+ element.name_movie +"</td>"
             htmlTbody += " <td class='font-weight-light h6'>"+ element.evaluate +"</td>"
             htmlTbody += " <td class='font-weight-light h6'><a class='show-movie-by-id modal-edit-image' data-id='"+ element.id +"' data-toggle='modal' data-target='#EditImage' title='Hình' href='javascript.void()'><img src='./public/img/image.png' alt=''></a> </td>"
             htmlTbody += " <td><a href='index.php?page=movie-series&id="+ element.id +"'><i class='fas fa-plus-square'></i></a></td>"
@@ -324,18 +327,63 @@ function GetMoviePage(page,type){
 
 $('.btn-insert').on('click',function(){
     clearFormMovie();
+     //   Thay đổi nút bấm
+     $('#buttonIU').val('INSERT').attr('name','insert')
+    
 })
+
 // HÀM XỬ LÍ XÓA PHIM
 function DeleteMovie() { 
-    let elementDelete  = $('.deleteMovie')
-    elementDelete.on('click', function(){ 
-        let id =  elementDelete.attr('data-id');
+    $('.deleteMovie').on('click', function(){ 
+        let id =  $(this).attr('data-id');
+        console.log(id);
+        
         $.ajax({
             url: "http://localhost/reST/API/movie.php/delete?id=" +id,
           }).done(function(data) {
             if(data=='1'){
                 GetMoviePage(1,$('#typeMovieSelect').val())
             }
-          });
+        });
     })
 }
+
+
+
+var imageChang = null
+$('#form-file').on('change',function(e){
+    imageChang = e
+})
+// THỰC HIỆN INSERT 
+$('input[name="insert"]').on('click',function(){
+
+    let formData = new FormData();
+
+    formData.append('name',$('#nameUpdateMovie').val());
+    formData.append('linksd',$('#linkSDUpdateMovie').val());
+    formData.append('linkhd',$('#linkHDUpdateMovie').val());
+    formData.append('linkfhd',$('#linkFHDUpdateMovie').val());
+    formData.append('year',$('#yearUpdateMovie').val());
+    formData.append('time',$('#timeUpdateMovie').val());
+    formData.append('age',$('#ageUpdateMovie').val());
+    formData.append('file',$('#form-file')[0].files[0]);
+    formData.append('short_des',$('#s_descriptionUpdateMovie').val());
+    formData.append('des',CKEDITOR.instances['editor1'].getData());
+    formData.append('id_cata',$('#catalogUpdateMovie').val());
+    formData.append('id_country',$('#countryUpdateMovie').val());
+    formData.append('evaluate',$('#evaluate').val());
+    formData.append('type',$('#typeUpdateMovie').val());
+    formData.append('resolution',$('input[name="resolution"]:checked').val());
+    // console.log($('#countryUpdateMovie').val());
+    
+    $.ajax({
+        url: 'http://localhost/reST/API/movie.php/Insert',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false
+    }).done(function(data){
+        console.log(data);
+    })
+    
+})

@@ -3,78 +3,12 @@
     $dsqg = country_select_all();
     $dsimg = photos_select_all();
     $message = '';
-    if(isset($_POST['addnew'])){
-        if($_POST['addnew']){
-            
-            $name_movie=$_POST['name_movie'];
-            $release_year=$_POST['release_year'];
-            $view = 0;
-            $evaluate=$_POST['evaluate'];
-            $running_time=$_POST['running_time'];
-            $id_country=$_POST['id_country'];
-            $short_description=$_POST['short_description'];
-            $description=$_POST['description'];
-            $image=$_FILES['image']['name'];
-            $clip_SD=$_POST['clip_SD'];
-            $clip_HD=$_POST['clip_HD'];
-            $clip_FHD=$_POST['clip_FHD'];
-            $age=$_POST['age'];
-            $resolution=$_POST['resolution'];
-            $type=$_POST['type'];
-            $id_cata=$_POST['id_cata'];
-            $result = movie_insert($name_movie,$evaluate,$view,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
-            $message =  $result > 0 ?'Thêm thành công' : 'Thêm phim thất bại';
-            if($result > 0){
-              move_uploaded_file($_FILES['image']['tmp_name'], 'public/img/' . $image);
-            }
-        }
-    }
-    if(isset($_POST['update'])){
-      $id = $_POST['id'];
-      $name_movie=$_POST['name_movie'];
-      $evaluate=$_POST['evaluate'];
-      $release_year=$_POST['release_year'];
-      $running_time=$_POST['running_time'];
-      $id_country=$_POST['id_country'];
-      $short_description=$_POST['short_description'];
-      $description=$_POST['description'];
-      if($_FILES['image']['error'] != 4){
-        $image=$_FILES['image']['name'];
-      }else{
-        $image=$_POST['imageOld'];
-      }
-      $clip_SD=$_POST['clip_SD'];
-      $clip_HD=$_POST['clip_HD'];
-      $clip_FHD=$_POST['clip_FHD'];
-      $age=$_POST['age'];
-      $resolution=$_POST['resolution'];
-      $type=$_POST['type'];
-      $id_cata=$_POST['id_cata'];
-      $result = movie_update($id, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
-      $message =  $result > 0 ?'Cập nhật thành công' : 'Cập nhật phim thất bại';
-      if($result > 0){
-        move_uploaded_file($_FILES['image']['tmp_name'], 'public/img/' . $image);
-      }
-    }
-    if(isset($_GET['id'])&&isset($_GET['delete'])){
-        $id=$_GET['id'];
-        $result = movie_delete($id);
-        $message =  $result > 0 ? 'Xóa thành công' : 'Xóa phim thất bại';
-    }
-    if(isset($_POST['addimg'])){
-      if($_POST['addimg']){
-        $link=$_POST['link'];
-        $id_movie=$_POST['id_movie'];
-        photos_insert($link,$id_movie);
-      }
-    }
-    $_REQUEST = Array();
 ?>
 <section class="main-movie col-md-10">
     <?php require './view/template/admin.php'; ?>
     <!-- modal custom -->
     <img src="" alt="" class='backgroundTotal'>
-    <div class="alert-success alertCustom bg blue-gradient"><?=$message?></div>
+    <!-- <div class="alert-success alertCustom bg blue-gradient"><?=$message?></div> -->
     <!-- --------------- -->
     <div class="container-fluid mainLoad">
       
@@ -324,7 +258,8 @@
                     <input class="p-0 form-control fileCustom d-flex align-items-center" 
                             id="form-file" 
                             name="image" 
-                            type="file">
+                            type="file"
+                            >
                     <div class="boximg mt-2"><img class="img-thumbnail" id='imageUpdateMovie' src="" alt=""></div>
                   </div>
                 </div>
@@ -381,25 +316,25 @@
                       <div class="col-md-6 mt-2">
                         <label for="formGroupExampleInput">Phim</label>
                         <select name="type" id="typeUpdateMovie" class="custom-select">
-                          <option>Phim lẻ</option>
-                          <option>Phim bộ</option>
+                          <option value='1'>Phim lẻ</option>
+                          <option value='0'>Phim bộ</option>
                         </select>
                       </div>
                     </div>
                   </div>
                   <div class="form-group d-flex"  id='reslutionUpdateMovie'>
                     <div class="custom-control custom-radio mr-auto" >
-                      <input class="custom-control-input resolution" value='SD' id="reslutionSD" type="radio" name="resolution" checked="">
+                      <input class="custom-control-input resolution" value="red" id="reslutionSD" type="radio" name="resolution" checked />
                       <label class="custom-control-label " for="reslutionSD">SD</label>
                     </div>
                     <!-- Group of default radios - option 2-->
                     <div class="custom-control custom-radio mr-auto">
-                      <input class="custom-control-input resolution" value='HD' id="reslutionHD" type="radio" name="resolution">
+                      <input class="custom-control-input resolution" value='HD' id="reslutionHD" type="radio" name="resolution" />
                       <label class="custom-control-label" for="reslutionHD">HD</label>
                     </div>
                     <!-- Group of default radios - option 3-->
                     <div class="custom-control custom-radio mr-auto">
-                      <input class="custom-control-input resolution" value='FHD' id="reslutionFHD" type="radio" name="resolution">
+                      <input class="custom-control-input resolution" value='FHD' id="reslutionFHD" type="radio" name="resolution" />
                       <label class="custom-control-label" for="reslutionFHD">FHD</label>
                     </div>
                   </div>
@@ -410,7 +345,7 @@
           <div class="modal-footer">
             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-            <input class="btn btn-primary btn-sm" type="submit" value="Insert" name="addnew" id='buttonIU'>
+            <input class="btn btn-primary btn-sm" type="button" value="Insert" name="insert" id='buttonIU'>
           </div>
         </div>
       </form>

@@ -223,3 +223,9 @@ ul{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.tableNameMovie{
+    max-width: 13rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
