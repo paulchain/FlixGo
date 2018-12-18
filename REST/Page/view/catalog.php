@@ -34,23 +34,18 @@
           echo 
             "<div class='col-md-3 mt-4'>
               <div class='modal-showCata'>
+                <div class='update-Cata d-flex justify-content-start mr-4' data-id='$id' data-toggle='modal' data-target='#centralModal-lg'>
+                  <img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''>
+                  <h5  class='pl-2'>Update now!</h4>
+                </div>
                 <div class='modal-body pt-3 pb-1'>
                   <div class='delete-cata' >
                     <div class='itemdelete' data-id='$id'><i class='fas fa-times'></i></div>
                   </div>
                   <div class='row'>
-                    <div class='col-md-4 '>
-                      <img class='imageCatalog ' src='./public/img/camera.png' alt=''>
-                    </div>
-                    <div class='col-md-8 '>
+                    <div class='col-12'>
                       <div class='card-body p-0 text-left'>
-                        <h5 class='card-title mt-4 ' id=''>$name_cata</h5>
-                      </div>
-                    </div>
-                    <div class='col-10 offset-md-1 mt-2'>
-                      <div class='update-Cata d-flex justify-content-start mr-4' data-id='$id' data-toggle='modal' data-target='#centralModal-lg'>
-                        <img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''>
-                        <h5  class='pl-2'>Update now!</h5>
+                        <h4 class='card-title mt-4 ' id=''>$name_cata</h4>
                       </div>
                     </div>
                   </div>

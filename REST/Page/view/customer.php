@@ -10,10 +10,10 @@
 <section class="main-movie col-10">
     <?php require './view/template/admin.php'; ?>
   <div class="container-fluid">
-    <div class="row  mb-5 mt-5 RootClass RootClass">
-        <div class="col-md-9">
-            <table class="table table-striped bg-white font-weight-bold mb-0 p-4 tableUser">
-                <thead>
+    <div class="row justify-content-center mb-5 mt-5 RootClass RootClass">
+        <div class="col-md-8">
+            <table class="table font-weight-bold mb-0 p-4 tableContent tableUser">
+                <thead class='text-white '>
                 <tr p-4>
                     <th scope="col">Mã</th>
                     <th scope="col">Họ tên</th>
@@ -45,6 +45,35 @@
                     ?>
                 </tbody>
             </table>
+            <nav class="d-flex bg customElement mt-3  pgtable w-100" aria-label="Page navigation example">
+            <div class="mr-auto"></div>
+            <!-- NAV của phi m lẽ -->
+            <ul class="pagination navPage1 pagination-circle  mb-0 mt-1">
+              <li class="page-item"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+              <?php  
+                $countMovie = 30;
+                if($countMovie%10==0){
+                  for ($i=1; $i <= $countMovie/10; $i++) {
+                    if($i == 1){
+                      echo " <li class='page-item active'><a class='page-link'>$i</a></li>";
+                    }else{
+                      echo " <li class='page-item '><a class='page-link'>$i</a></li>";
+                    }
+                  }
+                }else{
+                  for ($i=1; $i <= $countMovie/10 + 1; $i++) { 
+                    if($i == 1){
+                      echo " <li class='page-item active'><a class='page-link'>$i</a></li>";
+                    }else{
+                      echo " <li class='page-item '><a class='page-link'>$i</a></li>";
+                    }
+                  }
+                }
+              ?>
+              <li class="page-item"><a class="page-link " aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                <!-- NAV CỦA PHIM BỘ -->
+            </ul>
+          </nav>
         </div>
         <div class="col-md-3">
             <div class="card-custom shadow card">

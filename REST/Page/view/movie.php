@@ -7,15 +7,16 @@
 <section class="main-movie col-md-10">
     <?php require './view/template/admin.php'; ?>
     <!-- modal custom -->
-    <img src="" alt="" class='backgroundTotal'>
+    <!-- <img src="" alt="" class='backgroundTotal'> -->
     <!-- <div class="alert-success alertCustom bg customElement"><?=$message?></div> -->
     <!-- --------------- -->
     <div class="container-fluid mainLoad">
-      <div class="row mt-5">
+      <div class="row mt-3 justify-content-center">
         <!-- TABLE -->
-        <div class="col-8  ">
+        <div class="col-8 ">
           <div class="d-flex align-items-center flex-wrap">
-            <button class="btn blue-gradient m-0 mr-auto btn-insert" data-toggle="modal" data-target="#centralModal-lg" title="Thêm phim mới"><i class="fas fa-plus"></i></button>
+            <a href='index.php' class="btn btn-warning  m-0 mr-3" title="Quay lại"><i class="fas fa-chevron-left mr-3"></i>Quay lại</a>
+            <button class="btn customElement  m-0 mr-auto btn-insert" data-toggle="modal" data-target="#centralModal-lg" title="Thêm phim mới"><i class="fas fa-plus"></i></button>
             <div class="form-group  mb-0 mr-3">
               <select name="" id="typeMovieSelect" class="browser-default custom-select">
                 <option selected value="1">Phim lẻ</option>
@@ -23,9 +24,9 @@
               </select>
             </div>
             <div class="form-group d-flex mb-0">
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+              <input class="form-control " type="text" placeholder="Search" aria-label="Search">
               <div class="form-button ml-3 mr-3">
-                <button class="btn btn-small m-0 bg blue-gradient">Search</button>
+                <button class="btn btn-small m-0 bg customElement ">Search</button>
               </div>
             </div>
             <div class="form-group mb-0">
@@ -36,10 +37,10 @@
                 <option value="3">Three</option>
               </select>
             </div>
-            <button class="btn font-weight-light blue-gradient ml-3">Sắp xếp theo thứ tự</button>
+            <button class="btn  customElement  ml-3">Sắp xếp theo thứ tự</button>
           </div>
-          <table class="table mt-2 table-striped bg-white font-weight-bold mb-0 p-4 tableContent">
-            <thead>
+          <table class="table mt-4 font-weight-bold mb-0 p-4 tableContent">
+            <thead class='text-white '>
               <tr p-4>
                 <th scope="col">Mã</th>
                 <th scope="col">Tên phim</th>
@@ -50,15 +51,14 @@
                 <th scope="col">Sửa</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class=''>
             <!-- LƯU GIÁ TRỊ HIỆN TẠI CẢ BẢN DANH SÁCH -->
             </tbody>
           </table>
 
           <!-- THANH PAGE  -->
-          <nav class="d-flex bg blue-gradient w-100" aria-label="Page navigation example">
+          <nav class="d-flex bg customElement mt-3  pgtable w-100" aria-label="Page navigation example">
             <div class="mr-auto"></div>
-
             <!-- NAV của phi m lẽ -->
             <ul class="pagination navPage1 pagination-circle  mb-0 mt-1">
               <li class="page-item"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
@@ -82,7 +82,7 @@
                   }
                 }
               ?>
-              <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+              <li class="page-item"><a class="page-link " aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
                 <!-- NAV CỦA PHIM BỘ -->
             </ul>
             <ul class="pagination navPage2 pagination-circle d-none mb-0 mt-1">
@@ -110,67 +110,40 @@
               <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
             </ul>
           </nav>
-          <a href='index.php' class="btn blue-gradient m-0 mt-3 mr-auto" title="Thêm phim mới"><i class="fas fa-chevron-left mr-3"></i>Quay lại</a>
+          
         </div>
         <!-- COL-MD-4 CARD IMAGE  -->
-        <div class="col-4 ">
-          <div class="row">
-            <div class="col-12">
-              <div class="mt-2" role="">
-                <div class="modal-content">
-                  <div class="modal-body p-0" id="content-insert">
-                    <div class="card">
-                      <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/thelittlemermaid.jpg" alt="Card image cap"><a href="#!"></a>
-                        <div class="mask rgba-white-slight"></div>
-                      </div>
-                      <div class="card-body p-0">
-                        <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
-                        <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
-                        <ul class="list-unstyled d-flex mt-3 flex-wrap">
-                          <li class="">
-                            <div class="btn customElement" id="modal-movie-age">18+</div>
-                          </li>
-                          <li class="ml-2">
-                            <div class="btn customElement" id="modal-movie-release_year">2018</div>
-                          </li>
-                          <li class="ml-2">
-                            <div class="btn customElement" id="modal-movie-country">Mỹ</div>
-                          </li>
-                          <li class="ml-2">
-                            <div class="btn customElement" id="modal-movie-resolution">FHD</div>
-                          </li> 
-                          <li class="ml-2">
-                            <div class="btn customElement" id="modal-movie-time">120'</div>
-                          </li> 
-                          <li class="">
-                            <div class="btn customElement" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+        <div class="col-3 ">
+          <div class="mt-2" role="">
+            <div class="modal-content">
+              <div class="modal-body p-0 cardCustom" id="content-insert">
+                <div class="card">
+                  <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/thelittlemermaid.jpg" alt="Card image cap"><a href="#!"></a>
+                    <div class="mask rgba-white-slight"></div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 mt-3">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-4 offset-md-1">
-                      <img class="w-100" src="./public/img/allmovie.png" alt="">
-                    </div>
-                    <div class="col-md-5">
-                      <div class="card-body p-0 text-right">
-                        <h4 class="card-title mt-4 " id="">Tổng số phim</h4>
-                        <h1 class="card-text " id="">100</h1>
-                      </div>
-                    </div>
-                    <div class="col-10 offset-md-1 mt-2">
-                      <div class="update-allMovie d-flex justify-content-end mr-5">
-                        <img style="width:20px; max-height:20px;" src="./public/img/update.png" alt="">
-                        <h5 class="pl-2">Update now!</h5>
-                      </div>
-                    </div>
+                  <div class="card-body p-0">
+                    <h4 class="card-title mt-4 text-center" id="modal-movie-name">BẢY SẮC CẦU VÒNG</h4>
+                    <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
+                    <ul class="list-unstyled d-flex mt-3 flex-wrap">
+                      <li class="">
+                        <div class="btn customElement" id="modal-movie-age">18+</div>
+                      </li>
+                      <li class="ml-2">
+                        <div class="btn customElement" id="modal-movie-release_year">2018</div>
+                      </li>
+                      <li class="ml-2">
+                        <div class="btn customElement" id="modal-movie-country">Mỹ</div>
+                      </li>
+                      <li class="ml-2">
+                        <div class="btn customElement" id="modal-movie-resolution">FHD</div>
+                      </li> 
+                      <li class="ml-2">
+                        <div class="btn customElement" id="modal-movie-time">120'</div>
+                      </li> 
+                      <li class="">
+                        <div class="btn customElement" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -202,7 +175,6 @@
                     <input class="form-control" id="nameUpdateMovie" 
                             type="text" 
                             name="name_movie" 
-                            placeholder="Tên Phim"
                             required>
                   </div>
                   <div class="form-group">
@@ -380,7 +352,7 @@
             </div>
             <div class="col-3">
               <div class="box-button btn-image-insert h-100">
-                <button class="btn btn-sm blue-gradient m-0 h-100">Insert Image</button>
+                <button class="btn btn-sm customElement  m-0 h-100">Insert Image</button>
               </div>
             </div>
           </div>

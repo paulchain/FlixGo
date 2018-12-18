@@ -143,7 +143,7 @@ function ChangeCard(){
             $('#modal-movie-name').text(data.movie);
             $('#modal-movie-short_description').text(data.short_description);
             $('#modal-movie-age').text(data.age+ '+');
-            $('#modal-movie-name-cata').text(data.name_cata);
+            $('#modal-movie-name-cata').text(data.catalog);
             $('#modal-movie-release_year').text(data.release_year);
             $('#modal-movie-country').text(data.country);
             $('#modal-movie-resolution').text(data.resolution);
@@ -153,7 +153,6 @@ function ChangeCard(){
             $('.resolution[value="'+data.resolution+'"]').prop('checked',true)
             // rename button insert or update
             $('.backgroundTotal').attr('src','./public/img/' + data.image)
-            
           });
     })
 }
@@ -313,7 +312,7 @@ function GetMoviePage(page,type){
             htmlTbody += " <td class='font-weight-light h6 tableNameMovie'>"+ element.name_movie +"</td>"
             htmlTbody += " <td class='font-weight-light h6'>"+ element.evaluate +"</td>"
             htmlTbody += " <td class='font-weight-light h6'><a class='show-movie-by-id modal-edit-image' data-id='"+ element.id +"' data-toggle='modal' data-target='#EditImage' title='Hình' href='javascript.void()'><img src='./public/img/image.png' alt=''></a> </td>"
-            htmlTbody += " <td><a href='index.php?page=movie-series&id="+ element.id +"'><i class='fas fa-plus-square'></i></a></td>"
+            htmlTbody += " <td><a href='index.php?page=movie-series&id="+ element.id +"'><img src='./public/img/add.png' alt=''></a></td>"
             htmlTbody += " <td><i class='deleteMovie' data-id='"+element.id+"'><img src='./public/img/trash.png' alt=''></i></td>"
             htmlTbody += " <td> <a data-toggle='modal' class='modal-update-movie' data-id='"+ element.id +"' data-target='#centralModal-lg' title='Update movie' href='javascript.void()'><img src='./public/img/edit.png' alt=''></a></td>"
             htmlTbody += "</tr>"

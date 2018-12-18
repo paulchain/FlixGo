@@ -28,20 +28,15 @@ function load() {
         for (const key in data) {
             const element = data[key];
             strElement += "<div class='col-md-3 mt-4'>";
-            strElement += "<div class='modal-showCata '>";
-            strElement += "<div class='modal-body pt-3 pb-1'>";
-            strElement += "<div class='delete-cata' ><div class='itemdelete' data-id='" + element.id + "'><i class='fas fa-times'></i></div></div>";
-            strElement += "<div class='row'>";
-            strElement += "<div class='col-md-4 '><img class='imageCatalog ' src='./public/img/camera.png' alt=''></div>";
-            strElement += "<div class='col-md-8 '><div class='card-body p-0 text-left'><h5 class='card-title mt-4 ' id=''>" + element.name_country + "</h5></div></div>";
-            strElement += "<div class='col-10 offset-md-1 mt-2'>";
-            strElement += "<div class='update-Cata d-flex justify-content-start mr-4' data-id='" + element.id + "' data-toggle='modal' data-target='#centralModal-lg'>";
-            strElement += "<img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''><h5 class='pl-2'>Update now!</h5></div>";
-            strElement += "</div></div></div></div></div>";
+            strElement += "<div class='modal-showCata'>";
+            strElement += "<div class='update-Cata d-flex justify-content-start mr-4' data-id='"+element.id+"' data-toggle='modal' data-target='#centralModal-lg'>";
+            strElement += "<img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''>";
+            strElement += "<h5  class='pl-2'>Update now!</h4></div>";
+            strElement += "<div class='modal-body pt-3 pb-1'><div class='delete-cata' ><div class='itemdelete' data-id='"+element.id+"'><i class='fas fa-times'></i></div></div>";
+            strElement += "<div class='row'><div class='col-12'><div class='card-body p-0 text-left'><h4 class='card-title mt-4 ' id=''>"+element.name_country+"</h4></div></div></div></div></div></div>";
         }
         
         $('.RootClass').html(strElement);
-        insert();
         DeleteByClass();
         GetOneCatalog();
     })

@@ -14,6 +14,7 @@
 .homie{
     height: 100vh;
     flex-direction: column;
+    background: #020e1b;
 }
 .layoutMain{
     padding: 0
@@ -43,9 +44,48 @@ table{
 }
 #modal-movie-img{
     width: 100%;
-    height: 270px;
+    height: 460px;
     object-fit: cover;
 }
+
+table{
+    border: none !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .1);
+    
+}
+.tableContent{
+    border: none !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
+
+}
+.pgtable{
+    border: none !important;
+}
+table thead , .pgtable{
+    background: #2a3f54!important
+    
+}
+tbody{
+    background: #dcdada38;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #modal-movie-short_description{
     height: 50px;
     overflow: hidden;
@@ -79,6 +119,10 @@ body{
 tr{
     cursor: pointer;
 }
+table{
+    border: 1px solid black;
+    border-bottom: none;
+}
 table.table td,table.table th{
     padding-left: 2.5rem
 }
@@ -100,41 +144,92 @@ table.table td,table.table th{
 #logo{
     width: 100%;
     object-fit: contain;
-    margin: 3rem 0rem
+    margin: 3rem 0rem;
+    padding: 0rem 1.5rem;
+}
+.navMenu ul li:hover img{
+    filter: grayscale(0)
+}
+.navMenu ul li:hover {
+    background: #2a3f54;
+}
+.navMenu ul li:hover a{
+    color: #f7ce06
 }
 
 .navMenu ul li{
+    width: 100% !important;
     text-decoration: none;  
     list-style-type: none;
     padding: .5rem 1rem;
+   
+}
+.activemenu{
+    background: #2a3f54 ;
+    color: #f7ce06 !important
+}
+.activemenu img {
+    filter: grayscale(0) !important
+}
+.navMenu{
+    width: 100% !important;
+    margin: 0 !important;
+
+}
+.navMenu ul li{
+    transition: .3s ease-in-out;
+    padding: 0rem;
+    
 }
 .navMenu ul li a{
+    width: 100%;
     color: white;
+    text-transform: uppercase;
+    font-weight: 300;
+    display: flex;
+    align-items: flex-end;
+    transition: all .3s ease-in-out;
+    padding: 1rem 2rem !important;
+}
+.navMenu ul li a span{
     font-size: 1.2rem;
-    line-height: 32px;
+    line-height: 1.2rem
 }
 .navMenu ul li a img{
-    padding-right: 1.5rem;
+    max-width: 40px;
+    padding-right: 1rem;
+    filter: grayscale(90%);
+    transition: all .3s ease-in-out
+}
+.navMenu ul li a img#logo{
+    width: 100% !important;
+    padding-right: 1rem;
+    filter: grayscale(0%);
+    padding: 0rem 1rem;
 }
 .menu{
+    position: fixed;
+    top: 0;
+    left: 0;
     padding-left: 0 !important;
     height: 100vh;
+    background: #1f2d3c;
 }
 ul{
     padding: 0
 }
 
 .navAdmin{
-    min-height: 100px;
-    background: rgba(0, 0, 0, .6);
-    padding: 2rem;
+    min-height: 70px;
+    background: #ededed;
+    padding: .5rem 2rem;
     position: relative;
     z-index: 2;
-    color: #fff
 }
 .navAdmin .nav p{
     font-size: 16px;
-    font-weight: 300
+    font-weight: 500;
+    color: #1e3c5a; 
 }
 .navAdmin .nav a img{
     width: 50%;
@@ -157,7 +252,10 @@ ul{
     font-size: .9rem
 }
 .card-body h1{
-    font-size: 4rem
+    font-size: 4rem;
+}
+.card-body h4{
+    padding: 0 1rem;
 }
 .update-allMovie{
     border-top: 1px solid #000;
@@ -172,13 +270,20 @@ ul{
 }
 .update-Cata{
     border-top: 1px solid #fff;
-    padding-top: 1rem;
+    padding-top: .5rem;
     cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 2rem;
+    color: #fff
 }
 .modal-showCata{
     position: relative;
     border-radius: 3px;
-    background: linear-gradient(40deg,#252923,#434c8a);
+    background: linear-gradient(40deg,#5c5f73,#434c8a);
+    height: 150px;
 }
 .modal-showCata h5{
     font-weight: 300;
@@ -187,8 +292,8 @@ ul{
 }
 .delete-cata{
     position: absolute;
-    right: 10px;
-    top: 5px;
+    right: 0;
+    top: 9px;
     transform: translateX(-50%);
     cursor: pointer;
     font-size: 16px;
@@ -211,11 +316,6 @@ ul{
     height: 20px;
     color: black;
 }
-.menu{
-    position: fixed;
-    top: 0;
-    left: 0;
-}
 
 .content-comment{
     white-space: nowrap;
@@ -234,5 +334,6 @@ ul{
     border: 1px solid #00000078;
     color: black;
     background: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .1)
 
 }

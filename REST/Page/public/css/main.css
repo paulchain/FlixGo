@@ -6317,7 +6317,7 @@ html, body {
   font-size: 14px;
   height: 100%;
   width: 100%;
-  background: #2b2b31; }
+  background: #fff; }
 
 .card-custom {
   width: 100%;
@@ -6357,8 +6357,7 @@ html, body {
 header figure {
   margin: 0 auto;
   width: 100%;
-  object-fit: cover;
-  padding: 2rem 0 0; }
+  object-fit: cover;}
   header figure .box-img {
     color: #fff; }
     @media (min-width: 768px) {
@@ -6379,7 +6378,7 @@ header figure {
   @media (min-width: 768px) {
     header figure {
       width: 46%;
-      padding: 4rem 0	0; } }
+    } }
 
 .home .home-main {
   margin: 0 auto;
