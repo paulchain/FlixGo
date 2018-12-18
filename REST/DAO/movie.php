@@ -2,17 +2,21 @@
 require_once 'pdo.php';
 
 function movie_insert($name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
-$urlImage, $linksd, $linkdh, $linkfhd, $age, $resolution, $type, $id_cata){
-    $sql = "INSERT INTO movie VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata){
+    $sql = "INSERT INTO movie VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     return pdo_execute($sql, $name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
-    $urlImage, $linksd, $linkdh, $linkfhd, $age, $resolution, $type, $id_cata);
+    $urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata);
 }
 
-function movie_update($id, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata){ 
-    echo 'Movie Updata';
-    $sql = "UPDATE movie SET name_movie=?,evaluate = ?,release_year=?  , running_time=?,id_country=?,short_description=?,description=?,
-    image=?,clip_SD=?,clip_HD=?,clip_FHD=?,age=?,resolution=?,type=?,id_cata=? WHERE id=?";
-    return pdo_execute($sql, $name_movie,$evaluate,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata, $id); 
+function movie_update($id, $name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
+$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata){ 
+
+    $sql = "UPDATE movie SET name_movie=?,evaluate = ?,view = ?, release_year=?  , running_time=?,
+    id_country=?,short_description=?,description=?, image=?, trailer = ?,clip_SD=?,clip_HD=?,
+    clip_FHD=?,age=?,resolution=?,type=?,id_cata=? WHERE id=?";
+
+    return pdo_execute($sql,$name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
+    $urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata, $id); 
 }
 
 function movie_delete($id){
@@ -70,7 +74,7 @@ function movie_select_all_by_id($id_cata){
 function movie_select_by_id($id_movie){
     $sql = "SELECT movie.id , movie.id_cata, movie.id_country, movie.name_movie as movie,country.name_country 
     as country,image,release_year,resolution,running_time, catalog.name_cata as catalog,
-    age, clip_SD,clip_HD,clip_FHD,short_description,description,evaluate
+    age, clip_SD,clip_HD,clip_FHD,short_description,description,evaluate, trailer, id_cata  
 
     FROM movie, country, catalog
     WHERE movie.id_country = country.id 
@@ -80,7 +84,7 @@ function movie_select_by_id($id_movie){
 }
 function SelectAllInfo(){
     $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,
-    catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description,type, evaluate,description
+    catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description,type, evaluate,description, trailer,id_cata
 
     FROM movie, country, catalog
     WHERE movie.id_country = country.id 

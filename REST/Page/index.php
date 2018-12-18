@@ -9,6 +9,7 @@
     require_once '../DAO/photos.php';
     require_once '../DAO/customer.php';
     require_once '../DAO/comment.php';
+    require_once '../DAO/movie_series.php';
 
     require_once 'view/template/header.php';
         //main

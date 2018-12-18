@@ -54,6 +54,12 @@ $('.fileCustom').on('change', function (e) {
 });
 
 
+// cài đặt màu nền khi mới load trang 
+$(window).ready(function(){
+    $('.backgroundTotal').attr('src',$('#modal-movie-img').attr('src'));
+})
+
+
 // have erro when turn on modal ---- fixed
 
 // Handle alert
@@ -93,7 +99,7 @@ $('.update-cata-modal').on('click', function(){
 
 
 // UPDATE 
-function updateMovie(){
+function LoaddataMovie(){
     $('.modal-update-movie').on('click', function(){
         let id = $(this).attr('data-id');
         $.ajax({
@@ -107,6 +113,7 @@ function updateMovie(){
             $('#linkSDUpdateMovie').val(data.clip_SD);
             $('#linkHDUpdateMovie').val(data.clip_HD);
             $('#linkFHDUpdateMovie').val(data.clip_FHD);
+            $('#trailer').val(data.trailer);
             $('#yearUpdateMovie').val(data.release_year);
             $('#timeUpdateMovie').val(data.running_time);
             $('#ageUpdateMovie').val(data.age);
@@ -117,6 +124,8 @@ function updateMovie(){
           });
         //   Thay đổi nút bấm
           $('#buttonIU').val('UPDATE').attr('name','update')
+          //Thực hiện hành động update
+          updateMovie();
     })
 }
 
@@ -212,7 +221,6 @@ function insertImage(){
     $('.modal-edit-image').on('click', function(){
         // change null for form image
         $('#form-file-image').val('')
-        $('#buttonIU').val('INSERT').attr('name','insert')
         // get ID of movie
         let id = $(this).attr('data-id');
         // Load image
@@ -312,11 +320,11 @@ function GetMoviePage(page,type){
         });
        $('.tableContent tbody').html(htmlTbody);
     //    XỬ LÍ SỰ KIỆN KHI CLICK CHUỘT THÌ THAY ĐỔI BACKGROUD VÀ LOAD DỮ LIỆU LÊN CARD
-       ChangeCard()
+        ChangeCard()
     //    XỬ LÍ NHẬN SỰ KIỆN SAU KHI LOAD XONG
-       insertImage()
+        insertImage()
     // XỬ LÍ UPDATE PHIM
-        updateMovie()
+        LoaddataMovie()
     // DELETE MOVIE 
         DeleteMovie();
     //DeleteImage
@@ -328,7 +336,8 @@ function GetMoviePage(page,type){
 $('.btn-insert').on('click',function(){
     clearFormMovie();
      //   Thay đổi nút bấm
-     $('#buttonIU').val('INSERT').attr('name','insert')
+     $('#buttonIU').val('INSERT').attr('name','insert');
+     insertMovie();
     
 })
 
@@ -355,14 +364,54 @@ $('#form-file').on('change',function(e){
     imageChang = e
 })
 // THỰC HIỆN INSERT 
-$('input[name="insert"]').on('click',function(){
+function insertMovie(){
+    $('input[name="insert"]').on('click',function(){
 
+        let formData = new FormData();
+    
+        formData.append('name',$('#nameUpdateMovie').val());
+        formData.append('linksd',$('#linkSDUpdateMovie').val());
+        formData.append('linkhd',$('#linkHDUpdateMovie').val());
+        formData.append('linkfhd',$('#linkFHDUpdateMovie').val());
+        formData.append('trailer',$('#trailer').val());
+        formData.append('year',$('#yearUpdateMovie').val());
+        formData.append('time',$('#timeUpdateMovie').val());
+        formData.append('age',$('#ageUpdateMovie').val());
+        formData.append('file',$('#form-file')[0].files[0]);
+        formData.append('short_des',$('#s_descriptionUpdateMovie').val());
+        formData.append('des',CKEDITOR.instances['editor1'].getData());
+        formData.append('id_cata',$('#catalogUpdateMovie').val());
+        formData.append('id_country',$('#countryUpdateMovie').val());
+        formData.append('evaluate',$('#evaluate').val());
+        formData.append('type',$('#typeUpdateMovie').val());
+        formData.append('resolution',$('input[name="resolution"]:checked').val());
+        
+        $.ajax({
+            url: 'http://localhost/reST/API/movie.php/Insert',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false
+        }).done(function(data){
+            let type = $('#typeMovieSelect').val();
+            console.log(data);
+            
+            GetMoviePage(1,type);
+        })
+        
+    })
+}
+function updateMovie(){
+    $('input[name="update"]').on('click',function(){
+    
     let formData = new FormData();
-
+    formData.append('id',$('#idUpdate').val());
+    formData.append('imageOld',$('#imageOld').val());
     formData.append('name',$('#nameUpdateMovie').val());
     formData.append('linksd',$('#linkSDUpdateMovie').val());
     formData.append('linkhd',$('#linkHDUpdateMovie').val());
     formData.append('linkfhd',$('#linkFHDUpdateMovie').val());
+    formData.append('trailer',$('#trailer').val());
     formData.append('year',$('#yearUpdateMovie').val());
     formData.append('time',$('#timeUpdateMovie').val());
     formData.append('age',$('#ageUpdateMovie').val());
@@ -374,16 +423,17 @@ $('input[name="insert"]').on('click',function(){
     formData.append('evaluate',$('#evaluate').val());
     formData.append('type',$('#typeUpdateMovie').val());
     formData.append('resolution',$('input[name="resolution"]:checked').val());
-    // console.log($('#countryUpdateMovie').val());
-    
+
     $.ajax({
-        url: 'http://localhost/reST/API/movie.php/Insert',
+        url: 'http://localhost/reST/API/movie.php/update',
         method: 'POST',
         data: formData,
         contentType: false,
         processData: false
     }).done(function(data){
-        console.log(data);
+        let type = $('#typeMovieSelect').val();
+        GetMoviePage(1,type);
     })
     
-})
+    })
+} 

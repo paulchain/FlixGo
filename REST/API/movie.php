@@ -108,6 +108,7 @@ class movie extends restful_api {
 			$time = $_POST['time'];
 			$age = $_POST['age'];
 			$image = $_FILES['file'];
+			$trailer = $_POST['trailer'];
 			$shortDes = $_POST['short_des'];
             $description = $_POST['des'];
 			$id_cata = $_POST['id_cata'];
@@ -122,35 +123,42 @@ class movie extends restful_api {
 
 			$data = movie_insert(
 				$name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
-				$urlImage, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata);  
+				$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata);  
 			$this->response(200, $data);
 		}
 	}
 	function update(){
-		if ($this->method == 'GET'){
-			$id = $_GET['id'];
-			$name_movie = $_GET['name_movie'];
-            $release_year = $_GET['release_year'];
-            $running_time = $_GET['running_time'];
-            $id_country = $_GET['id_country'];
-            $short_description = $_GET['short_description'];
-            $description = $_GET['description'];
-            $image = $_GET['image'];
-            $clip_SD = $_GET['clip_SD'];
-            $clip_HD = $_GET['clip_HD'];
-            $clip_FHD = $_GET['clip_FHD'];
-            $age = $_GET['age'];
-            $resolution = $_GET['resolution'];
-            $type = $_GET['type'];
-            $id_cata = $_GET['id_cata'];
-            if ( is_numeric($release_year) && is_numeric($running_time) && is_numeric($age)) {
-                movie_update($id, $name_movie,$release_year,$running_time,$id_country,$short_description,$description,$image,$clip_SD,$clip_HD,$clip_FHD,$age,$resolution,$type,$id_cata);
-                    $data = 'Sửa thành công';
-                    $this->response(200, $data);
-            }else{
-                $data = 'Lỗi Sửa';
-                $this->response(404, $data);
-            }
+		if ($this->method == 'POST'){
+
+			$id = $_POST['id'];
+			$imgOld = $_POST['imageOld'];
+			$name = $_POST['name'];
+			$linksd = $_POST['linksd'];
+            $linkhd = $_POST['linkhd'];
+            $linkfhd = $_POST['linkfhd'];
+            $year = $_POST['year'];
+			$time = $_POST['time'];
+			$age = $_POST['age'];
+			$trailer = $_POST['trailer'];
+			$shortDes = $_POST['short_des'];
+            $description = $_POST['des'];
+			$id_cata = $_POST['id_cata'];
+			$id_country = $_POST['id_country'];
+            $resolution = $_POST['resolution'];
+			$evaluate = $_POST['evaluate'];
+            $type = $_POST['type'];
+			$view = 0;
+			if(!isset($_FILES['file'])){
+				$urlImage = $imgOld;
+			}else{
+				$urlImage = $_FILES['file']['name'];
+			}
+			$data = movie_update(
+				$id, $name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
+				$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata
+			);
+			// $this->response(200, $data);
+            
 		}
 	}
 	function delete(){

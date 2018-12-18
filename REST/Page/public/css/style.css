@@ -229,3 +229,10 @@ ul{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.customElement{
+    border: 1px solid #00000078;
+    color: black;
+    background: white;
+
+}

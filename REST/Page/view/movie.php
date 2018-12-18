@@ -8,10 +8,9 @@
     <?php require './view/template/admin.php'; ?>
     <!-- modal custom -->
     <img src="" alt="" class='backgroundTotal'>
-    <!-- <div class="alert-success alertCustom bg blue-gradient"><?=$message?></div> -->
+    <!-- <div class="alert-success alertCustom bg customElement"><?=$message?></div> -->
     <!-- --------------- -->
     <div class="container-fluid mainLoad">
-      
       <div class="row mt-5">
         <!-- TABLE -->
         <div class="col-8  ">
@@ -37,7 +36,7 @@
                 <option value="3">Three</option>
               </select>
             </div>
-            <button class="btn text-white font-weight-light blue-gradient ml-3">Sắp xếp theo thứ tự</button>
+            <button class="btn font-weight-light blue-gradient ml-3">Sắp xếp theo thứ tự</button>
           </div>
           <table class="table mt-2 table-striped bg-white font-weight-bold mb-0 p-4 tableContent">
             <thead>
@@ -111,6 +110,7 @@
               <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
             </ul>
           </nav>
+          <a href='index.php' class="btn blue-gradient m-0 mt-3 mr-auto" title="Thêm phim mới"><i class="fas fa-chevron-left mr-3"></i>Quay lại</a>
         </div>
         <!-- COL-MD-4 CARD IMAGE  -->
         <div class="col-4 ">
@@ -120,7 +120,7 @@
                 <div class="modal-content">
                   <div class="modal-body p-0" id="content-insert">
                     <div class="card">
-                      <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/imageFilm.png" alt="Card image cap"><a href="#!"></a>
+                      <div class="view overlay"><img class="card-img-top" id="modal-movie-img" src="./public/img/thelittlemermaid.jpg" alt="Card image cap"><a href="#!"></a>
                         <div class="mask rgba-white-slight"></div>
                       </div>
                       <div class="card-body p-0">
@@ -128,22 +128,22 @@
                         <p class="card-text " id="modal-movie-short_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure iste nostrum molestiae expedita eligendi distinctio voluptas laboriosam facilis. Alias minus magni, accusamus nisi deleniti impedit amet deserunt repellendus culpa accusantium.</p>
                         <ul class="list-unstyled d-flex mt-3 flex-wrap">
                           <li class="">
-                            <div class="btn bg blue-gradient" id="modal-movie-age">18+</div>
+                            <div class="btn customElement" id="modal-movie-age">18+</div>
                           </li>
                           <li class="ml-2">
-                            <div class="btn bg blue-gradient" id="modal-movie-release_year">2018</div>
+                            <div class="btn customElement" id="modal-movie-release_year">2018</div>
                           </li>
                           <li class="ml-2">
-                            <div class="btn blue-gradient" id="modal-movie-country">Mỹ</div>
+                            <div class="btn customElement" id="modal-movie-country">Mỹ</div>
                           </li>
                           <li class="ml-2">
-                            <div class="btn blue-gradient" id="modal-movie-resolution">FHD</div>
+                            <div class="btn customElement" id="modal-movie-resolution">FHD</div>
                           </li> 
                           <li class="ml-2">
-                            <div class="btn blue-gradient" id="modal-movie-time">120'</div>
+                            <div class="btn customElement" id="modal-movie-time">120'</div>
                           </li> 
                           <li class="">
-                            <div class="btn blue-gradient" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
+                            <div class="btn customElement" id="modal-movie-name-cata">HÀNH ĐỘNG ĐÂM CHÉM</div>
                           </li>
                         </ul>
                       </div>
@@ -226,6 +226,14 @@
                             id="linkFHDUpdateMovie" 
                             type="text" 
                             name="clip_FHD"  
+                            required>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Link Trailer</label>
+                    <input class="form-control" 
+                            id="trailer" 
+                            type="text" 
+                            name="trailer"  
                             required>
                   </div>
                   <div class="form-group">
@@ -345,7 +353,7 @@
           <div class="modal-footer">
             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-            <input class="btn btn-primary btn-sm" type="button" value="Insert" name="insert" id='buttonIU'>
+            <input class="btn btn-primary btn-sm" type="button" value="Insert" data-dismiss="modal" name="insert" id='buttonIU'>
           </div>
         </div>
       </form>
