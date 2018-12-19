@@ -2,7 +2,7 @@
 <?php
    //  Lấy bình luận
      $comment = comment_select_all();
-  ?>
+?>
  
  <section class="main-movie col-10">
      <?php require './view/template/admin.php'; ?>

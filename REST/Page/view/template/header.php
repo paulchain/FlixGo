@@ -72,8 +72,6 @@
     <link rel="mask-icon" href="./public/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="shortcut icon" href="./public/favicon/favicon.ico">
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
-    
-    
   </head>
   <body class="home-page" id="top-page"><!-- ////////////// Begin Main ////////////// -->
     <main>

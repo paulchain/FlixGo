@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // import function default by DAO
     require '../DAO/pdo.php';
     
@@ -36,8 +37,8 @@
             require 'view/home.php';
         }
     }else{
-        require 'view/home.php';
+        require 'view/login.php';
     }
         //main
-        require_once 'view/template/footer.php';
+    require_once 'view/template/footer.php';
 ?>

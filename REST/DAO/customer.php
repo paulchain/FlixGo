@@ -46,6 +46,13 @@ function customer_select_all(){
     return pdo_query($sql);
 }
 
+
+function login($email,$password,$role){
+    $sql = "SELECT * FROM customer WHERE email = '$email' AND customer.password = '$password' && role = $role";
+    return pdo_query_one($sql);
+}
+
+
 /**
  * Truy vấn một loại theo mã
  * @param int $id là mã loại cần truy vấn

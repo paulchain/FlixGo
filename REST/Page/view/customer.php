@@ -1,12 +1,8 @@
-
 <?php
   //  Lấy quốc gia
     $user = customer_select_all();
-
     // mail("nhatnn1996@gmail.com","My subject",'my mật khẩu','FROM: FpolyGO ');
-//    
-// ?>
-
+?>
 <section class="main-movie col-10">
     <?php require './view/template/admin.php'; ?>
   <div class="container-fluid">
@@ -97,7 +93,6 @@
     </div>
   </div>
 </section>
-
 <script src="public/js/thuvien.js"></script>
 <script src="public/js/customer.js"></script>
       

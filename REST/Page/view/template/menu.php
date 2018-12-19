@@ -1,4 +1,3 @@
-
 <?php 
     if($_REQUEST['page'])
         $page = $_REQUEST['page'];

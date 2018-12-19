@@ -1,5 +1,4 @@
 <?php
-   
   //  Lấy quốc gia
     $allCata = country_select_all();
 ?>
