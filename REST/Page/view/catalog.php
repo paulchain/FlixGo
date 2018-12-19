@@ -3,61 +3,57 @@
         if($_POST['addnew']){
             $location=$_POST['location'];
             $name_cata=$_POST['name_cata'];
-            catalog_insert($location,$name_cata);
-        }
-    }
-    if(isset($_POST['update'])){
-      $location=$_POST['location'];
-      $name_cata=$_POST['name_cata'];
-      $id=$_POST['id'];
-      catalog_update($id, $location,$name_cata);
-    }
-    if(isset($_GET['id'])&&isset($_GET['delete'])){
-        $id=$_GET['id'];
-        catalog_delete($id);
-    }
+              catalog_insert($location,$name_cata);
+          }
+      }
+      if(isset($_POST['update'])){
+        $location=$_POST['location'];
+        $name_cata=$_POST['name_cata'];
+        $id=$_POST['id'];
+        catalog_update($id, $location,$name_cata);
+      }
+      if(isset($_GET['id'])&&isset($_GET['delete'])){
+          $id=$_GET['id'];
+          catalog_delete($id);
+      }
 
-    $allCata = catalog_select_all();
-?>
+      $allCata = catalog_select_all();
+  ?>
 
-<section class="main-movie col-10">
-    <?php require './view/template/admin.php'; ?>
-  <div class="container-fluid">
-    <div class="row no-gutters">
-      <div class="mr-auto "></div>
-      <button class="btn blue-gradient mt-4" id='insertCatalog' data-toggle="modal" data-target="#centralModal-lg" title="Thêm danh mục mới"><i class="fas fa-plus"></i></button>
-    </div>
-    <div class="row  mb-5 rootClassCatalog">
-      <?php
-        foreach ($allCata as $item) {
-          extract($item);
-          echo 
-            "<div class='col-md-3 mt-4'>
-              <div class='modal-showCata'>
-                <div class='update-Cata d-flex justify-content-start mr-4' data-id='$id' data-toggle='modal' data-target='#centralModal-lg'>
-                  <img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''>
-                  <h5  class='pl-2'>Update now!</h4>
-                </div>
-                <div class='modal-body pt-3 pb-1'>
-                  <div class='delete-cata' >
-                    <div class='itemdelete' data-id='$id'><i class='fas fa-times'></i></div>
-                  </div>
-                  <div class='row'>
-                    <div class='col-12'>
-                      <div class='card-body p-0 text-left'>
-                        <h4 class='card-title mt-4 ' id=''>$name_cata</h4>
-                      </div>
+  <section class="main-movie col-10">
+      <?php require './view/template/admin.php'; ?>
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <div class="mr-auto "></div>
+        <button class="btn blue-gradient mt-4" id='insertCatalog' data-toggle="modal" data-target="#centralModal-lg" title="Thêm danh mục mới"><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="row  mb-5 rootClassCatalog">
+        <?php
+          foreach ($allCata as $item) {
+              extract($item);
+              echo
+              "
+                <div class='col-md-3 mb-4'>
+                  <div class='card-showCata'>
+                    <div class='content-allmovie'>
+                      <p>Tổng phim</p>
+                      <h2>100</h2>
+                    </div>
+                    <div class='content-cata'> 
+                      <h5>$name_cata</h5>
+                    </div>
+                    <div class='card-upde'>
+                      <button class=' update-Cata' data-id='$id' data-toggle='modal' data-target='#centralModal-lg'><i class='fas fa-edit'></i></button>
+                      <button class=' itemdelete' data-id='$id'><i class='fas fa-trash-alt'></i></button>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>";
-        }
-      ?>
-      
+              ";
+          }
+
+        ?>
+      </div>
     </div>
-    
-  </div>
   <!-- MODAL INSERT  -->
   <div class="modal fade modalCustom" id="centralModal-lg" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
         <div class="modal-dialog  modal-lg" role="form">

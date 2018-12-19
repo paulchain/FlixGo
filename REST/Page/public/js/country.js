@@ -1,8 +1,8 @@
 // Hàm delete
 function DeleteByClass() {
-    $('.delete-cata').on('click', function () {
+    $('.itemdelete').on('click', function () {
 
-        let id = $(this).find('.itemdelete').attr('data-id');
+        let id = $(this).attr('data-id');
 
         $.ajax({
             url: 'http://localhost/rest/API/country.php/delete',
@@ -27,13 +27,11 @@ function load() {
         let strElement = '';
         for (const key in data) {
             const element = data[key];
-            strElement += "<div class='col-md-3 mt-4'>";
-            strElement += "<div class='modal-showCata'>";
-            strElement += "<div class='update-Cata d-flex justify-content-start mr-4' data-id='"+element.id+"' data-toggle='modal' data-target='#centralModal-lg'>";
-            strElement += "<img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''>";
-            strElement += "<h5  class='pl-2'>Update now!</h4></div>";
-            strElement += "<div class='modal-body pt-3 pb-1'><div class='delete-cata' ><div class='itemdelete' data-id='"+element.id+"'><i class='fas fa-times'></i></div></div>";
-            strElement += "<div class='row'><div class='col-12'><div class='card-body p-0 text-left'><h4 class='card-title mt-4 ' id=''>"+element.name_country+"</h4></div></div></div></div></div></div>";
+            strElement += "<div class='col-md-3 mb-4'>";
+            strElement += "<div class='card-showCata'><div class='content-allmovie'><p>Tổng phim</p><h2>100</h2></div>";
+            strElement += "<div class='content-cata'> <h5>"+element.name_country+"</h5></div><div class='card-upde'>";
+            strElement += "<button  class=' update-Cata mr-2' data-id='"+element.id+"' data-toggle='modal' data-target='#centralModal-lg'><i class='fas fa-edit'></i></button><button class='itemdelete mr-2' data-id='"+element.id+"'><i class='fas fa-trash-alt'></i></button>";
+            strElement += "</div></div></div>"; 
         }
         
         $('.RootClass').html(strElement);

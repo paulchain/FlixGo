@@ -7,10 +7,10 @@
  <section class="main-movie col-10">
      <?php require './view/template/admin.php'; ?>
    <div class="container-fluid">
-     <div class="row  mb-5 mt-5 RootClass RootClass">
-         <div class="col-md-9">
+     <div class="row  mb-5 mt-5 RootClass RootClass justify-content-center">
+         <div class="col-md-8">
              <table class="table table-striped bg-white font-weight-bold mb-0 p-4 tableComment">
-                 <thead>
+                 <thead class='text-white '>
                  <tr p-4>
                      <th scope="col">Mã</th>
                      <th scope="col">Nội dung</th>

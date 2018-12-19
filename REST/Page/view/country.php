@@ -12,35 +12,30 @@
       <button class="btn blue-gradient mt-4" id='insertCatalog' data-toggle="modal" data-target="#centralModal-lg" title="Thêm danh mục mới"><i class="fas fa-plus"></i></button>
     </div>
     <div class="row  mb-5 RootClass RootClass">
-      <?php
+        <?php
         foreach ($allCata as $item) {
-          extract($item);
-          echo 
-            "<div class='col-md-3 mt-4'>
-              <div class='modal-showCata'>
-                <div class='update-Cata d-flex justify-content-start mr-4' data-id='$id' data-toggle='modal' data-target='#centralModal-lg'>
-                  <img style='width:20px; max-height:20px;' src='./public/img/update.png' alt=''>
-                  <h5  class='pl-2'>Update now!</h4>
-                </div>
-                <div class='modal-body pt-3 pb-1'>
-                  <div class='delete-cata' >
-                    <div class='itemdelete' data-id='$id'><i class='fas fa-times'></i></div>
+            extract($item);
+            echo
+            "
+              <div class='col-md-3 mb-4'>
+                <div class='card-showCata'>
+                  <div class='content-allmovie'>
+                    <p>Tổng phim</p>
+                    <h2>100</h2>
                   </div>
-                  <div class='row'>
-                    <div class='col-12'>
-                      <div class='card-body p-0 text-left'>
-                        <h4 class='card-title mt-4 ' id=''>$name_country</h4>
-                      </div>
-                    </div>
+                  <div class='content-cata'> 
+                    <h5>$name_country</h5>
+                  </div>
+                  <div class='card-upde'>
+                    <button class='update-Cata' data-id='$id' data-toggle='modal' data-target='#centralModal-lg'><i class='fas fa-edit'></i></button>
+                    <button class='itemdelete' data-id='$id'><i class='fas fa-trash-alt'></i></button>
                   </div>
                 </div>
               </div>
-            </div>";
+            ";
         }
       ?>
-      
     </div>
-    
   </div>
   <!-- MODAL INSERT  -->
   <div class="modal fade modalCustom" id="centralModal-lg" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
