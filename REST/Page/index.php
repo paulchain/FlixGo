@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
     // import function default by DAO
     require '../DAO/pdo.php';
     
@@ -13,7 +13,6 @@
     require_once '../DAO/movie_series.php';
 
     require_once 'view/template/header.php';
-        //main
     if(isset($_GET['page'])){
         if($_GET['page'] == "catalog"){
             require 'view/template/menu.php';
@@ -36,9 +35,14 @@
         }else{
             require 'view/home.php';
         }
-    }else{
+    }elseif(isset($_GET['action']) && $_GET['action'] == 'logout'){
+        unset($_SESSION['user']);
+        require 'view/login.php';
+    }elseif(isset($_SESSION['user'])){
+        require 'view/home.php';
+    }
+    else{
         require 'view/login.php';
     }
-        //main
     require_once 'view/template/footer.php';
 ?>

@@ -53,7 +53,6 @@
                     <td><a class='deleteMovie' href='javascript:void(0)'> <img src='./public/img/trash.png' alt=''></a></td>
                   </tr>";
                 }
-                  
               ?>
                   <!-- modal image -->
               <div class="modal fade" id="EditImage" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">

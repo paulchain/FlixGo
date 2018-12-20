@@ -1,6 +1,5 @@
 <?php
 require_once 'pdo.php';
-
 /**
  * Thêm loại mới
  * @param String $ten_customer là tên loại
@@ -77,14 +76,4 @@ function customer_exist($id){
     $sql = "SELECT count(*) FROM customer WHERE id=?";
     return pdo_query_value($sql, $id) > 0;
 }
-//menu đa cấp
-//function Menu($parent = 0,$space = '---', $trees = NULL){ 
-//        if(!$trees){ $trees = array(); }
-//	$sql = mysql_query("SELECT * FROM customer WHERE parent = ".intval($parent)." ORDER BY tencustomer"); 
-//	while($rs = mysql_fetch_assoc($sql)){ 
-//		$trees[] = array('id'=>$rs['id'],'tencustomer'=>$space.$rs['tencustomer']); 
-//		$trees = Menu($rs['id'],$space.'---',$trees); 
-//	} 
-//	return $trees; 
-//}
 ?>

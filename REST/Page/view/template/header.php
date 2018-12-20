@@ -11,57 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
     <title>ADMIN FPOLYGO</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;amp;subset=vietnamese" rel="stylesheet">
-    <meta name="description" content="Description for home page">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback">
-    <!-- Meta verification-->
-    <meta name="google-site-verification" content="VhfbPndGW-UftEvWql2Nwt7F1F5KBgd3lMcGgjn4Ovc">
-    <meta name="msvalidate.01" content="F7679394C660249FBA58732D6100A65A">
-    <meta name="yandex-verification" content="bc82adfacdd74cbf">
-    <link rel="alternate" type="application/rss+xml" title="DEMO SITE" href="//demo-site.com/feed.xml">
-    <!-- Meta Tag-->
-    <meta name="generator" content="DEMO SITE">
-    <meta name="robots" content="noodp">
-    <meta name="keywords" content="Bao Nguyen, Bảo Nguyên, Brands Designer, Web Developer, Apps Developer, Photograper, Front-End Developer">
-    <link rel="dns-prefetch" href="http://maps.googleapis.com/">
-    <link rel="dns-prefetch" href="http://s.w.org/">
-    <meta name="apple-itunes-app" content="app-idXXX-XXX-XXX-XXXX">
-    <!-- SEO MAP-->
-    <meta name="DC.title" content="Home">
-    <meta name="geo.region" content="EN">
-    <meta name="geo.placename" content="DEMO SITE">
-    <meta name="geo.position" content="36.204824;138.252924">
-    <meta name="ICBM" content="36.204824,138.252924">
-    <!-- SEO-->
-    <meta name="author" content="DEMO SITE">
-    <link rel="canonical" href="//demo-site.comundefined">
-    <!-- Social: Twitter-->
-    <meta name="twitter:card" content="Home - DEMO SITE">
-    <meta name="twitter:site" content="demo-site.com">
-    <meta name="twitter:creator" content="@Bao Nguyen">
-    <meta name="twitter:title" content="Home - DEMO SITE">
-    <meta name="twitter:description" content="Description for home page">
-    <meta name="twitter:image:src" content="//demo-site.com/images/logo.png">
-    <!-- Social: Facebook / Open Graph-->
-    <meta property="fb:admins" content="XXXXXXX,XXXXXXX">
-    <meta property="fb:app_id" content="100000511421818">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="//demo-site.comundefined">
-    <meta property="og:title" content="Home- DEMO SITE">
-    <meta property="og:image" content="//demo-site.com/images/logo.png">
-    <meta property="og:description" content="Description for home page">
-    <meta property="og:site_name" content="DEMO SITE">
-    <meta property="article:author" content="//www.facebook.com/baonguyenyam">
-    <meta property="article:publisher" content="//www.facebook.com/baonguyenyam">
-    <!-- Social: Google / Schema.org-->
-    <link rel="author" href="//plus.google.com/XXXXXXXXXXXXXX/">
-    <link rel="publisher" href="//plus.google.com/XXXXXXXXXXXXXX/">
-    <meta itemprop="name" content="Home- DEMO SITE">
-    <meta itemprop="description" content="Description for home page">
-    <meta itemprop="image" content="//demo-site.com/images/logo.png">
-    <!-- Meta Tag Search-->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Home- DEMO SITE">
+    <meta name="description" content="Admin">
     <link rel="stylesheet" href="public/css/thuvien.css">
     <link rel="stylesheet" href="public/css/main.css"><!-- ////////////// FAVICON ////////////// -->
     <link rel="stylesheet" href="public/css/style.css"><!-- ////////////// FAVICON ////////////// -->
