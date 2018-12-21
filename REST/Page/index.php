@@ -12,8 +12,9 @@ session_start();
     require_once '../DAO/comment.php';
     require_once '../DAO/movie_series.php';
 
+
     require_once 'view/template/header.php';
-    if(isset($_GET['page'])){
+    if(isset($_GET['page']) && isset($_SESSION['user'])){
         if($_GET['page'] == "catalog"){
             require 'view/template/menu.php';
             require 'view/catalog.php';

@@ -37,7 +37,7 @@
                   <div class='card-showCata'>
                     <div class='content-allmovie'>
                       <p>Tổng phim</p>
-                      <h2>100</h2>
+                      <h2>$count</h2>
                     </div>
                     <div class='content-cata'> 
                       <h5>$name_cata</h5>

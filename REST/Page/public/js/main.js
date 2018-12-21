@@ -235,7 +235,6 @@ function insertImage(){
                 let element = file[index];
                 formData.append('fileImage[]',element)
             }
-            
             formData.append('id_movie',id)
             // handle event submid image to serve
             $('.btn-image-insert' ).on('click', function(){
@@ -313,7 +312,7 @@ function GetMoviePage(page,type){
             htmlTbody += " <td class='font-weight-light h6'>"+ element.evaluate +"</td>"
             htmlTbody += " <td class='font-weight-light h6'><a class='show-movie-by-id modal-edit-image' data-id='"+ element.id +"' data-toggle='modal' data-target='#EditImage' title='Hình' href='javascript.void()'><img src='./public/img/image.png' alt=''></a> </td>"
             htmlTbody += " <td><a href='index.php?page=movie-series&id="+ element.id +"'><img src='./public/img/add.png' alt=''></a></td>"
-            htmlTbody += " <td><i class='deleteMovie' data-id='"+element.id+"'><img src='./public/img/trash.png' alt=''></i></td>"
+            htmlTbody += " <td><i class='deleteMovie' data-id='"+element.id+"' data-toggle='modal' data-target='#notification'><img src='./public/img/trash.png' alt=''></i></td>"
             htmlTbody += " <td> <a data-toggle='modal' class='modal-update-movie' data-id='"+ element.id +"' data-target='#centralModal-lg' title='Update movie' href='javascript.void()'><img src='./public/img/edit.png' alt=''></a></td>"
             htmlTbody += "</tr>"
         });
@@ -344,15 +343,17 @@ $('.btn-insert').on('click',function(){
 function DeleteMovie() { 
     $('.deleteMovie').on('click', function(){ 
         let id =  $(this).attr('data-id');
-        console.log(id);
-        
-        $.ajax({
-            url: "http://localhost/reST/API/movie.php/delete?id=" +id,
-          }).done(function(data) {
-            if(data=='1'){
-                GetMoviePage(1,$('#typeMovieSelect').val())
-            }
-        });
+        $('.closebtn').click(function(){
+            $.ajax({
+                url: "http://localhost/reST/API/movie.php/delete?id=" +id,
+            }).done(function(data){
+                console.log(data);
+                if(data['result'] == true){
+                    GetMoviePage(1,$('#typeMovieSelect').val());
+                }   
+                
+            });
+        })  
     })
 }
 
@@ -384,7 +385,6 @@ function insertMovie(){
         formData.append('evaluate',$('#evaluate').val());
         formData.append('type',$('#typeUpdateMovie').val());
         formData.append('resolution',$('input[name="resolution"]:checked').val());
-        
         $.ajax({
             url: 'http://localhost/reST/API/movie.php/Insert',
             method: 'POST',
@@ -392,10 +392,11 @@ function insertMovie(){
             contentType: false,
             processData: false
         }).done(function(data){
-            let type = $('#typeMovieSelect').val();
             console.log(data);
-            
-            GetMoviePage(1,type);
+            if(data['result'] == true){
+                let type = $('#typeMovieSelect').val();
+                GetMoviePage(1,type);
+            }
         })
         
     })
@@ -430,9 +431,15 @@ function updateMovie(){
         contentType: false,
         processData: false
     }).done(function(data){
+        console.log(data);
+        
         let type = $('#typeMovieSelect').val();
         GetMoviePage(1,type);
     })
     
     })
 } 
+
+// $(window).ready(function(){
+//     $('.page-item')[0].addClass('active');
+// })

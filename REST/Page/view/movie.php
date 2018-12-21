@@ -362,5 +362,20 @@
     </div>
   </div>
 </div>
+
+<!-- MODAL THÔNG BÁO  -->
+<div class="modal bounceInRight animated p-1 notification " id="notification" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" >
+      <div class="modal-content shadow">
+          <div class="modal-body">
+              <p class='text-center m-0 h4 '>Bạn có muốn xóa ? </p>
+          </div>
+          <div class="d-flex flex-wrap modal-footer p-0">
+              <button class="btn btn-info btn-sm " type="button" data-dismiss="modal">Đóng</button>
+              <button class="btn closebtn btn-success btn-sm" type="button" data-dismiss="modal">Có</button>
+          </div>
+      </div>  
+    </div>
+  </div>
 <script src="public/js/thuvien.js"></script>
 <script src="./public/js/main.js"></script>

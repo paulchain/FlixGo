@@ -3,24 +3,12 @@
 require 'restful_api.php';
     require '../DAO/movie.php';
     require '../DAO/photos.php';
+    require '../DAO/catalog.php';
 class movie extends restful_api {
 	function __construct(){
 		parent::__construct();
 	}
 	// 
-	function GetImage(){
-		if ($this->method == 'POST'){
-			if(true){
-				$this->response(200, $_FILES);
-			}else{
-				echo 'lỗ';
-			}
-		}
-	}
-
-	//Demo 
-
-
 
 	//Lấy phim lẽ hoặc phim bộ và trang
 	function showMovieTemplate(){
@@ -85,7 +73,6 @@ class movie extends restful_api {
 		}
 		$this->response(200, $data);
 	}
-	
 	//------------------------------------------
 	// API lấy nội dung của phim đó 
 	function GetMovieById(){
@@ -95,7 +82,6 @@ class movie extends restful_api {
 			$this->response(200, $data);
 		}
     }
-	
 	//------------------------------------------
 	// API lấy nội dung của phim đó 
 	function Insert(){
@@ -124,12 +110,18 @@ class movie extends restful_api {
 			$data = movie_insert(
 				$name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
 				$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata);  
-			$this->response(200, $data);
+			// UPDATE LẠI TỔNG PHIM CỦA DANH MỤC
+			if($data == null){
+				$this->response(200, array('notification'=> ' No insert Movie because data insert fit', 'result' => false));
+			}{
+				$count = count_catalog($id_cata)['count'] + 1; 
+				catalog_update_count($id_cata,$count);
+				$this->response(200, array('notification'=> 'Insert completed', 'result'=>true));
+			}
 		}
 	}
 	function update(){
 		if ($this->method == 'POST'){
-
 			$id = $_POST['id'];
 			$imgOld = $_POST['imageOld'];
 			$name = $_POST['name'];
@@ -153,23 +145,36 @@ class movie extends restful_api {
 			}else{
 				$urlImage = $_FILES['file']['name'];
 			}
+
+			$id_cataOld = getMovieByid($id)['id_cata'];
+			$countOld = count_catalog($id_cataOld)['count'] - 1;
+			echo $countOld;
 			$data = movie_update(
 				$id, $name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
 				$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata
 			);
-			// $this->response(200, $data);
-            
+			if($data == null){
+				$this->response(200, array('notification'=> ' No update Movie because data insert fit', 'result' => false));
+			}else{
+				catalog_update_count($id_cataOld,$countOld);
+				echo $countOld;
+				$countnew = count_catalog($id_cata)['count'] + 1; 
+				catalog_update_count($id_cata,$countnew);
+				$this->response(200, array('notification'=> 'Update completed', 'result'=>true));
+			}
 		}
 	}
 	function delete(){
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
-			if (movie_delete($id) == 1){
-				$data = '1';
-				$this->response(200, $data);
+			$id_cata = getMovieByid($id)['id_cata'];
+			$data = movie_delete($id);
+			if ($data == null){
+				$this->response(200, array('notification' => ' No Delete Movie because data have movie series', 'result' => false));
 			}else{
-				$data = '0';
-				$this->response(404, $data);
+				$count = count_catalog($id_cata)['count'] - 1;
+				catalog_update_count($id_cata,$count);
+				$this->response(200, array('notification'=> ' Delete success', 'result' => true));
 			}
 		}
 	}

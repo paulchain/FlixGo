@@ -20,6 +20,16 @@ function catalog_update($id, $location,$name_cata){ // lưu ý phần này khóa
     $sql = "UPDATE catalog SET location=?,name_cata=? WHERE id=?";
     return pdo_execute($sql, $location,$name_cata,$id);  // lưu ý phần này khóa chính luôn nằm cuối vidu ma_loai
 }
+
+function catalog_update_count($id,$count ){ 
+    $sql = "UPDATE catalog SET count = ? WHERE id = ?";
+    return pdo_execute($sql, $count,$id); 
+}
+
+function count_catalog($id){ 
+    $sql = "SELECT *  FROM catalog WHERE id = ?";
+    return pdo_query_one($sql,$id); 
+}
 /**
  * Xóa một hoặc nhiều loại
  * @param mix $ma_loai là mã loại hoặc mảng mã loại

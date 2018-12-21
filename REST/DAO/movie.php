@@ -82,6 +82,12 @@ function movie_select_by_id($id_movie){
     and movie.id=?";
     return pdo_query_one($sql, $id_movie);
 }
+function getMovieByid($id){
+    $sql = "SELECT *
+    FROM movie
+    WHERE id= ?";
+    return pdo_query_one($sql, $id);
+}
 function SelectAllInfo(){
     $sql = "SELECT movie.id , movie.name_movie as movie,country.name_country as country,image,release_year,resolution,
     catalog.name_cata as catalog,age, clip_SD,clip_HD,clip_FHD,short_description,type, evaluate,description, trailer,id_cata

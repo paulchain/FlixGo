@@ -15,15 +15,26 @@
     <link rel="stylesheet" href="public/css/thuvien.css">
     <link rel="stylesheet" href="public/css/main.css"><!-- ////////////// FAVICON ////////////// -->
     <link rel="stylesheet" href="public/css/style.css"><!-- ////////////// FAVICON ////////////// -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-touch-icon.png">
-    <!-- <link rel="icon" type="image/png" href="./public/img/logo.png" sizes="32x100">
-    <link rel="icon" type="image/png" href="/public/img/logo.png" sizes="16x16"> -->
-    <link rel="manifest" href="./public/favicon/manifest.json">
-    <link rel="mask-icon" href="./public/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="./public/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="./public/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./public/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./public/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./public/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./public/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./public/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./public/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./public/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./public/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./public/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
   </head>
-  <body class="home-page" id="top-page"><!-- ////////////// Begin Main ////////////// -->
+  <body class="home-page" id="top-page">
+  <!-- ////////////// Begin Main ////////////// -->
     <main>
       <div class="container-fluid layoutMain">
         <div class="row no-gutters">

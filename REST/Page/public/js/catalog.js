@@ -8,9 +8,8 @@ function DeleteByClass(classList){
             method: 'GET',
             data: {id:id}
         }).done(function(data){
-            if(data == true){
-                LoadCatalog('rootClassCatalog')
-            }  
+            console.log(data);
+            LoadCatalog('rootClassCatalog')
         })
     })
 }
@@ -28,7 +27,7 @@ function LoadCatalog(RootClass){
             const element = data[key];
             // Nội dung cần insert
             strElement += "<div class='col-md-3 mb-4'>";
-            strElement += "<div class='card-showCata'><div class='content-allmovie'><p>Tổng phim</p><h2>100</h2></div>";
+            strElement += "<div class='card-showCata'><div class='content-allmovie'><p>Tổng phim</p><h2>"+element.count+"</h2></div>";
             strElement += "<div class='content-cata'> <h5>"+element.name_cata+"</h5></div><div class='card-upde'>";
             strElement += "<button  class=' update-Cata mr-2' data-id='"+element.id+"' data-toggle='modal' data-target='#centralModal-lg'><i class='fas fa-edit'></i></button><button class='itemdelete mr-2' data-id='"+element.id+"'><i class='fas fa-trash-alt'></i></button>";
             strElement += "</div></div></div>"; 
