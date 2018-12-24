@@ -1,9 +1,10 @@
 <?php
 
-require 'restful_api.php';
+	require 'restful_api.php';
     require '../DAO/movie.php';
     require '../DAO/photos.php';
     require '../DAO/catalog.php';
+    require '../DAO/country.php';
 class movie extends restful_api {
 	function __construct(){
 		parent::__construct();
@@ -63,7 +64,7 @@ class movie extends restful_api {
 
 	function InsertPhoto(){
 		$id = $_POST['id_movie'];
-		$listFile = $_FILES['fileImage'];;
+		$listFile = $_FILES['fileImage'];
 		$data = array();
 		foreach ($listFile['tmp_name'] as $key => $value) {
 			$url = $listFile['tmp_name'][$key];
@@ -81,7 +82,7 @@ class movie extends restful_api {
 			$data = movie_select_by_id($id_movie);
 			$this->response(200, $data);
 		}
-    }
+	}
 	//------------------------------------------
 	// API lấy nội dung của phim đó 
 	function Insert(){
@@ -113,9 +114,13 @@ class movie extends restful_api {
 			// UPDATE LẠI TỔNG PHIM CỦA DANH MỤC
 			if($data == null){
 				$this->response(200, array('notification'=> ' No insert Movie because data insert fit', 'result' => false));
-			}{
-				$count = count_catalog($id_cata)['count'] + 1; 
-				catalog_update_count($id_cata,$count);
+			}else{
+				$countcountry = count_country($id_country)['count'] + 1; 
+				country_update_count($id_country,$countcountry);
+
+				$countCata = count_catalog($id_cata)['count'] + 1; 
+				catalog_update_count($id_cata,$countCata);
+
 				$this->response(200, array('notification'=> 'Insert completed', 'result'=>true));
 			}
 		}
@@ -146,9 +151,11 @@ class movie extends restful_api {
 				$urlImage = $_FILES['file']['name'];
 			}
 
-			$id_cataOld = getMovieByid($id)['id_cata'];
-			$countOld = count_catalog($id_cataOld)['count'] - 1;
-			echo $countOld;
+			// GET ID CATALOG AND COUNTRY OLD
+			$movie = getMovieByid($id);
+			$id_cata_old = $movie['id_cata'];
+			$id_country_old = $movie['id_country'];
+
 			$data = movie_update(
 				$id, $name,$evaluate,$view,$year,$time,$id_country,$shortDes,$description,
 				$urlImage, $trailer, $linksd, $linkhd, $linkfhd, $age, $resolution, $type, $id_cata
@@ -156,10 +163,25 @@ class movie extends restful_api {
 			if($data == null){
 				$this->response(200, array('notification'=> ' No update Movie because data insert fit', 'result' => false));
 			}else{
-				catalog_update_count($id_cataOld,$countOld);
-				echo $countOld;
-				$countnew = count_catalog($id_cata)['count'] + 1; 
-				catalog_update_count($id_cata,$countnew);
+
+				if($id_cata =! $id_cata_old){
+					// UPDATE catalog OLD 
+					$count_catalog_old = count_catalog($id_cata_old)['count'] - 1;
+					catalog_update_count($id_cata_old,$count_catalog_old);
+					// UPDATE catalog NEW
+					$count_catalog_new = count_catalog($id_cata)['count'] + 1; 
+					catalog_update_count($count_catalog_new,$count_catalog_new);
+				}
+
+				if($id_country != $id_country_old){
+					// UPDATE country OLD 
+					$count_country_old = count_country($id_country_old)['count'] - 1;
+					country_update_count($id_country_old,$count_country_old);
+					// UPDATE country NEW
+					$count_country_new = count_country($id_country)['count'] + 1;
+					country_update_count($id_country,$count_country_new);
+				}
+
 				$this->response(200, array('notification'=> 'Update completed', 'result'=>true));
 			}
 		}
@@ -167,13 +189,22 @@ class movie extends restful_api {
 	function delete(){
 		if ($this->method == 'GET'){
 			$id = $_GET['id'];
-			$id_cata = getMovieByid($id)['id_cata'];
+			// GET ID CATALOG AND COUNTRY OLD
+			$movie = getMovieByid($id);
+			$id_cata_old = $movie['id_cata'];
+			$id_country_old = $movie['id_country'];
+
 			$data = movie_delete($id);
 			if ($data == null){
 				$this->response(200, array('notification' => ' No Delete Movie because data have movie series', 'result' => false));
 			}else{
-				$count = count_catalog($id_cata)['count'] - 1;
-				catalog_update_count($id_cata,$count);
+
+				$count_catalog_old = count_catalog($id_cata_old)['count'] - 1;
+				catalog_update_count($id_cata_old,$count_catalog_old);
+
+				$count_country_old = count_country($id_country_old)['count'] - 1;
+				country_update_count($id_country_old,$count_country_old);
+
 				$this->response(200, array('notification'=> ' Delete success', 'result' => true));
 			}
 		}

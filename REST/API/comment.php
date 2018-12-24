@@ -11,7 +11,8 @@ class comment extends restful_api {
 	// Hàm lấy tất cả movie
 	function GetCommentByIdMovie(){
 		if ($this->method == 'GET'){
-			$data = comment_select_all();
+			$idmovie = $_GET['idmovie'];
+			$data = commentByIdMovie($idmovie);
 			$this->response(200, $data);
 		}
 	}

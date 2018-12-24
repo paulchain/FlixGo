@@ -46,7 +46,7 @@
                 <th scope="col">Tên phim</th>
                 <th scope="col">IBMS</th>
                 <th scope="col">Hình ảnh</th>
-                <th scope="col">Thêm tập</th>
+                <th class='addmovie' scope="col">Thêm tập</th>
                 <th scope="col">Xóa</th>
                 <th scope="col">Sửa</th>
               </tr>
@@ -64,8 +64,8 @@
               <li class="page-item"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
               <?php  
                 $countMovie = countMovie()[0][0];
-                if($countMovie%10==0){
-                  for ($i=1; $i <= $countMovie/10; $i++) {
+                if($countMovie%12==0){
+                  for ($i=1; $i <= $countMovie/12; $i++) {
                     if($i == 1){
                       echo " <li class='page-item active'><a class='page-link'>$i</a></li>";
                     }else{
@@ -73,7 +73,7 @@
                     }
                   }
                 }else{
-                  for ($i=1; $i <= $countMovie/10 + 1; $i++) { 
+                  for ($i=1; $i <= $countMovie/12 + 1; $i++) { 
                     if($i == 1){
                       echo " <li class='page-item active'><a class='page-link'>$i</a></li>";
                     }else{
@@ -325,7 +325,8 @@
           <div class="modal-footer">
             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-            <input class="btn btn-primary btn-sm" type="button" value="Insert" data-dismiss="modal" name="insert" id='buttonIU'>
+            <button class="btn btn-primary btn-sm" type="button" value="Insert" data-dismiss="modal" name="insert" id='btnInsert'>INSERT</button>
+            <button class="btn btn-primary btn-sm d-none" type="button" value="Update" data-dismiss="modal" name="Update" id='btnUpdate'>UPDATE</button>
           </div>
         </div>
       </form>

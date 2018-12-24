@@ -79,7 +79,7 @@ function movie_select_by_id($id_movie){
     FROM movie, country, catalog
     WHERE movie.id_country = country.id 
     and movie.id_cata = catalog.id
-    and movie.id=?";
+    and movie.id=? ORDER BY movie.id DESC";
     return pdo_query_one($sql, $id_movie);
 }
 function getMovieByid($id){

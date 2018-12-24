@@ -39,12 +39,12 @@ function comment_select_by_id($id_customer){
     return pdo_query_one($sql, $id_customer);
 }
 
-function comment_select_info($id){
-    $sql = "SELECT customer.name as namecustomer ,movie.name_movie as namemovie, comment.content as content, customer.avatar 
-    FROM comment, customer, movie
-    WHERE comment.id_movie = movie.id AND comment.id_customer = customer.id
-    AND comment.id = ?" ;
-    return pdo_query_one($sql, $id);
+function commentByIdMovie($id){
+    $sql = "SELECT customer.name as namecustomer , comment.content as content,
+    customer.avatar as avatar, comment.date as datecomment ,likes,unlikes
+    FROM comment, customer
+    WHERE comment.id_customer = customer.id
+    AND comment.id_movie = ?" ;
+    return pdo_query($sql, $id);
 }
-
 ?>

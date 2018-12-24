@@ -22,7 +22,8 @@ export default {
   },
   components: {
     season, items, premiere,partners,slider
-  }
+  },
+  
 }
 </script>
 

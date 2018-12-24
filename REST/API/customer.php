@@ -8,11 +8,13 @@ class login extends restful_api {
 		parent::__construct();
 	}
 	function login(){
-		if ($this->method == 'GET'){
-			$data = login_select_all();
+		if ($this->method == 'POST'){
+			$data = 10;
+			$email = $_POST['email'];
+			$password = $_POST['password'];
+			$role = $_POST['role'];
+			$data = login($email,$password,$role);		
 			$this->response(200, $data);
-			// Hãy viết code xử lý LẤY dữ liệu ở đây
-			// trả về dữ liệu bằng cách gọi: $this->response(200, $data)
 		}
 	}
 	function insert(){
@@ -22,7 +24,8 @@ class login extends restful_api {
 			$email = $_GET['email'];
 			$avatar = $_GET['avatar'];
 			$id_pricing = $_GET['id_pricing'];
-			if (login_insert($name,$password,$email,$avatar,$date) == 1){
+			$data = login_insert($name,$password,$email,$avatar,$date);
+			if($data){
 				$data = 'Đăng ký thành công';
 				$this->response(200, $data);
 			}else{

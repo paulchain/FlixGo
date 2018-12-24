@@ -9,47 +9,50 @@
         </div> -->
         <!-- <img v-bind:src='image' alt=""> -->
 
-        <div class="owl-carousel owl-theme slider_home owl-loaded ">
-            <figure class='item '>
-                <img  class='bg-items' src="img/home/home__bg.jpg" alt="">
-                <img   class='show-items' src="img/home/home__bg.jpg" alt="">
-                <figcaption>
-                    <p>Tên Phim</p>
-                    <small>Mô tả nhỏ</small>
-                </figcaption>
-            </figure>
-            <figure class='item '>
-                <img  class='bg-items' src="img/home/home__bg2.jpg" alt="">
-                <img   class='show-items' src="img/home/home__bg2.jpg" alt="">
-                <figcaption>
-                    <p>Tên Phim</p>
-                    <small>Mô tả nhỏ</small>
-                </figcaption>
-            </figure>
-            <figure class='item '>
-                <img  class='bg-items' src="img/home/home__bg3.jpg" alt="">
-                <img   class='show-items' src="img/home/home__bg3.jpg" alt="">
-                <figcaption>
-                    <p>Tên Phim</p>
-                    <small>Mô tả nhỏ</small>
-                </figcaption>
-            </figure>
-            <figure class='item '>
-                <img  class='bg-items' src="img/home/home__bg4.jpg" alt="">
-                <img  class='show-items' src="img/home/home__bg4.jpg" alt="">
-                <figcaption>
-                    <p>Tên Phim</p>
-                    <small>Mô tả nhỏ</small>
-                </figcaption>
-            </figure>
-        </div>
+        <Carousel 
+        :perPageCustom="[[720,1]]"
+        :loop= "false"
+        :autoplay= "true"
+        :speed= "3000"
+        :autoplayTimeout= "5000"
+        :minSwipeDistance= "12"
+
+        >
+            <Slide>
+                <figure class='item '>
+                    <img  class='bg-items' src="img/home/home__bg2.jpg" alt="">
+                    <img   class='show-items' src="img/home/home__bg2.jpg" alt="">
+                    <figcaption>
+                        <p>Tên Phim</p>
+                        <small>Mô tả nhỏ</small>
+                    </figcaption>
+                </figure>
+            </Slide>
+            <Slide>
+                <figure class='item '>
+                    <img  class='bg-items' src="img/home/home__bg3.jpg" alt="">
+                    <img   class='show-items' src="img/home/home__bg3.jpg" alt="">
+                    <figcaption>
+                        <p>Tên Phim</p>
+                        <small>Mô tả nhỏ</small>
+                    </figcaption>
+                </figure>
+            </Slide>
+            <Slide>
+                <figure class='item '>
+                    <img  class='bg-items' src="img/home/home__bg4.jpg" alt="">
+                    <img  class='show-items' src="img/home/home__bg4.jpg" alt="">
+                    <figcaption>
+                        <p>Tên Phim</p>
+                        <small>Mô tả nhỏ</small>
+                    </figcaption>
+                </figure>
+            </Slide>
+        </Carousel>
     </section>
 </template>
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-Vue.use(VueAxios, axios)
+import { Carousel, Slide } from 'vue-carousel';
 export default {
     name: 'sliderHome',
     data(){
@@ -57,42 +60,24 @@ export default {
             image: null
         }
     },
-    methods: {
-        LoadImage(){
-            // console.log(event.target.files[0]);
-            // this.image = event.target.files[0];
-            this.image = this.$refs.file.files[0]
-            // console.log(this.image);
-            let formData = new FormData()
-            formData.append('fileImage', this.$refs.file.files[0])
-            // formData.append('username', 'Chris');
-            for(var pair of formData.entries()) {
-                console.log(pair[0]+ ', '+ pair[1]); 
-            }
-            axios.post( 'http://localhost/REST/API/movie.php/GetImage',
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
-                // ).then(function(respone){
-                // })
-                // .catch(function(){
-            );
-            
-        }
+    components: {
+        Slide,
+        Carousel
     }
+
 }
 </script>
 
 <style lang="sass">
+
     .sliderHome
         position: relative
         .item
             position: relative
-            padding: 2rem 2rem
+            padding: 0
             margin-bottom: 0
+            img
+                width: 100%
             .bg-items
                 width: 100%
                 hieght: 100%
@@ -104,7 +89,6 @@ export default {
                 filter: blur(2px)
                 opacity: .4
             .show-items
-                // box-shadow: -4px 2px 7px 1px #e28e372b
                 max-height: 70vh
                 object-fit: cover
                 position: relative

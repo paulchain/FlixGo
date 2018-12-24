@@ -1,13 +1,11 @@
 <template>
   <div id="app">
     <Header></Header>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-   
-    <router-view/>
+
+      <router-view/>
     <Footer></Footer>
+    <div id="videobottom">
+    </div>
   </div>
 </template>
 
@@ -19,5 +17,21 @@ export default {
   components: {
     Header,Footer
   },
+  methods: {
+    scrolltop(){
+			window.scrollTo(0,0);
+		},
+  }
 }
 </script>
+<style lang="sass" scoped>
+  .content__head
+    &:before
+      background-image: linear-gradient(90deg, #cacaca 0%, #ffffff 100%) !important
+  #videobottom
+    position: fixed
+    bottom: 0
+    right: 0
+    z-index: 1000
+</style>
+

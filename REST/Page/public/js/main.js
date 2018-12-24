@@ -123,9 +123,10 @@ function LoaddataMovie(){
             // $('.descriptionUpdateMovie').append(data.description)
           });
         //   Thay đổi nút bấm
-          $('#buttonIU').val('UPDATE').attr('name','update')
+          $('#btnInsert').addClass('d-none');
+          $('#btnUpdate').removeClass('d-none');
           //Thực hiện hành động update
-          updateMovie();
+          
     })
 }
 
@@ -276,6 +277,7 @@ $('.fileCustom').on('change', function (e) {
 
 $('table').ready(function(){
     GetMoviePage(1,1);
+    updateMovie();
 })
 $('#typeMovieSelect').on('change',function(){
     var selectType = $('#typeMovieSelect').val();
@@ -284,7 +286,11 @@ $('#typeMovieSelect').on('change',function(){
     if($('#typeMovieSelect').val() == 1){
         $('.navPage1').removeClass('d-none')
         $('.navPage2').addClass('d-none')
+        // $('.addmovie').addClass('d-none');
+        // $('.addmovies').addClass('d-none');
     }else{
+        // $('.addmovie').removeClass('d-none');
+        // $('.addmovies').removeClass('d-none');
         $('.navPage2').removeClass('d-none')
         $('.navPage1').addClass('d-none')
     }
@@ -295,7 +301,11 @@ $('.page-link').on('click',function(){
     GetMoviePage($(this).text() , $('#typeMovieSelect').val());
 })
 $(window).ready(function(){
-    
+    insertMovie();
+    // $('.addmovie').addClass('d-none');
+    // $('.addMovieChild').addClass('d-none');
+    // console.log($('.addmovie'));
+    // console.log($('td.addMovieChild'));
 })
 
 
@@ -310,8 +320,8 @@ function GetMoviePage(page,type){
             htmlTbody += " <td class='font-weight-light h6'>"+ element.id +"</td>"
             htmlTbody += " <td class='font-weight-light h6 tableNameMovie'>"+ element.name_movie +"</td>"
             htmlTbody += " <td class='font-weight-light h6'>"+ element.evaluate +"</td>"
-            htmlTbody += " <td class='font-weight-light h6'><a class='show-movie-by-id modal-edit-image' data-id='"+ element.id +"' data-toggle='modal' data-target='#EditImage' title='Hình' href='javascript.void()'><img src='./public/img/image.png' alt=''></a> </td>"
-            htmlTbody += " <td><a href='index.php?page=movie-series&id="+ element.id +"'><img src='./public/img/add.png' alt=''></a></td>"
+            htmlTbody += " <td class='font-weight-light h6 helo'><a class='show-movie-by-id modal-edit-image' data-id='"+ element.id +"' data-toggle='modal' data-target='#EditImage' title='Hình' href='javascript.void()'><img src='./public/img/image.png' alt=''></a> </td>"
+            htmlTbody += " <td class='addMovieChild'><a href='index.php?page=movie-series&id="+ element.id +"'><img src='./public/img/add.png' alt=''/></a></td>"
             htmlTbody += " <td><i class='deleteMovie' data-id='"+element.id+"' data-toggle='modal' data-target='#notification'><img src='./public/img/trash.png' alt=''></i></td>"
             htmlTbody += " <td> <a data-toggle='modal' class='modal-update-movie' data-id='"+ element.id +"' data-target='#centralModal-lg' title='Update movie' href='javascript.void()'><img src='./public/img/edit.png' alt=''></a></td>"
             htmlTbody += "</tr>"
@@ -333,10 +343,8 @@ function GetMoviePage(page,type){
 
 $('.btn-insert').on('click',function(){
     clearFormMovie();
-     //   Thay đổi nút bấm
-     $('#buttonIU').val('INSERT').attr('name','insert');
-     insertMovie();
-    
+    $('#btnInsert').removeClass('d-none');
+    $('#btnUpdate').addClass('d-none');
 })
 
 // HÀM XỬ LÍ XÓA PHIM
@@ -365,10 +373,11 @@ $('#form-file').on('change',function(e){
 })
 // THỰC HIỆN INSERT 
 function insertMovie(){
-    $('input[name="insert"]').on('click',function(){
-
+   
+    // $('input[name="insert"]').unbind();
+    $('#btnInsert').on('click',function(){
+        
         let formData = new FormData();
-    
         formData.append('name',$('#nameUpdateMovie').val());
         formData.append('linksd',$('#linkSDUpdateMovie').val());
         formData.append('linkhd',$('#linkHDUpdateMovie').val());
@@ -402,8 +411,7 @@ function insertMovie(){
     })
 }
 function updateMovie(){
-    $('input[name="update"]').on('click',function(){
-    
+    $('#btnUpdate').on('click',function(){
     let formData = new FormData();
     formData.append('id',$('#idUpdate').val());
     formData.append('imageOld',$('#imageOld').val());
@@ -423,20 +431,17 @@ function updateMovie(){
     formData.append('evaluate',$('#evaluate').val());
     formData.append('type',$('#typeUpdateMovie').val());
     formData.append('resolution',$('input[name="resolution"]:checked').val());
-
     $.ajax({
         url: 'http://localhost/reST/API/movie.php/update',
         method: 'POST',
         data: formData,
         contentType: false,
         processData: false
-    }).done(function(data){
-        console.log(data);
-        
+    })
+    .done(function(data){
         let type = $('#typeMovieSelect').val();
         GetMoviePage(1,type);
-    })
-    
+        })
     })
 } 
 

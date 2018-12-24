@@ -4,13 +4,13 @@
 			<div class="row">
 				<!-- section title -->
 				<div class="col-12">
-					<h2 class="section__title section__title--no-margin">Our Partners</h2>
+					<h2 class="section__title section__title--no-margin">Cộng sự</h2>
 				</div>
 				<!-- end section title -->
 
 				<!-- section text -->
 				<div class="col-12">
-					<p class="section__text section__text--last-with-margin">It is a long <b>established</b> fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</p>
+					<p class="section__text section__text--last-with-margin"></p>
 				</div>
 				<!-- end section text -->
 
