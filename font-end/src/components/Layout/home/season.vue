@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h1 class="home__title"><b>XẾP HẠNG PHIM</b></h1>
+					<h1 class="home__title"><b>Xếp hạng phim</b></h1>
 				</div>
 				<div class="col-12">
 					<carousel 
@@ -17,7 +17,7 @@
 						class ="row"
 						>
 						<slide v-for="(item,index) in GetMovieNew" v-bind:key="index">
-							<div class="card card--big ">
+							<div class="card card--big " @click="scrolltop()">
 								<div class="card__cover">
 									<img :src="'img/Movie/'+item.image" alt="">
 									<router-link :to="'/movie/'+ item.id" >
@@ -27,7 +27,7 @@
 									</router-link>
 								</div>
 								<div class="card__content">
-									<h3>{{item.movie}}</h3>
+									<h3 :title="item.movie">{{item.movie}}</h3>
 									<span class="card__category">
 										<a href="#">{{item.catalog}}</a>
 									</span>
@@ -55,15 +55,31 @@ export default {
 		Carousel,
 		Slide
 	},
+	methods: {
+		scrolltop(){
+			let scroll = (document.documentElement || document.body.parentNode || document.body).scrollTop;
+			this.$store.dispatch('setScoll',  scroll)
+			var t = setInterval(()=>{
+				let height = this.$store.state.scroll;
+				window.scrollTo(0,height);
+				this.$store.dispatch('setScoll', height-=50)
+				if(height < 0) {
+					clearInterval(t)
+				}
+			},10)
+		},
+	}
 }
 </script>
 <style lang='sass' >
 	.home__carousel .card__title
 		font-size: 1rem
 	.homes
-		padding: 0rem
+		padding: .5rem 0rem 3rem 0rem
 		background: #19191b
-	.home__title
+	.home__title,.content__title
+		margin: 1rem 0rem
+		text-transform: capitalize
 		color: white !important
 		b
 			font-size: 2rem
@@ -78,6 +94,10 @@ export default {
 	.card__content
 		h3
 			color: white
+			white-space: nowrap
+			overflow: hidden
+			text-overflow: ellipsis
+			max-width: 170px
 			font-weight: 300
 </style>
 

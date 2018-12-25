@@ -62,6 +62,7 @@ export default {
 			.then(response => {
 				if(response.data != false){	
 					let user = {
+						id: response.data.id,
 						avatar: response.data.avatar,
 						name: response.data.name
 					}

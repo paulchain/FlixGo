@@ -93,7 +93,8 @@
 
 										<form action="#" class="form">
 											<textarea id="text" name="text" class="form__textarea" placeholder="Add comment" v-model="comment"></textarea>
-											<button type="button" class="form__btn">Send</button>
+											<p class='notification' v-if="!getStatusUser">Bạn phải đăng nhập mới được bình luận</p>
+											<button type="button" :class="'form__btn ' + getClass " @click="addComment()">Send</button>
 										</form>
 									</div>
 								</div>
@@ -253,16 +254,21 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import axios from 'axios'
 export default {
 	name: 'contents',
 	data(){
 		return {
-			comment: ""
+			comment: "",
+			class: ''
 		}
 	},
 	mutations: {},
 	computed: {
-		...mapGetters(['GetMovieFilm','getComments']),
+		...mapGetters(['GetMovieFilm','getComments','getStatusUser']),
+		getClass(){
+			return this.class
+		}
 	},
 	methods: {
 		updateMovie(){
@@ -271,30 +277,64 @@ export default {
 			this.$store.dispatch('getComments',id)
 		},
 		scrolltop(){
-			window.scrollTo(0,0);
+			let scroll = (document.documentElement || document.body.parentNode || document.body).scrollTop;
+			this.$store.dispatch('setScoll',  scroll)
+			var t = setInterval(()=>{
+				let height = this.$store.state.scroll;
+				window.scrollTo(0,height);
+				this.$store.dispatch('setScoll', height-=50)
+				if(height < 0) {
+					clearInterval(t)
+				}
+			},10)
 		},
-		// addComment(){
-		// 	axios.post('link', {
-		// 	content: comment,
-		// 	customer: 1,
-		// 	movie: this.$route.params.id
-		// 	})
-		// 	.then(function (response) {
-		// 		console.log(response);
-		// 	})
-		// 	.catch(function (error) {
-		// 		console.log(error);
-		// 	});
-		// }
+		addComment(){
+			var comment = new FormData()
+			comment.append('id_movie',this.$route.params.id);
+			comment.append('content',this.comment);
+			comment.append('id_customer',this.$store.state.user.id);
+			axios({
+				method: "POST",
+				url: "http://localhost/rest/API/comment.php/insert",
+				data: comment
+			})
+			.then(response => {
+				// console.log(response.data);
+				if(response.data == true){
+					this.comment = '';
+					this.$store.dispatch('getComments', this.$route.params.id)
+				}
+			})
+		}
+			
 	},
 	actions: {},
-	created(){}
+	created(){
+		if(this.$store.state.checkuser == false){
+			this.class='disablebutton'
+		}
+	}
 }
 </script>
-<style lang="sass" scoped>
+<style lang="sass" scpoed>
 	.content__head
 		padding: 1rem 0rem 1rem 0
 		z-index: 100
+		&::before
+			background: #615050
+			box-shadow: none 
+
+	.comments__avatar
+		height: 40px
+		width: 40px
+		object-fit: cover
+	.notification
+		color: white
+		margin: 1rem 0 0 0
+	.disablebutton
+		background: #9a9494b3
+		cursor: none
+		box-shadow: none
 </style>
 
 

@@ -5,7 +5,6 @@ import store from './store'
 import VueCarousel from 'vue-carousel'
 import  lineClamp from 'vue-line-clamp';
 import VuePlyr from 'vue-plyr'
-
 Vue.use(VuePlyr)
 Vue.use(VueCarousel)
 Vue.use(lineClamp)

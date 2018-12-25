@@ -5,7 +5,7 @@
 				<div class="row">
 					<div class="col-12">
 						<!-- content title -->
-						<h2 class="content__title">PHIM ĐƯỢC ĐÁNH GIÁ CAO</h2>
+						<h2 class="content__title">Phim Được Đánh Giá Cao</h2>
 						<!-- end content title -->
 						<!-- content tabs nav -->
 						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
@@ -32,14 +32,14 @@
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
 					<div class="row">
-						<div class="col-6 col-sm-12 col-lg-6" v-for="(item,index) in GetMovieFilm" v-bind:key='index'>
-							<div class="card card--list">
+						<div class="col-6 col-sm-12 col-lg-6" @click='scrolltop()' v-for="(item,index) in GetMovieFilm" v-bind:key='index'>
+							<div class="card card--list" >
 								<div class="row">
 									<div class="col-12 col-sm-4">
-										<div class="card__cover">
+										<div class="card__cover" >
 											<img :src="'http://localhost/rest/page/public/img/'+item.image" alt="">
-											<router-link :to="'/movie/'+ item.id" >
-											<a href="#" class="card__play">
+											<router-link :to="'/movie/'+ item.id"  >
+											<a href="#" class="card__play" >
 												<i class="icon ion-ios-play"></i>
 											</a>
 											</router-link>
@@ -73,7 +73,7 @@
 					<div class="row">
 						<!-- card -->
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2"  v-for="(item,index) in GetMovieFilms" v-bind:key='index'>
-							<div class="card">
+							<div class="card" @click='scrolltop()'>
 								<div class="card__cover">
 									<img :src="'http://localhost/rest/page/public/img/'+item.image" alt="">
 									<router-link :to="'/movie/'+ item.id" >
@@ -104,13 +104,29 @@ export default {
 	name: 'Item',
 	computed: {
 		...mapGetters(['GetMovieFilm','GetMovieFilms'])
+	},
+	methods: {
+		scrolltop(){
+			let scroll = (document.documentElement || document.body.parentNode || document.body).scrollTop;
+			this.$store.dispatch('setScoll',  scroll)
+			var t = setInterval(()=>{
+				let height = this.$store.state.scroll;
+				window.scrollTo(0,height);
+				this.$store.dispatch('setScoll', height-=50)
+				if(height < 0) {
+					clearInterval(t)
+				}
+			},10)
+		},
 	}
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass" >
 	.content__title
 		color: white !important
+		margin: 0
+		font-size: 30px
 	.card__title
 		padding: 10px 0px
 			

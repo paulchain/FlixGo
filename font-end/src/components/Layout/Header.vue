@@ -50,18 +50,18 @@
                   <button class="header__search-btn" type="button">
                     <i class="icon ion-ios-search"></i>
                   </button>
-                  <router-link to="/signin" v-if="!getStatusUser">
+                  <router-link to="/signin" v-if="!getStatusUser" @click="scrolltop()">
                     <a href="signin.html" class="header__sign-in">
                       <i class="icon ion-ios-log-in"></i>
                       <span>ĐĂNG NHẬP</span>
                     </a>
                   </router-link>
-                  <div class="user">
+                  <div class="user" v-if="getStatusUser">
                     <img :src="'http://localhost/rest/page/public/img/'+getUser.avatar" alt="" class="avatar">
                     <span>{{getUser.name}}</span>
-                    <a href="" class="header__sign-in logout">
-                      <i class="icon ion-ios-log-in"></i>
-                    </a>
+                    <span  @click="logout()" class=" logout">
+                      <i class="fas fa-sign-out-alt"></i>
+                    </span>
                   </div>
                  
                 </div>
@@ -107,6 +107,28 @@ export default {
       return this.$store.state.country
     }
   },
+  methods: {
+    scrolltop(){
+			let scroll = (document.documentElement || document.body.parentNode || document.body).scrollTop;
+			this.$store.dispatch('setScoll',  scroll)
+			var t = setInterval(()=>{
+				let height = this.$store.state.scroll;
+				window.scrollTo(0,height);
+				this.$store.dispatch('setScoll', height-=50)
+				if(height < 0) {
+					clearInterval(t)
+				}
+			},10)
+		},
+    logout(){
+      let user = {
+        id: '',
+        name:'',
+        avatar: '',
+      }
+      this.$store.dispatch('createUser',user)
+    }
+  },
   created() {
     this.$store.dispatch('createCatalog')
     this.$store.dispatch('getCountry')
@@ -139,7 +161,7 @@ export default {
       object-fit: cover
       border-radius: 50%
       margin-left: 2rem
-      border: 6px solid #28282d
+      border: 3px solid #565656
     span
       color: white
       padding: .3rem .5rem
@@ -147,6 +169,12 @@ export default {
     .logout
       max-width: 50px
       height: 40px !important
+      padding: .4rem 1rem
+      border-radius: 3px 
+      background: #565656
+      color: white
+      cursor: pointer
+      margin-left: .3rem
 </style>
 
 

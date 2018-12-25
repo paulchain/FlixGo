@@ -9,13 +9,15 @@
 				<!-- end section title -->
 				<!-- card -->
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2" v-for="(item,index) in GetMovieFilmNew" v-bind:key="index">
-					<div class="card ">
-						<div class="card__cover">
-							<img :src="'http://localhost/rest/page/public/img/' + item.image" alt="">
-							<a href="#" class="card__play">
-								<i class="icon ion-ios-play"></i>
-							</a>
-						</div>
+					<div class="card " @click="scrolltop()">
+						<router-link  :to="'movie/'+ item.id">
+							<div class="card__cover">
+								<img :src="'http://localhost/rest/page/public/img/' + item.image" alt="">
+								<a href="#" class="card__play">
+									<i class="icon ion-ios-play"></i>
+								</a>
+							</div>
+						</router-link>
 						<div class="card__content">
 							<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
 							<span class="card__category">
@@ -41,6 +43,20 @@ export default {
 	name: 'premiere',
 	computed: {
 		...mapGetters(['GetMovieFilmNew']),
+	},
+	methods: {
+		scrolltop(){
+			let scroll = (document.documentElement || document.body.parentNode || document.body).scrollTop;
+			this.$store.dispatch('setScoll',  scroll)
+			var t = setInterval(()=>{
+				let height = this.$store.state.scroll;
+				window.scrollTo(0,height);
+				this.$store.dispatch('setScoll', height-=50)
+				if(height < 0) {
+					clearInterval(t)
+				}
+			},10)
+		},
 	}
 }
 </script>

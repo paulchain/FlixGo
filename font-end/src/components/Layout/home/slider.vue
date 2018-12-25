@@ -20,31 +20,31 @@
         >
             <Slide>
                 <figure class='item '>
-                    <img  class='bg-items' src="img/home/home__bg2.jpg" alt="">
-                    <img   class='show-items' src="img/home/home__bg2.jpg" alt="">
+                    <!-- <img  class='bg-items' src="/img/gallery/AM-Banner-2.jpg" alt=""> -->
+                    <img  class='show-items' src="/img/gallery/AM-Banner-2.jpg" alt="">
                     <figcaption>
-                        <p>Tên Phim</p>
-                        <small>Mô tả nhỏ</small>
+                        <!-- <p>Tên Phim</p>
+                        <small>Mô tả nhỏ</small> -->
                     </figcaption>
                 </figure>
             </Slide>
             <Slide>
                 <figure class='item '>
-                    <img  class='bg-items' src="img/home/home__bg3.jpg" alt="">
-                    <img   class='show-items' src="img/home/home__bg3.jpg" alt="">
+                    <!-- <img  class='bg-items' src="/img/gallery/bumblebee.jpg" alt=""> -->
+                    <img   class='show-items' src="/img/gallery/bumblebee.jpg" alt="">
                     <figcaption>
-                        <p>Tên Phim</p>
-                        <small>Mô tả nhỏ</small>
+                        <!-- <p>Tên Phim</p>
+                        <small>Mô tả nhỏ</small> -->
                     </figcaption>
                 </figure>
             </Slide>
             <Slide>
                 <figure class='item '>
-                    <img  class='bg-items' src="img/home/home__bg4.jpg" alt="">
-                    <img  class='show-items' src="img/home/home__bg4.jpg" alt="">
+                    <!-- <img  class='bg-items' src="/img/gallery/Venom-Banner.png" alt=""> -->
+                    <img  class='show-items' src="/img/gallery/Venom-Banner.png" alt="">
                     <figcaption>
-                        <p>Tên Phim</p>
-                        <small>Mô tả nhỏ</small>
+                        <!-- <p>Tên Phim</p>
+                        <small>Mô tả nhỏ</small> -->
                     </figcaption>
                 </figure>
             </Slide>
@@ -89,7 +89,7 @@ export default {
                 filter: blur(2px)
                 opacity: .4
             .show-items
-                max-height: 70vh
+                max-height: 80vh
                 object-fit: cover
                 position: relative
                 z-index: 1
@@ -122,4 +122,6 @@ export default {
                 border-radius: 50%
                 margin: .4rem
                 border: 1px solid #ff23002b
+        .VueCarousel-pagination
+            background: #1b1b1d
 </style>

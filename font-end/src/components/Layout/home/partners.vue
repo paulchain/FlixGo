@@ -10,7 +10,7 @@
 
 				<!-- section text -->
 				<div class="col-12">
-					<p class="section__text section__text--last-with-margin"></p>
+					<p class="section__text section__text--last-with-margin">Nội dung</p>
 				</div>
 				<!-- end section text -->
 
@@ -68,6 +68,7 @@
 
 <script>
 export default {
-    name: 'partners'
+	name: 'partners',
+	
 }
 </script>

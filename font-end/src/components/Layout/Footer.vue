@@ -4,42 +4,42 @@
 			<div class="row">
 				<!-- footer list -->
 				<div class="col-12 col-md-3">
-					<h6 class="footer__title">Download Our App</h6>
+					<h6 class="footer__title">Tải về ứng dụng</h6>
 					<ul class="footer__app">
-						<li><a href="#"><img src="img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-						<li><a href="#"><img src="img/google-play-badge.png" alt=""></a></li>
+						<li><a href="#"><img src="/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
+						<li><a href="#"><img src="/img/google-play-badge.png" alt=""></a></li>
 					</ul>
 				</div>
 				<!-- end footer list -->
 
 				<!-- footer list -->
 				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Resources</h6>
+					<h6 class="footer__title">Thông tin</h6>
 					<ul class="footer__list">
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Pricing Plan</a></li>
-						<li><a href="#">Help</a></li>
+						<li><a href="#">Chúng tôi</a></li>
+						<li><a href="#">Các gói xem phim</a></li>
+						<li><a href="#">Giúp đỡ</a></li>
 					</ul>
 				</div>
 				<!-- end footer list -->
 
 				<!-- footer list -->
 				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Legal</h6>
+					<h6 class="footer__title">Giấy phép</h6>
 					<ul class="footer__list">
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Security</a></li>
+						<li><a href="#">Giấy phép hoạt động</a></li>
+						<li><a href="#">Chính sách bảo mật</a></li>
+						<li><a href="#">An ninh</a></li>
 					</ul>
 				</div>
 				<!-- end footer list -->
 
 				<!-- footer list -->
 				<div class="col-12 col-sm-4 col-md-3">
-					<h6 class="footer__title">Contact</h6>
+					<h6 class="footer__title">Liên hệ</h6>
 					<ul class="footer__list">
-						<li><a href="tel:+18002345678">+1 (800) 234-5678</a></li>
-						<li><a href="mailto:support@moviego.com">support@flixgo.com</a></li>
+						<li><a href="tel:+18002345678">+84 9666-43251</a></li>
+						<li><a href="mailto:support@moviego.com">nhatnnps07643@fpt.edu.vn</a></li>
 					</ul>
 					<ul class="footer__social">
 						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>

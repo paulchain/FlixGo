@@ -20,7 +20,7 @@
 							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
 								<div class="card__content">
 									<div class="card__wrap">
-										<span class="card__rate"><i class="icon ion-ios-star"></i></span>
+										<span class="card__rate"><i class="icon ion-ios-star"></i>{{getOneMovie.evaluate}} </span>
 
 										<ul class="card__list">
 											<li>{{getOneMovie.resolution}}</li>
@@ -72,7 +72,7 @@ export default {
 		videos,
 	},
 	beforeCreate: function(){
-		console.log('Kích function');
+		// console.log('Kích function');
 		
 		let id = this.$route.params.id
 		this.$store.dispatch('getMovieDetail',id)

@@ -8,6 +8,7 @@ Vue.use(VueAxios, axios)
 
 export default new Vuex.Store({
   state: {
+    scroll: 0,
     catalog: [],
     movies: [],
     country: [],
@@ -15,15 +16,23 @@ export default new Vuex.Store({
     comments: null,
     statusVideo: false,
     user: {
+      id: '',
       name: '',
       avatar: ''
     },
     checkuser: false
   },
   mutations: {
+    setScoll(state,scroll){
+      state.scroll = scroll
+    },
     createUser (state, user){
       state.user = user;
-      state.checkuser = true;
+      if(user.name != ''){
+        state.checkuser = true;
+      }else{
+        state.checkuser = false;
+      }
     },
     createCatalog (state) {
       axios
@@ -99,6 +108,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    setScoll(context,scroll){
+      context.commit('setScoll',scroll);
+    },
     createUser(context,user){
       context.commit('createUser',user);
     },
