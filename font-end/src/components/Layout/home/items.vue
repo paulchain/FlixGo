@@ -32,16 +32,16 @@
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
 					<div class="row">
-						<div class="col-6 col-sm-12 col-lg-6" @click='scrolltop()' v-for="(item,index) in GetMovieFilm" v-bind:key='index'>
+						<div class="col-6 col-sm-12 col-lg-6"  v-for="(item,index) in GetMovieFilm" v-bind:key='index'>
 							<div class="card card--list" >
 								<div class="row">
 									<div class="col-12 col-sm-4">
 										<div class="card__cover" >
 											<img :src="'http://localhost/rest/page/public/img/'+item.image" alt="">
 											<router-link :to="'/movie/'+ item.id"  >
-											<a href="#" class="card__play" >
+											<span @click='scrolltop()' class="card__play" >
 												<i class="icon ion-ios-play"></i>
-											</a>
+											</span>
 											</router-link>
 										</div>
 									</div>
@@ -73,13 +73,13 @@
 					<div class="row">
 						<!-- card -->
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2"  v-for="(item,index) in GetMovieFilms" v-bind:key='index'>
-							<div class="card" @click='scrolltop()'>
+							<div class="card" >
 								<div class="card__cover">
 									<img :src="'http://localhost/rest/page/public/img/'+item.image" alt="">
 									<router-link :to="'/movie/'+ item.id" >
-									<a href="#" class="card__play">
+									<span @click='scrolltop()' class="card__play">
 										<i class="icon ion-ios-play"></i>
-									</a>
+									</span>
 									</router-link>
 								</div>
 								<div class="card__content">
@@ -129,5 +129,4 @@ export default {
 		font-size: 30px
 	.card__title
 		padding: 10px 0px
-			
 </style>

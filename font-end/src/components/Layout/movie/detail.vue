@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h1 class="details__title"></h1>
+					<h1 class="details__title">{{getOneMovie.movie}}</h1>
 				</div>
 				<div class="col-12 col-xl-6">
 					<div class="card card--details">				
@@ -93,4 +93,6 @@ export default {
 		img
 			height: 100%
 			object-fit: cover
+	.details__title 
+		font-size: 1.5rem
 </style>

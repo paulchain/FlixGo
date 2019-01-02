@@ -8,7 +8,7 @@
                 <!-- header logo -->
                 <router-link :to="'/'">
                   <a href="javascript:void(0)" class='header__logo'>
-                    <img src="/img/logo.png" alt="">
+                    <img src="/img/logo.png" alt="" @click="scrolltop()">
                   </a>
                 </router-link>
                 <!-- end header logo -->
@@ -50,11 +50,11 @@
                   <button class="header__search-btn" type="button">
                     <i class="icon ion-ios-search"></i>
                   </button>
-                  <router-link to="/signin" v-if="!getStatusUser" @click="scrolltop()">
-                    <a href="signin.html" class="header__sign-in">
-                      <i class="icon ion-ios-log-in"></i>
-                      <span>ĐĂNG NHẬP</span>
-                    </a>
+                  <router-link  to="/signin" v-if="!getStatusUser" >
+                    <span class="header__sign-in" @click="scrolltop()" >
+                      <i class="icon ion-ios-log-in" ></i>
+                      <span >ĐĂNG NHẬP</span>
+                    </span>
                   </router-link>
                   <div class="user" v-if="getStatusUser">
                     <img :src="'http://localhost/rest/page/public/img/'+getUser.avatar" alt="" class="avatar">
@@ -113,9 +113,11 @@ export default {
 			this.$store.dispatch('setScoll',  scroll)
 			var t = setInterval(()=>{
 				let height = this.$store.state.scroll;
-				window.scrollTo(0,height);
+        window.scrollTo(0,height);
+        console.log(height);
+        
 				this.$store.dispatch('setScoll', height-=50)
-				if(height < 0) {
+				if(height < -50) {
 					clearInterval(t)
 				}
 			},10)

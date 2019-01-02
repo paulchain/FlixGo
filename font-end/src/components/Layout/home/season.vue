@@ -17,13 +17,13 @@
 						class ="row"
 						>
 						<slide v-for="(item,index) in GetMovieNew" v-bind:key="index">
-							<div class="card card--big " @click="scrolltop()">
+							<div class="card card--big " >
 								<div class="card__cover">
 									<img :src="'img/Movie/'+item.image" alt="">
 									<router-link :to="'/movie/'+ item.id" >
-										<a href="#" class="card__play">
+										<span  @click="scrolltop()" class="card__play">
 											<i class="icon ion-ios-play"></i>
-										</a>
+										</span>
 									</router-link>
 								</div>
 								<div class="card__content">

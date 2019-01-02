@@ -89,7 +89,7 @@ export default {
                 filter: blur(2px)
                 opacity: .4
             .show-items
-                max-height: 80vh
+                height: 80vh
                 object-fit: cover
                 position: relative
                 z-index: 1
