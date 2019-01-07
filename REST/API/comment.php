@@ -17,17 +17,12 @@ class comment extends restful_api {
 		}
 	}
 	function insert(){
-		if ($this->method == 'GET'){
-			$content = $_GET['content'];
-            $id_customer = $_GET['id_customer'];
-            $id_movie = $_GET['id_movie'];
-			if (comment_insert($content,$id_customer,$id_movie) == 1) {
-				$data = 'Thêm thành công';
-				$this->response(200, $data);
-			}else{
-				$data = 'Lỗi thêm';
-				$this->response(404, $data);
-			}
+		if ($this->method == 'POST'){
+			$content = $_POST['content'];
+            $id_customer = $_POST['id_customer'];
+			$id_movie = $_POST['id_movie'];
+			$data = comment_insert($content,$id_customer,$id_movie);
+			$this->response(200, $data);	
 		}
 	}
 	function update(){

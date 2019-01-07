@@ -3,8 +3,9 @@ require_once 'pdo.php';
 
 // INSERT COMMENT_______________
 function comment_insert($content,$id_customer,$id_movie){
-    $sql = "INSERT INTO comment(content,id_customer,id_movie) VALUES(?,?,?)";
-    return pdo_execute($sql, $content,$id_customer,$id_movie);
+    $date = date('y,m,d H:i:s');
+    $sql = "INSERT INTO comment(content,id_customer,id_movie,comment.date) VALUES(?,?,?,?)";
+    return pdo_execute($sql, $content,$id_customer,$id_movie, $date);
 }
 //_________________________________________________
 
