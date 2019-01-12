@@ -224,7 +224,7 @@
                             name="image" 
                             type="file"
                             >
-                    <div class="boximg mt-2"><img class="img-thumbnail" id='imageUpdateMovie' src="" alt=""></div>
+                    <div class="boximg mt-2" id='imageUpdateMovie'><img class="img-thumbnail"  alt=""></div>
                   </div>
                 </div>
                 <div class="col-md-8">

@@ -99,9 +99,10 @@ function LoaddataMovie(){
             $('#yearUpdateMovie').val(data.release_year);
             $('#timeUpdateMovie').val(data.running_time);
             $('#ageUpdateMovie').val(data.age);
-            $('#imageUpdateMovie').attr({src : './public/img/' + data.image});     
+            $('#imageUpdateMovie img').attr({src : './public/img/' + data.image});     
             $('#s_descriptionUpdateMovies').val(data.short_description);
             CKEDITOR.instances['editor1'].setData(data.description);
+            console.log('load again');
           });
         //   Thay đổi nút bấm
           $('#btnInsert').addClass('d-none');

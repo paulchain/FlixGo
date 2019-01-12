@@ -75,8 +75,7 @@ class movie extends restful_api {
 	}
 	//------------------------------------------
 	// API lấy nội dung của phim đó 
-	function GetMovieById(){ 
-
+	function GetURL(){ 
 		function curl($url) {
 			$ch = @curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
@@ -108,30 +107,27 @@ class movie extends restful_api {
 				$v1080p = $decode.'=m37';
 				$v720p = $decode.'=m22';
 				$v360p = $decode.'=m18';
-				$linkDownload['1080p'] = $v1080p;
-				$linkDownload['720p'] = $v720p;
-				$linkDownload['360p'] = $v360p;
+				$linkDownload['fhd'] = $v1080p;
+				$linkDownload['hd'] = $v720p;
+				$linkDownload['sd'] = $v360p;
 			}
 			if($count > 3) {
 				$v720p = $decode.'=m22';
 				$v360p = $decode.'=m18';
-				$linkDownload['720p'] = $v720p;
-				$linkDownload['360p'] = $v360p;
+				$linkDownload['hd'] = $v720p;
+				$linkDownload['sd'] = $v360p;
 			}
 			if($count > 2) {
 				$v360p = $decode.'=m18';
-				$linkDownload['360p'] = $v360p;
+				$linkDownload['sd'] = $v360p;
 			}
 			return $linkDownload;
 		}
 
 		if ($this->method == 'GET'){
-            $id_movie = $_GET['id_movie'];
-			$data = movie_select_by_id($id_movie);
-			$linkURL = $data['link'];
-			$urlVideo = getPhotoGoogle($linkURL);
-			$data['link'] = $urlVideo;
-			$this->response(200, $data);
+            $link = $_GET['link'];
+			$urlVideo = getPhotoGoogle($link);
+			$this->response(200, $urlVideo);
 		}
 	}
 	// Admin
